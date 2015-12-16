@@ -1,0 +1,75 @@
+grammar FOOL;
+
+@lexer::members {
+int lexicalErrors=0;
+/* Queste cose diventano un campo della classe SimpleExpLexer.java */
+}
+  
+// PARSER RULES
+
+/* prog ritorna l'albero */
+prog returns [Node trans] : e=exp {$trans = new ProgNode($e.trans);} SEMIC;
+                                                                         //il nodo + ha due sottoalberi
+exp returns [Node trans] : v=term {$trans = $v.trans;} (PLUS v=term {$trans = new PlusNode($trans,$v.trans);})*;
+
+term returns [Node trans] : f=factor {$trans = $f.trans;} (TIMES f=factor {$trans = new TimesNode($trans,$f.trans);})* ;
+        	                                              // è come se fosse un ciclo
+        	                                              // ho il primo value e poi ho 0,1 o più value
+factor returns [Node trans]: value (EQ value)*;
+
+value returns [Node trans] : n=NAT { $trans = new NatNode(Integer.parseInt($n.text)); } |
+                              LPAR e=exp RPAR {$trans = $e.trans;}  |
+                              TRUE {$trans = new BoolNode(true);}   |
+                              FALSE {$trans = new BoolNode(false);} |
+                              IF exp THEN CLPAR exp CRPAR
+                                  ELSE CLPAR exp CRPAR              |
+                              PRINT LPAR exp RPAR
+                              ;
+                              // le parentesi non influiscono nell'albero di sintassi astratta
+
+// LEXER RULES
+
+SEMIC : ';' ;
+EQ    : '==';
+PLUS	: '+' ;
+TIMES	: '*' ;
+NAT	: ('1'..'9')('0'..'9')* | '0' ;   
+TRUE  : 'true' ;
+FALSE : 'false' ;
+LPAR  : '(' ;
+RPAR  : ')' ;
+CLPAR   : '{' ;
+CRPAR : '}' ;
+IF  : 'if' ;
+THEN  : 'then' ;
+ELSE  : 'else' ;
+PRINT : 'print' ;
+/*
+  $channel = HIDDEN cioè non deve passare quel token al parser
+*/
+WHITESP : (' '|'\t'|'\n'|'\r')+ { $channel=HIDDEN;};
+ERR	: . {System.err.println("Invalid char: "+$text); lexicalErrors++;
+             $channel=HIDDEN;} ;
+/*tutto quello che non matcha con le regole precedenti => viene preso dal . come errore*/
+          	      
+	/*
+	
+	  La grammatica è questa ed è la disambiguazione di quella sotto:
+	  
+	  exp -> term + exp | term
+	  term -> value * term | value
+	  value -> NUM | (exp)
+	
+	  E -> E+E | E*E | NUM | ( E )
+	  La disambiguo facendo dei livelli diversi.
+	  
+	  Qua l'associatività è a destra.
+	  1 +              1+1
+	  1 *              1*1
+	  
+	  perchè term non può più avere un +
+	  
+	  ANTLR è un generatore di compilatori.
+	
+	*/
+	
