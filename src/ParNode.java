@@ -1,5 +1,5 @@
 
-public class ParNode implements Node {
+public class ParNode implements Node, DecNode {
 
 	private String id;
 	private Node type;
@@ -11,6 +11,9 @@ public class ParNode implements Node {
 	
 	@Override
 	public String toPrint(String indent) {
+		
+		System.out.println(this.id+": "+this.type);
+		
 		return 	indent+
 				"Par: "+this.id+"\n"+
 				this.type.toPrint(indent+"  ");
@@ -24,8 +27,12 @@ public class ParNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Node getSymType() {
+		return this.type;
 	}
 
 }

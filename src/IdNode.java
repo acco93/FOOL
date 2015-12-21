@@ -22,10 +22,12 @@ public class IdNode implements Node {
 
 	@Override
 	public Node typeCheck() {
-		if(this.entry.getType() instanceof ArrowTypeNode){
-			System.out.println("Wrong usage of function identifies");
+		//ora è permesso che esistano IdNode di tipo funzione
+		
+		/*if(this.entry.getType() instanceof ArrowTypeNode){
+			System.out.println("Wrong usage of function identifier");
 			System.exit(0);
-		}
+		}*/
 		
 		return entry.getType();
 	}
@@ -56,7 +58,7 @@ public class IdNode implements Node {
 				getAR+	//risalgo la catena statica
 				// lo sommmo
 				"add\n"+
-				//ora ho calcolato l'indirizzo dove andare a prendere il valoredella var
+				//ora ho calcolato l'indirizzo dove andare a prendere il valore della var
 				// lw si aspetta un indirizzo sulla cima dello stack e va prendere il valore che c'è a quell'indirizzo e 
 				// lo sostituisce alla cima dello stack
 				"lw\n"

@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 public class ArrowTypeNode implements Node {
 
+	// tipo dei parametri
 	private ArrayList<Node> parList;
+	// tipo del valore di ritorno
 	private Node returnNode;
 	
 	ArrowTypeNode(ArrayList<Node> parList, Node ret){

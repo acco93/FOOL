@@ -1,15 +1,24 @@
 import java.util.ArrayList;
 
-public class FunNode implements Node {
+public class FunNode implements Node, DecNode {
 
+	// nome della funzione
 	private String id;
+	
+	// tipo di ritorno
 	private Node type;
 	
-	//aggiungo un arraylist di parametri
-	private ArrayList<Node> parameters; //va inizializzata
+	// arraylist di parametri
+	private ArrayList<Node> parameters;
 	
-	private ArrayList<Node> declarations; //dichiarazioni
-	private Node body;	//corpo della funzione
+	// dichiarazioni
+	private ArrayList<Node> declarations;
+	
+	// corpo della funzione
+	private Node body;	
+	
+	// tipo messo in Symbol Table
+	private Node symType;
 	
 	FunNode(String id, Node type){
 		this.id = id;
@@ -33,6 +42,9 @@ public class FunNode implements Node {
 		this.body = body;
 	}
 	
+	public void addSymType(Node functionType){
+		this.symType = functionType;
+	}
 	
 	@Override
 	public String toPrint(String indent) {
@@ -111,6 +123,11 @@ public class FunNode implements Node {
 		return "push "+address +"\n";
 		
 		//devo anche generare il codice della funzione a qualche indirizzo più avanti
+	}
+
+	@Override
+	public Node getSymType() {
+		return this.symType;
 	}
 
 }

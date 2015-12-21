@@ -3,16 +3,19 @@ import java.util.ArrayList;
 
 public class CallNode implements Node {
 
+	// nome della funzione chiamata
 	private String id;
+	// entry contenente l'ArrowTypeNode della funzione
 	private STEntry entry;
+	// argomenti passati alla chiamata
 	private ArrayList<Node> argList;
+	// nesting level della chiamata della funzione, nella entry c'è quello della dichiarazione
 	private int nestingLevel;
 	
 	CallNode(String id, STEntry entry, ArrayList<Node> argList, int nestingLevel){
 		this.id = id;
 		this.entry = entry;
 		this.argList = argList;
-		//questo è il nesting level di dove sono usati, nella entry c'è quello della dichiarazione
 		this.nestingLevel=nestingLevel;
 	}
 
@@ -34,10 +37,11 @@ public class CallNode implements Node {
 			System.exit(0);
 		}
 	
+		// tipo di ritorno della funzione definito nella dichiarazione
 		ArrowTypeNode type = (ArrowTypeNode) this.entry.getType();
 		Node node = type.getRet();
 		
-		// lista dei tipi dei parametri formali
+		// lista dei tipi dei parametri formali definiti nella dichiarazione
 		ArrayList<Node> parList = type.getParList();
 		
 		if(parList.size()!=argList.size()){

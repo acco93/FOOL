@@ -26,11 +26,12 @@ int lexicalErrors=0;
  
 // prog ritorna l'albero sintattico
 prog returns [Node ast] :
-    e = exp SEMIC
-        {$ast = new ProgNode($e.ast);}                     //nessuna dichiarazione: nessun ambiente globale
-    | // oppure
-    LET 
-	      {nestingLevel++; 
+    // se c'è solo una espressione
+    e = exp SEMIC {$ast = new ProgNode($e.ast);}                     //nessuna dichiarazione: nessun ambiente globale
+    // altrimenti ho anche delle dichiarazioni
+    | LET 
+	      {
+	       nestingLevel++; 
 	       HashMap<String,STEntry> hm = new HashMap<String,STEntry>();
 	       symbolTable.add(hm);} 
     d=declist IN e=exp SEMIC 
@@ -79,8 +80,9 @@ declist returns [ArrayList<Node> astList] :
          } 
          // le funzioni hanno dei parametri tra parentesi tonde
          // creo un array list per mantenere il tipo dei parametri                                   
-         LPAR {ArrayList<Node> parTypes = new ArrayList<Node>();
-              int parOffset = 1; //i parametri iniziano da 1 nel layout e l'offset si incrementa
+         LPAR {
+          ArrayList<Node> parTypes = new ArrayList<Node>();
+          int parOffset = 1; //i parametri iniziano da 1 nel layout e l'offset si incrementa
          }
          //dichiarazione dei parametri, è scritta così perchè
          //voglio almeno un parametro, e se ce n'è più di uno
@@ -89,7 +91,7 @@ declist returns [ArrayList<Node> astList] :
             { parTypes.add($fty.ast);
               ParNode fpar = new ParNode($fid.text, $fty.ast);
               f.addParameter(fpar);
-              if(hm.put($fid.text,new STEntry(nestingLevel,$fty.ast,parOffset++))!=null){
+              if(hmn.put($fid.text,new STEntry(nestingLevel,$fty.ast,parOffset++))!=null){
                 System.out.println("Error: id "+$fid.text +" at line "+ $fid.line +" already declared!");
                 System.exit(0);
               };
@@ -101,7 +103,7 @@ declist returns [ArrayList<Node> astList] :
               { parTypes.add($ty.ast);
                 ParNode par = new ParNode($id.text, $ty.ast);
                 f.addParameter(par);
-                if(hm.put($id.text,new STEntry(nestingLevel,$ty.ast, parOffset++))!=null){
+                if(hmn.put($id.text,new STEntry(nestingLevel,$ty.ast, parOffset++))!=null){
                   System.out.println("Error: id "+$id.text +" at line "+ $id.line +" already declared!");
                   System.exit(0);
                 };
@@ -110,7 +112,10 @@ declist returns [ArrayList<Node> astList] :
               )?  //potrebbero non esserci parametri affatto
          RPAR 
           {// ora posso istanziare il nodo che rappresenta il tipo della funzione
-            entry.addType(new ArrowTypeNode(parTypes,$t.ast));
+            ArrowTypeNode functionType = new ArrowTypeNode(parTypes,$t.ast);
+            entry.addType(functionType);
+            // aggiungo il tipo anche al FunNode
+            f.addSymType(functionType);
           }
          (LET d=declist IN{f.addDec($d.astList);})? e=exp 
           {//chiudo lo scope
@@ -120,15 +125,7 @@ declist returns [ArrayList<Node> astList] :
          )SEMIC
         )+
         ;     
-                                                                    
-type returns [Node ast] :
-    INT {$ast = new IntTypeNode();}   |
-    BOOL {$ast = new BoolTypeNode();}
-    ; 
-// IntNode è un valore
-// IntTypeNode rappresenta la dichiarazione di una variabile di tipo int => non ha nessun parametro
-
-                                                               
+                                                                                                                                   
 //il nodo + ha due sottoalberi
 // exp è o un singolo nodo, tutto quello che può essere term
 // oppure è un +, - o OR
@@ -206,6 +203,34 @@ value returns [Node ast] :
 
 
 
+
+type  returns [Node ast]  : 
+         b=basic  {$ast = $b.ast;} 
+      |  a=arrow {$ast = $a.ast;} 
+        ;
+
+// IntNode è un valore
+// IntTypeNode rappresenta la dichiarazione di una variabile di tipo int => non ha nessun parametro
+
+basic  returns [Node ast] : 
+    INT {$ast = new IntTypeNode();}   
+  | BOOL {$ast = new BoolTypeNode();}              
+  | ID                        
+  ;  
+  
+  
+    
+arrow  returns [Node ast] : 
+  {
+    //lista dei parametri
+    ArrayList<Node> parList = new ArrayList<Node>();
+  }
+  LPAR (t=type {parList.add($t.ast);} (COMMA t=type {parList.add($t.ast);})* )? RPAR ARROW b=basic
+  // il tipo della funzione da ritornare
+ {$ast = new ArrowTypeNode(parList,$b.ast);}
+  ;          
+
+
 // LEXER RULES
 
 PLUS	: '+' ;
@@ -241,6 +266,9 @@ COLON   : ':' ;
 COMMA : ',' ;
 ASS : '=' ;
 INT : 'int' ;
+
+ARROW   : '->' ;  
+
 BOOL  : 'bool' ;
 /* L'id deve avere priorità inferiore rispetto a tt le keyword*/
 ID    : ('a'..'z'|'A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9')* ;

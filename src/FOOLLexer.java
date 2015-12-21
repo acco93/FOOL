@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2015-12-16 12:55:17
+// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2015-12-21 11:31:31
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -9,40 +9,41 @@ import java.util.ArrayList;
 public class FOOLLexer extends Lexer {
 	public static final int EOF=-1;
 	public static final int AND=4;
-	public static final int ASS=5;
-	public static final int BOOL=6;
-	public static final int CLPAR=7;
-	public static final int COLON=8;
-	public static final int COMMA=9;
-	public static final int COMMENT=10;
-	public static final int CRPAR=11;
-	public static final int DIV=12;
-	public static final int ELSE=13;
-	public static final int EQ=14;
-	public static final int ERR=15;
-	public static final int FALSE=16;
-	public static final int FUN=17;
-	public static final int GR=18;
-	public static final int ID=19;
-	public static final int IF=20;
-	public static final int IN=21;
-	public static final int INT=22;
-	public static final int LE=23;
-	public static final int LET=24;
-	public static final int LPAR=25;
-	public static final int MINUS=26;
-	public static final int NAT=27;
-	public static final int NOT=28;
-	public static final int OR=29;
-	public static final int PLUS=30;
-	public static final int PRINT=31;
-	public static final int RPAR=32;
-	public static final int SEMIC=33;
-	public static final int THEN=34;
-	public static final int TIMES=35;
-	public static final int TRUE=36;
-	public static final int VAR=37;
-	public static final int WHITESP=38;
+	public static final int ARROW=5;
+	public static final int ASS=6;
+	public static final int BOOL=7;
+	public static final int CLPAR=8;
+	public static final int COLON=9;
+	public static final int COMMA=10;
+	public static final int COMMENT=11;
+	public static final int CRPAR=12;
+	public static final int DIV=13;
+	public static final int ELSE=14;
+	public static final int EQ=15;
+	public static final int ERR=16;
+	public static final int FALSE=17;
+	public static final int FUN=18;
+	public static final int GR=19;
+	public static final int ID=20;
+	public static final int IF=21;
+	public static final int IN=22;
+	public static final int INT=23;
+	public static final int LE=24;
+	public static final int LET=25;
+	public static final int LPAR=26;
+	public static final int MINUS=27;
+	public static final int NAT=28;
+	public static final int NOT=29;
+	public static final int OR=30;
+	public static final int PLUS=31;
+	public static final int PRINT=32;
+	public static final int RPAR=33;
+	public static final int SEMIC=34;
+	public static final int THEN=35;
+	public static final int TIMES=36;
+	public static final int TRUE=37;
+	public static final int VAR=38;
+	public static final int WHITESP=39;
 
 	int lexicalErrors=0;
 	/* Queste cose diventano un campo della classe SimpleExpLexer.java */
@@ -68,8 +69,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:211:6: ( '+' )
-			// /home/acco/workspace/FOOL/FOOL.g:211:8: '+'
+			// /home/acco/workspace/FOOL/FOOL.g:236:6: ( '+' )
+			// /home/acco/workspace/FOOL/FOOL.g:236:8: '+'
 			{
 			match('+'); 
 			}
@@ -88,8 +89,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = TIMES;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:212:7: ( '*' )
-			// /home/acco/workspace/FOOL/FOOL.g:212:9: '*'
+			// /home/acco/workspace/FOOL/FOOL.g:237:7: ( '*' )
+			// /home/acco/workspace/FOOL/FOOL.g:237:9: '*'
 			{
 			match('*'); 
 			}
@@ -108,8 +109,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:213:9: ( '-' )
-			// /home/acco/workspace/FOOL/FOOL.g:213:11: '-'
+			// /home/acco/workspace/FOOL/FOOL.g:238:9: ( '-' )
+			// /home/acco/workspace/FOOL/FOOL.g:238:11: '-'
 			{
 			match('-'); 
 			}
@@ -128,8 +129,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:214:7: ( '/' )
-			// /home/acco/workspace/FOOL/FOOL.g:214:9: '/'
+			// /home/acco/workspace/FOOL/FOOL.g:239:7: ( '/' )
+			// /home/acco/workspace/FOOL/FOOL.g:239:9: '/'
 			{
 			match('/'); 
 			}
@@ -148,8 +149,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = SEMIC;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:216:7: ( ';' )
-			// /home/acco/workspace/FOOL/FOOL.g:216:9: ';'
+			// /home/acco/workspace/FOOL/FOOL.g:241:7: ( ';' )
+			// /home/acco/workspace/FOOL/FOOL.g:241:9: ';'
 			{
 			match(';'); 
 			}
@@ -168,8 +169,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = OR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:218:5: ( '||' )
-			// /home/acco/workspace/FOOL/FOOL.g:218:7: '||'
+			// /home/acco/workspace/FOOL/FOOL.g:243:5: ( '||' )
+			// /home/acco/workspace/FOOL/FOOL.g:243:7: '||'
 			{
 			match("||"); 
 
@@ -189,8 +190,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = AND;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:219:5: ( '&&' )
-			// /home/acco/workspace/FOOL/FOOL.g:219:7: '&&'
+			// /home/acco/workspace/FOOL/FOOL.g:244:5: ( '&&' )
+			// /home/acco/workspace/FOOL/FOOL.g:244:7: '&&'
 			{
 			match("&&"); 
 
@@ -210,8 +211,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = NOT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:220:5: ( 'not' )
-			// /home/acco/workspace/FOOL/FOOL.g:220:7: 'not'
+			// /home/acco/workspace/FOOL/FOOL.g:245:5: ( 'not' )
+			// /home/acco/workspace/FOOL/FOOL.g:245:7: 'not'
 			{
 			match("not"); 
 
@@ -231,8 +232,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = GR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:221:5: ( '>=' )
-			// /home/acco/workspace/FOOL/FOOL.g:221:7: '>='
+			// /home/acco/workspace/FOOL/FOOL.g:246:5: ( '>=' )
+			// /home/acco/workspace/FOOL/FOOL.g:246:7: '>='
 			{
 			match(">="); 
 
@@ -252,8 +253,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:222:5: ( '<=' )
-			// /home/acco/workspace/FOOL/FOOL.g:222:7: '<='
+			// /home/acco/workspace/FOOL/FOOL.g:247:5: ( '<=' )
+			// /home/acco/workspace/FOOL/FOOL.g:247:7: '<='
 			{
 			match("<="); 
 
@@ -273,8 +274,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = EQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:223:5: ( '==' )
-			// /home/acco/workspace/FOOL/FOOL.g:223:7: '=='
+			// /home/acco/workspace/FOOL/FOOL.g:248:5: ( '==' )
+			// /home/acco/workspace/FOOL/FOOL.g:248:7: '=='
 			{
 			match("=="); 
 
@@ -294,7 +295,7 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = NAT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:225:5: ( ( ( '1' .. '9' ) ( '0' .. '9' )* ) | '0' )
+			// /home/acco/workspace/FOOL/FOOL.g:250:5: ( ( ( '1' .. '9' ) ( '0' .. '9' )* ) | '0' )
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( ((LA2_0 >= '1' && LA2_0 <= '9')) ) {
@@ -312,10 +313,10 @@ public class FOOLLexer extends Lexer {
 
 			switch (alt2) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:225:7: ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// /home/acco/workspace/FOOL/FOOL.g:250:7: ( ( '1' .. '9' ) ( '0' .. '9' )* )
 					{
-					// /home/acco/workspace/FOOL/FOOL.g:225:7: ( ( '1' .. '9' ) ( '0' .. '9' )* )
-					// /home/acco/workspace/FOOL/FOOL.g:225:8: ( '1' .. '9' ) ( '0' .. '9' )*
+					// /home/acco/workspace/FOOL/FOOL.g:250:7: ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// /home/acco/workspace/FOOL/FOOL.g:250:8: ( '1' .. '9' ) ( '0' .. '9' )*
 					{
 					if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -325,7 +326,7 @@ public class FOOLLexer extends Lexer {
 						recover(mse);
 						throw mse;
 					}
-					// /home/acco/workspace/FOOL/FOOL.g:225:18: ( '0' .. '9' )*
+					// /home/acco/workspace/FOOL/FOOL.g:250:18: ( '0' .. '9' )*
 					loop1:
 					while (true) {
 						int alt1=2;
@@ -359,7 +360,7 @@ public class FOOLLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:225:33: '0'
+					// /home/acco/workspace/FOOL/FOOL.g:250:33: '0'
 					{
 					match('0'); 
 					}
@@ -380,8 +381,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = TRUE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:226:7: ( 'true' )
-			// /home/acco/workspace/FOOL/FOOL.g:226:9: 'true'
+			// /home/acco/workspace/FOOL/FOOL.g:251:7: ( 'true' )
+			// /home/acco/workspace/FOOL/FOOL.g:251:9: 'true'
 			{
 			match("true"); 
 
@@ -401,8 +402,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = FALSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:227:7: ( 'false' )
-			// /home/acco/workspace/FOOL/FOOL.g:227:9: 'false'
+			// /home/acco/workspace/FOOL/FOOL.g:252:7: ( 'false' )
+			// /home/acco/workspace/FOOL/FOOL.g:252:9: 'false'
 			{
 			match("false"); 
 
@@ -422,8 +423,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:228:7: ( '(' )
-			// /home/acco/workspace/FOOL/FOOL.g:228:9: '('
+			// /home/acco/workspace/FOOL/FOOL.g:253:7: ( '(' )
+			// /home/acco/workspace/FOOL/FOOL.g:253:9: '('
 			{
 			match('('); 
 			}
@@ -442,8 +443,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = RPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:229:7: ( ')' )
-			// /home/acco/workspace/FOOL/FOOL.g:229:9: ')'
+			// /home/acco/workspace/FOOL/FOOL.g:254:7: ( ')' )
+			// /home/acco/workspace/FOOL/FOOL.g:254:9: ')'
 			{
 			match(')'); 
 			}
@@ -462,8 +463,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = CLPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:230:9: ( '{' )
-			// /home/acco/workspace/FOOL/FOOL.g:230:11: '{'
+			// /home/acco/workspace/FOOL/FOOL.g:255:9: ( '{' )
+			// /home/acco/workspace/FOOL/FOOL.g:255:11: '{'
 			{
 			match('{'); 
 			}
@@ -482,8 +483,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = CRPAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:231:7: ( '}' )
-			// /home/acco/workspace/FOOL/FOOL.g:231:9: '}'
+			// /home/acco/workspace/FOOL/FOOL.g:256:7: ( '}' )
+			// /home/acco/workspace/FOOL/FOOL.g:256:9: '}'
 			{
 			match('}'); 
 			}
@@ -502,8 +503,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = IF;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:232:5: ( 'if' )
-			// /home/acco/workspace/FOOL/FOOL.g:232:7: 'if'
+			// /home/acco/workspace/FOOL/FOOL.g:257:5: ( 'if' )
+			// /home/acco/workspace/FOOL/FOOL.g:257:7: 'if'
 			{
 			match("if"); 
 
@@ -523,8 +524,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = THEN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:233:7: ( 'then' )
-			// /home/acco/workspace/FOOL/FOOL.g:233:9: 'then'
+			// /home/acco/workspace/FOOL/FOOL.g:258:7: ( 'then' )
+			// /home/acco/workspace/FOOL/FOOL.g:258:9: 'then'
 			{
 			match("then"); 
 
@@ -544,8 +545,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ELSE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:234:7: ( 'else' )
-			// /home/acco/workspace/FOOL/FOOL.g:234:9: 'else'
+			// /home/acco/workspace/FOOL/FOOL.g:259:7: ( 'else' )
+			// /home/acco/workspace/FOOL/FOOL.g:259:9: 'else'
 			{
 			match("else"); 
 
@@ -565,8 +566,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:235:7: ( 'print' )
-			// /home/acco/workspace/FOOL/FOOL.g:235:9: 'print'
+			// /home/acco/workspace/FOOL/FOOL.g:260:7: ( 'print' )
+			// /home/acco/workspace/FOOL/FOOL.g:260:9: 'print'
 			{
 			match("print"); 
 
@@ -586,8 +587,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = FUN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:236:5: ( 'fun' )
-			// /home/acco/workspace/FOOL/FOOL.g:236:7: 'fun'
+			// /home/acco/workspace/FOOL/FOOL.g:261:5: ( 'fun' )
+			// /home/acco/workspace/FOOL/FOOL.g:261:7: 'fun'
 			{
 			match("fun"); 
 
@@ -607,8 +608,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = LET;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:237:9: ( 'let' )
-			// /home/acco/workspace/FOOL/FOOL.g:237:11: 'let'
+			// /home/acco/workspace/FOOL/FOOL.g:262:9: ( 'let' )
+			// /home/acco/workspace/FOOL/FOOL.g:262:11: 'let'
 			{
 			match("let"); 
 
@@ -628,8 +629,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = IN;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:238:9: ( 'in' )
-			// /home/acco/workspace/FOOL/FOOL.g:238:11: 'in'
+			// /home/acco/workspace/FOOL/FOOL.g:263:9: ( 'in' )
+			// /home/acco/workspace/FOOL/FOOL.g:263:11: 'in'
 			{
 			match("in"); 
 
@@ -649,8 +650,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:239:9: ( 'var' )
-			// /home/acco/workspace/FOOL/FOOL.g:239:11: 'var'
+			// /home/acco/workspace/FOOL/FOOL.g:264:9: ( 'var' )
+			// /home/acco/workspace/FOOL/FOOL.g:264:11: 'var'
 			{
 			match("var"); 
 
@@ -670,8 +671,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COLON;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:240:9: ( ':' )
-			// /home/acco/workspace/FOOL/FOOL.g:240:11: ':'
+			// /home/acco/workspace/FOOL/FOOL.g:265:9: ( ':' )
+			// /home/acco/workspace/FOOL/FOOL.g:265:11: ':'
 			{
 			match(':'); 
 			}
@@ -690,8 +691,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COMMA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:241:7: ( ',' )
-			// /home/acco/workspace/FOOL/FOOL.g:241:9: ','
+			// /home/acco/workspace/FOOL/FOOL.g:266:7: ( ',' )
+			// /home/acco/workspace/FOOL/FOOL.g:266:9: ','
 			{
 			match(','); 
 			}
@@ -710,8 +711,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ASS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:242:5: ( '=' )
-			// /home/acco/workspace/FOOL/FOOL.g:242:7: '='
+			// /home/acco/workspace/FOOL/FOOL.g:267:5: ( '=' )
+			// /home/acco/workspace/FOOL/FOOL.g:267:7: '='
 			{
 			match('='); 
 			}
@@ -730,8 +731,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = INT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:243:5: ( 'int' )
-			// /home/acco/workspace/FOOL/FOOL.g:243:7: 'int'
+			// /home/acco/workspace/FOOL/FOOL.g:268:5: ( 'int' )
+			// /home/acco/workspace/FOOL/FOOL.g:268:7: 'int'
 			{
 			match("int"); 
 
@@ -746,13 +747,34 @@ public class FOOLLexer extends Lexer {
 	}
 	// $ANTLR end "INT"
 
+	// $ANTLR start "ARROW"
+	public final void mARROW() throws RecognitionException {
+		try {
+			int _type = ARROW;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /home/acco/workspace/FOOL/FOOL.g:270:9: ( '->' )
+			// /home/acco/workspace/FOOL/FOOL.g:270:11: '->'
+			{
+			match("->"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "ARROW"
+
 	// $ANTLR start "BOOL"
 	public final void mBOOL() throws RecognitionException {
 		try {
 			int _type = BOOL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:244:7: ( 'bool' )
-			// /home/acco/workspace/FOOL/FOOL.g:244:9: 'bool'
+			// /home/acco/workspace/FOOL/FOOL.g:272:7: ( 'bool' )
+			// /home/acco/workspace/FOOL/FOOL.g:272:9: 'bool'
 			{
 			match("bool"); 
 
@@ -772,8 +794,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:246:7: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-			// /home/acco/workspace/FOOL/FOOL.g:246:9: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// /home/acco/workspace/FOOL/FOOL.g:274:7: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// /home/acco/workspace/FOOL/FOOL.g:274:9: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -783,7 +805,7 @@ public class FOOLLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/acco/workspace/FOOL/FOOL.g:246:28: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// /home/acco/workspace/FOOL/FOOL.g:274:28: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			loop3:
 			while (true) {
 				int alt3=2;
@@ -828,10 +850,10 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = WHITESP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:250:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-			// /home/acco/workspace/FOOL/FOOL.g:250:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+			// /home/acco/workspace/FOOL/FOOL.g:278:9: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+			// /home/acco/workspace/FOOL/FOOL.g:278:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
 			{
-			// /home/acco/workspace/FOOL/FOOL.g:250:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
+			// /home/acco/workspace/FOOL/FOOL.g:278:11: ( ' ' | '\\t' | '\\n' | '\\r' )+
 			int cnt4=0;
 			loop4:
 			while (true) {
@@ -881,12 +903,12 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:253:9: ( '/*' ( . )* '*/' )
-			// /home/acco/workspace/FOOL/FOOL.g:253:11: '/*' ( . )* '*/'
+			// /home/acco/workspace/FOOL/FOOL.g:281:9: ( '/*' ( . )* '*/' )
+			// /home/acco/workspace/FOOL/FOOL.g:281:11: '/*' ( . )* '*/'
 			{
 			match("/*"); 
 
-			// /home/acco/workspace/FOOL/FOOL.g:253:16: ( . )*
+			// /home/acco/workspace/FOOL/FOOL.g:281:16: ( . )*
 			loop5:
 			while (true) {
 				int alt5=2;
@@ -907,7 +929,7 @@ public class FOOLLexer extends Lexer {
 
 				switch (alt5) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:253:16: .
+					// /home/acco/workspace/FOOL/FOOL.g:281:16: .
 					{
 					matchAny(); 
 					}
@@ -937,8 +959,8 @@ public class FOOLLexer extends Lexer {
 		try {
 			int _type = ERR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/FOOL.g:255:5: ( . )
-			// /home/acco/workspace/FOOL/FOOL.g:255:7: .
+			// /home/acco/workspace/FOOL/FOOL.g:283:5: ( . )
+			// /home/acco/workspace/FOOL/FOOL.g:283:7: .
 			{
 			matchAny(); 
 			System.err.println("Invalid char: "+getText()); lexicalErrors++;
@@ -956,8 +978,8 @@ public class FOOLLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/acco/workspace/FOOL/FOOL.g:1:8: ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | LET | IN | VAR | COLON | COMMA | ASS | INT | BOOL | ID | WHITESP | COMMENT | ERR )
-		int alt6=35;
+		// /home/acco/workspace/FOOL/FOOL.g:1:8: ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | LET | IN | VAR | COLON | COMMA | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR )
+		int alt6=36;
 		alt6 = dfa6.predict(input);
 		switch (alt6) {
 			case 1 :
@@ -1171,35 +1193,42 @@ public class FOOLLexer extends Lexer {
 				}
 				break;
 			case 31 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:148: BOOL
+				// /home/acco/workspace/FOOL/FOOL.g:1:148: ARROW
+				{
+				mARROW(); 
+
+				}
+				break;
+			case 32 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:154: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
-			case 32 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:153: ID
+			case 33 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:159: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 33 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:156: WHITESP
+			case 34 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:162: WHITESP
 				{
 				mWHITESP(); 
 
 				}
 				break;
-			case 34 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:164: COMMENT
+			case 35 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:170: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 35 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:172: ERR
+			case 36 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:178: ERR
 				{
 				mERR(); 
 
@@ -1212,36 +1241,36 @@ public class FOOLLexer extends Lexer {
 
 	protected DFA6 dfa6 = new DFA6(this);
 	static final String DFA6_eotS =
-		"\4\uffff\1\43\1\uffff\2\36\1\50\2\36\1\54\2\uffff\2\50\4\uffff\5\50\2"+
-		"\uffff\1\50\13\uffff\1\50\6\uffff\4\50\4\uffff\1\105\1\107\4\50\2\uffff"+
-		"\1\50\1\uffff\1\115\3\50\1\121\1\uffff\1\122\1\uffff\2\50\1\125\1\126"+
-		"\1\50\1\uffff\1\130\1\131\1\50\2\uffff\1\133\1\50\2\uffff\1\135\2\uffff"+
-		"\1\136\1\uffff\1\137\3\uffff";
+		"\3\uffff\1\42\1\44\1\uffff\2\36\1\51\2\36\1\55\2\uffff\2\51\4\uffff\5"+
+		"\51\2\uffff\1\51\14\uffff\1\51\6\uffff\4\51\4\uffff\1\106\1\110\4\51\2"+
+		"\uffff\1\51\1\uffff\1\116\3\51\1\122\1\uffff\1\123\1\uffff\2\51\1\126"+
+		"\1\127\1\51\1\uffff\1\131\1\132\1\51\2\uffff\1\134\1\51\2\uffff\1\136"+
+		"\2\uffff\1\137\1\uffff\1\140\3\uffff";
 	static final String DFA6_eofS =
-		"\140\uffff";
+		"\141\uffff";
 	static final String DFA6_minS =
-		"\1\0\3\uffff\1\52\1\uffff\1\174\1\46\1\157\3\75\2\uffff\1\150\1\141\4"+
-		"\uffff\1\146\1\154\1\162\1\145\1\141\2\uffff\1\157\13\uffff\1\164\6\uffff"+
-		"\1\165\1\145\1\154\1\156\4\uffff\2\60\1\163\1\151\1\164\1\162\2\uffff"+
-		"\1\157\1\uffff\1\60\1\145\1\156\1\163\1\60\1\uffff\1\60\1\uffff\1\145"+
-		"\1\156\2\60\1\154\1\uffff\2\60\1\145\2\uffff\1\60\1\164\2\uffff\1\60\2"+
-		"\uffff\1\60\1\uffff\1\60\3\uffff";
+		"\1\0\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\157\3\75\2\uffff\1\150\1\141"+
+		"\4\uffff\1\146\1\154\1\162\1\145\1\141\2\uffff\1\157\14\uffff\1\164\6"+
+		"\uffff\1\165\1\145\1\154\1\156\4\uffff\2\60\1\163\1\151\1\164\1\162\2"+
+		"\uffff\1\157\1\uffff\1\60\1\145\1\156\1\163\1\60\1\uffff\1\60\1\uffff"+
+		"\1\145\1\156\2\60\1\154\1\uffff\2\60\1\145\2\uffff\1\60\1\164\2\uffff"+
+		"\1\60\2\uffff\1\60\1\uffff\1\60\3\uffff";
 	static final String DFA6_maxS =
-		"\1\uffff\3\uffff\1\52\1\uffff\1\174\1\46\1\157\3\75\2\uffff\1\162\1\165"+
-		"\4\uffff\1\156\1\154\1\162\1\145\1\141\2\uffff\1\157\13\uffff\1\164\6"+
-		"\uffff\1\165\1\145\1\154\1\156\4\uffff\2\172\1\163\1\151\1\164\1\162\2"+
-		"\uffff\1\157\1\uffff\1\172\1\145\1\156\1\163\1\172\1\uffff\1\172\1\uffff"+
-		"\1\145\1\156\2\172\1\154\1\uffff\2\172\1\145\2\uffff\1\172\1\164\2\uffff"+
-		"\1\172\2\uffff\1\172\1\uffff\1\172\3\uffff";
+		"\1\uffff\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\157\3\75\2\uffff\1\162"+
+		"\1\165\4\uffff\1\156\1\154\1\162\1\145\1\141\2\uffff\1\157\14\uffff\1"+
+		"\164\6\uffff\1\165\1\145\1\154\1\156\4\uffff\2\172\1\163\1\151\1\164\1"+
+		"\162\2\uffff\1\157\1\uffff\1\172\1\145\1\156\1\163\1\172\1\uffff\1\172"+
+		"\1\uffff\1\145\1\156\2\172\1\154\1\uffff\2\172\1\145\2\uffff\1\172\1\164"+
+		"\2\uffff\1\172\2\uffff\1\172\1\uffff\1\172\3\uffff";
 	static final String DFA6_acceptS =
-		"\1\uffff\1\1\1\2\1\3\1\uffff\1\5\6\uffff\2\14\2\uffff\1\17\1\20\1\21\1"+
-		"\22\5\uffff\1\33\1\34\1\uffff\1\40\1\41\1\43\1\1\1\2\1\3\1\42\1\4\1\5"+
-		"\1\6\1\7\1\uffff\1\40\1\11\1\12\1\13\1\35\1\14\4\uffff\1\17\1\20\1\21"+
-		"\1\22\6\uffff\1\33\1\34\1\uffff\1\41\5\uffff\1\23\1\uffff\1\31\5\uffff"+
+		"\1\uffff\1\1\1\2\2\uffff\1\5\6\uffff\2\14\2\uffff\1\17\1\20\1\21\1\22"+
+		"\5\uffff\1\33\1\34\1\uffff\1\41\1\42\1\44\1\1\1\2\1\37\1\3\1\43\1\4\1"+
+		"\5\1\6\1\7\1\uffff\1\41\1\11\1\12\1\13\1\35\1\14\4\uffff\1\17\1\20\1\21"+
+		"\1\22\6\uffff\1\33\1\34\1\uffff\1\42\5\uffff\1\23\1\uffff\1\31\5\uffff"+
 		"\1\10\3\uffff\1\27\1\36\2\uffff\1\30\1\32\1\uffff\1\15\1\24\1\uffff\1"+
-		"\25\1\uffff\1\37\1\16\1\26";
+		"\25\1\uffff\1\40\1\16\1\26";
 	static final String DFA6_specialS =
-		"\1\0\137\uffff}>";
+		"\1\0\140\uffff}>";
 	static final String[] DFA6_transitionS = {
 			"\11\36\2\35\2\36\1\35\22\36\1\35\5\36\1\7\1\36\1\20\1\21\1\2\1\1\1\32"+
 			"\1\3\1\36\1\4\1\15\11\14\1\31\1\5\1\12\1\13\1\11\2\36\32\34\6\36\1\34"+
@@ -1249,43 +1278,37 @@ public class FOOLLexer extends Lexer {
 			"\1\34\1\30\4\34\1\22\1\6\1\23\uff82\36",
 			"",
 			"",
+			"\1\41",
+			"\1\43",
 			"",
-			"\1\42",
-			"",
-			"\1\45",
 			"\1\46",
 			"\1\47",
-			"\1\51",
+			"\1\50",
 			"\1\52",
 			"\1\53",
+			"\1\54",
 			"",
 			"",
-			"\1\57\11\uffff\1\56",
-			"\1\60\23\uffff\1\61",
+			"\1\60\11\uffff\1\57",
+			"\1\61\23\uffff\1\62",
 			"",
 			"",
 			"",
 			"",
-			"\1\66\7\uffff\1\67",
-			"\1\70",
+			"\1\67\7\uffff\1\70",
 			"\1\71",
 			"\1\72",
 			"\1\73",
+			"\1\74",
 			"",
 			"",
-			"\1\76",
-			"",
-			"",
-			"",
-			"",
+			"\1\77",
 			"",
 			"",
 			"",
 			"",
 			"",
 			"",
-			"",
-			"\1\100",
 			"",
 			"",
 			"",
@@ -1293,52 +1316,59 @@ public class FOOLLexer extends Lexer {
 			"",
 			"",
 			"\1\101",
+			"",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\102",
 			"\1\103",
 			"\1\104",
+			"\1\105",
 			"",
 			"",
 			"",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\12\50\7\uffff\32\50\6\uffff\23\50\1\106\6\50",
-			"\1\110",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\12\51\7\uffff\32\51\6\uffff\23\51\1\107\6\51",
 			"\1\111",
 			"\1\112",
 			"\1\113",
-			"",
-			"",
 			"\1\114",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\1\116",
+			"",
+			"\1\115",
+			"",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
 			"\1\117",
 			"\1\120",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
+			"\1\121",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
 			"",
-			"\1\123",
 			"\1\124",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\1\127",
+			"\1\125",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\1\130",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\1\132",
-			"",
-			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
-			"\1\134",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\1\133",
 			"",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"\1\135",
 			"",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
 			"",
-			"\12\50\7\uffff\32\50\6\uffff\32\50",
+			"",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
+			"",
+			"\12\51\7\uffff\32\51\6\uffff\32\51",
 			"",
 			"",
 			""
@@ -1375,7 +1405,7 @@ public class FOOLLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | LET | IN | VAR | COLON | COMMA | ASS | INT | BOOL | ID | WHITESP | COMMENT | ERR );";
+			return "1:1: Tokens : ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | LET | IN | VAR | COLON | COMMA | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {

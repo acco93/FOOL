@@ -1,12 +1,16 @@
-let
-  var x:int = 11;
-  var y:int = 11;
-in  
-  print ( 
-    if x>=y
-      then { true }
-      else { false }
-  ); 
+let 
+  fun f:int (i:int, j:int) i+j;
+  fun g:int (i:int, j:int, function:(int,int)->int ) function(i,j);
+  
+in
+
+  print (if (g(2,3,f)==f(3,2))
+  	 then { true } 
+  	 else { false });
+
+ 
+
+  ;
 /* SERBATOIO ESEMPI
 let 
   var x:int = 1;
@@ -31,4 +35,16 @@ in
       then { false }
       else { 10 }
   ); 
+  
+  
+  
+  
+  
+  bool function(int x, int y){
+  	return x==y;
+  }
+  
+  
+  
+  
 */
