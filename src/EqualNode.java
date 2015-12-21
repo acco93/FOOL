@@ -23,7 +23,7 @@ public class EqualNode implements Node {
 		Node r = right.typeCheck();
 		
 		if(l instanceof ArrowTypeNode || r instanceof ArrowTypeNode){
-			System.out.println("Wrong type [function] in equal!");
+			System.out.println("Type error: function in == !");
 			System.exit(0);
 		}
 		

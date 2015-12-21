@@ -1,7 +1,57 @@
 push 0
 push function0
 push function1
-push 1
+lfp
+push 2
+push 3
+lfp
+push -2
+lfp
+add
+lw
+js
+lfp
+push -2
+lfp
+add
+lw
+push 3
+push 2
+lfp
+push -3
+lfp
+add
+lw
+js
+bless label2
+lfp
+push -2
+lfp
+add
+lw
+push 3
+push 2
+lfp
+push -3
+lfp
+add
+lw
+js
+lfp
+push 2
+push 3
+lfp
+push -2
+lfp
+add
+lw
+js
+beq label2
+push 0
+b label3
+label2:  
+push 1 
+label3:
 push 1
 beq label0
 push 0
