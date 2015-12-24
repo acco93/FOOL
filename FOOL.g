@@ -22,6 +22,7 @@ int lexicalErrors=0;
 }
   
 
+
 // PARSER RULES
  
 // prog ritorna l'albero sintattico
@@ -51,6 +52,7 @@ declist returns [ArrayList<Node> astList] :
        VAR i=ID COLON t=type ASS e=exp      
         {VarNode v = new VarNode($i.text, $t.ast, $e.ast);
          $astList.add(v);
+         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+$t.ast);
          //ora che ho dichiarato la var la aggiungo alla symbol table
          //recupero l'hash table dell'ambiente locale
          HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
@@ -59,14 +61,18 @@ declist returns [ArrayList<Node> astList] :
 	        System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
 	        System.exit(0);
 	       };
+	       if($t.ast instanceof ArrowTypeNode){offset--;}
          }  //chiude l'azione che inizia dopo la lettura della var, tipo e due punti 
        |  //oppure                          
        FUN i=ID COLON t=type 
         {FunNode f = new FunNode($i.text, $t.ast); 
+        
          $astList.add(f);  
          HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
          //creo una entry con solo il nesting level, ci metterò il tipo quando lo saprò (lo leggo dopo aver letto tutti i parametri)
-         STEntry entry = new STEntry(nestingLevel,offset--);
+         STEntry entry = new STEntry(nestingLevel,offset);
+         //ora la funzione occupa due offset
+         offset-=2;
          // inserisco l'ID della funzione nella symbol table	                                             
          if(hm.put($i.text,entry)!=null){
           System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
@@ -89,12 +95,14 @@ declist returns [ArrayList<Node> astList] :
          //voglio la virgola in mezzo
           (fid=ID COLON fty=type 
             { parTypes.add($fty.ast);
+             
               ParNode fpar = new ParNode($fid.text, $fty.ast);
               f.addParameter(fpar);
               if(hmn.put($fid.text,new STEntry(nestingLevel,$fty.ast,parOffset++))!=null){
                 System.out.println("Error: id "+$fid.text +" at line "+ $fid.line +" already declared!");
                 System.exit(0);
               };
+              if($fty.ast instanceof ArrowTypeNode){parOffset++;}
              }                                
              //è molto simile alle variabili, mi creo un parnode mettendoci l'id 
              // e il tipo e lo aggiungo all'oggetto funnode .addParameter Poi 
@@ -107,6 +115,7 @@ declist returns [ArrayList<Node> astList] :
                   System.out.println("Error: id "+$id.text +" at line "+ $id.line +" already declared!");
                   System.exit(0);
                 };
+               if($ty.ast instanceof ArrowTypeNode){parOffset++;}
                }
               )*  //potrebbero esserci più parametri
               )?  //potrebbero non esserci parametri affatto

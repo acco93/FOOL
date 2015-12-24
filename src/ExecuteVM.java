@@ -35,6 +35,12 @@ public class ExecuteVM {
 	void cpu() {
 		while(true){
 			// fetch
+				
+			System.out.println("IP:"+ip);
+			System.out.println("RA:"+ra);
+			/*System.out.println("FP:"+fp);
+			System.out.println("SP:"+sp);
+			System.out.println("");*/
 			int bytecode = code[ip++];
 			int arg1, arg2;
 			int address;
@@ -91,6 +97,7 @@ public class ExecuteVM {
 				case SVMParser.LOADW:
 					arg1 = pop();
 					push(memory[arg1]);
+					//System.out.println("LW:"+memory[arg1]);
 					break;
 					
 				//jump at the instruction pointed by LABEL
@@ -179,19 +186,40 @@ public class ExecuteVM {
 					
 				//interrupt the execution
 				case SVMParser.HALT:
+					System.out.println("SUCCESSFULLY EXECUTED.");
+					this.stackTrace();
 					return;
 				
 					
 			}
-			
+			/*System.out.println("");
+			System.out.println("IP:"+ip);
+			System.out.println("RA:"+ra);
+			System.out.println("FP:"+fp);
+			System.out.println("SP:"+sp);	
+			System.out.println("@@@@@@@\n");*/
 		}
+
 	}
 	
+	private void stackTrace() {
+		System.out.println("STACK TRACE:");
+
+		for(int i=MEMSIZE-1;i>=sp;i--){
+			System.out.println(i+": "+memory[i]);
+		}
+		System.out.println("...\n");
+
+	}
+
 	private int pop(){
-		return memory[sp++];
+		int value= memory[sp++];
+		//printStack();
+		return value;
 	}
 	
 	private void push(int value){
 		memory[--sp] = value;
+		stackTrace();
 	}
 }

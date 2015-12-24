@@ -2,6 +2,7 @@
 public class IdNode implements Node {
 
 	private String id;
+	// l'entry della dichiarazione dell'ID
 	private STEntry entry;
 	private int nestingLevel;
 	
@@ -34,35 +35,58 @@ public class IdNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// tramite la symbol table recupero l'offset
-		// il frame pointer mi fa da punto fisso con il quale usare gli offset
 		
-		//se l'id non è dichiarato localmente =>
-		// il nesting level della dichiarazione è this.entry.getNestingLevel();
-		// quello di dove uso è this.nestingLevel
+		/* IdNode rappresenta un qualsiasi ID -> variabile o funzione.
+		 * La entry collegata mi individua la dichiarazione di questo ID (grazie al lavoro fatto durante la creazione
+		 * della symbol table). Per recuperare il valore della variabile o FP e ind funzione
+		 * utilizzo il frame pointer FP (punto fisso sul quale posso contare) che qualcuno avrà settato.
+		 * Se l'ID è dichiarato localmente allora semplicemente lo raggiungo tramite il
+		 * FP e l'offset. Nel caso in cui non lo sia devo risalire la catena statica e andare
+		 * a recuperare i valori/e nell'AR della dichiarazione.
+		 * Per risalire la catena statica si fa nel solito modo:
+		 * FP mi punta all'AL (che è a offset 0) => pusho FP sullo stack
+		 * faccio delle lw tante volte quanto è lvl_nesting_utilizzo - lvl nesting_dichiarazione
+		 * */
 		
-		//se la differenza è >= devo seguire l'access link che è puntato dal frame pointer
-		// lo faccio facendo lfp e poi lw lw lw tante volte quanto è la differenza
-		// in questo caso lw mi da l'indirizzo dell'access point più in alto
-		
+		// mi preparo gli lw per la risalita
 		String getAR = "";
 		for(int i=0;i<this.nestingLevel-this.entry.getNestingLevel();i++){
 			getAR+="lw\n";
 		}
 		
+		/*
+		 * Se l'ID ha tipo funzionale allora devo recuperare due cose.
+		 * Faccio un if per leggibilità.
+		 * */
 		
-		return 	"push "+this.entry.getOffset()+"\n"+
-				//lo devo sommare al valore del registro fp
-				// carico fp
-				"lfp\n"+
-				getAR+	//risalgo la catena statica
-				// lo sommmo
-				"add\n"+
-				//ora ho calcolato l'indirizzo dove andare a prendere il valore della var
-				// lw si aspetta un indirizzo sulla cima dello stack e va prendere il valore che c'è a quell'indirizzo e 
-				// lo sostituisce alla cima dello stack
-				"lw\n"
-				;
+		String code = "# ID "+this.id+"\n";
+		
+		if(this.entry.getType() instanceof ArrowTypeNode){
+			
+			System.out.println("ID funzionale "+this.id);
+			System.out.println("offset "+this.entry.getOffset());
+			System.out.println(this.toPrint(">___"));
+			code += "push "+(this.entry.getOffset())+"\n"+
+					"lfp\n"+
+					getAR+
+					"add\n"+
+					"lw\n"+	//recupero il valore del FP
+					
+					"push "+(this.entry.getOffset()-1)+"\n"+
+					"lfp\n"+
+					getAR+
+					"add\n"+
+					"lw\n";	//recupero l'indirizzo della funzione
+		} else {
+			code += "push "+this.entry.getOffset()+"\n" +
+					"lfp\n"+
+					getAR+
+					"add\n"+
+					"lw\n";			
+		}
+		
+		return code;
+
 	}
 
 }

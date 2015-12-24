@@ -11,7 +11,6 @@ public class FOOLLib {
 	//valuta se il tipo di a <= del tipo b
 	public static boolean isSubType(Node a, Node b){
 		
-		System.out.println(a + " <= "+ b+" ???");
 		
 		//verifica se una classe è un nipote di un'altra classe
 		

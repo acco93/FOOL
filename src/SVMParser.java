@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /home/acco/workspace/FOOL/SVM.g 2015-12-11 15:26:48
+// $ANTLR 3.5.2 /home/acco/workspace/FOOL/SVM.g 2015-12-24 14:14:57
 
   import java.util.HashMap;
 
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class SVMParser extends Parser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ADD", "BRANCH", "BRANCHEQ", "BRANCHLESS", 
-		"COL", "COPYFP", "DIV", "ERR", "HALT", "JS", "LABEL", "LOADFP", "LOADHP", 
-		"LOADRA", "LOADRV", "LOADW", "MULT", "NUMBER", "POP", "PRINT", "PUSH", 
-		"STOREFP", "STOREHP", "STORERA", "STORERV", "STOREW", "SUB", "WHITESP"
+		"COL", "COMMENT", "COPYFP", "DIV", "ERR", "HALT", "JS", "LABEL", "LOADFP", 
+		"LOADHP", "LOADRA", "LOADRV", "LOADW", "MULT", "NUMBER", "POP", "PRINT", 
+		"PUSH", "STOREFP", "STOREHP", "STORERA", "STORERV", "STOREW", "SUB", "WHITESP"
 	};
 	public static final int EOF=-1;
 	public static final int ADD=4;
@@ -22,29 +22,30 @@ public class SVMParser extends Parser {
 	public static final int BRANCHEQ=6;
 	public static final int BRANCHLESS=7;
 	public static final int COL=8;
-	public static final int COPYFP=9;
-	public static final int DIV=10;
-	public static final int ERR=11;
-	public static final int HALT=12;
-	public static final int JS=13;
-	public static final int LABEL=14;
-	public static final int LOADFP=15;
-	public static final int LOADHP=16;
-	public static final int LOADRA=17;
-	public static final int LOADRV=18;
-	public static final int LOADW=19;
-	public static final int MULT=20;
-	public static final int NUMBER=21;
-	public static final int POP=22;
-	public static final int PRINT=23;
-	public static final int PUSH=24;
-	public static final int STOREFP=25;
-	public static final int STOREHP=26;
-	public static final int STORERA=27;
-	public static final int STORERV=28;
-	public static final int STOREW=29;
-	public static final int SUB=30;
-	public static final int WHITESP=31;
+	public static final int COMMENT=9;
+	public static final int COPYFP=10;
+	public static final int DIV=11;
+	public static final int ERR=12;
+	public static final int HALT=13;
+	public static final int JS=14;
+	public static final int LABEL=15;
+	public static final int LOADFP=16;
+	public static final int LOADHP=17;
+	public static final int LOADRA=18;
+	public static final int LOADRV=19;
+	public static final int LOADW=20;
+	public static final int MULT=21;
+	public static final int NUMBER=22;
+	public static final int POP=23;
+	public static final int PRINT=24;
+	public static final int PUSH=25;
+	public static final int STOREFP=26;
+	public static final int STOREHP=27;
+	public static final int STORERA=28;
+	public static final int STORERV=29;
+	public static final int STOREW=30;
+	public static final int SUB=31;
+	public static final int WHITESP=32;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -226,183 +227,183 @@ public class SVMParser extends Parser {
 				}
 				switch (alt1) {
 				case 1 :
-					// /home/acco/workspace/FOOL/SVM.g:30:7: PUSH n= NUMBER
+					// /home/acco/workspace/FOOL/SVM.g:31:7: PUSH n= NUMBER
 					{
-					match(input,PUSH,FOLLOW_PUSH_in_assembly38); 
-					n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_assembly42); 
+					match(input,PUSH,FOLLOW_PUSH_in_assembly39); 
+					n=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_assembly43); 
 					code[i++] = PUSH; code[i++]=Integer.parseInt((n!=null?n.getText():null));
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/SVM.g:31:6: PUSH l= LABEL
+					// /home/acco/workspace/FOOL/SVM.g:32:6: PUSH l= LABEL
 					{
-					match(input,PUSH,FOLLOW_PUSH_in_assembly51); 
-					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly55); 
+					match(input,PUSH,FOLLOW_PUSH_in_assembly52); 
+					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly56); 
 					code[i++] = PUSH; labelRef.put(i++,(l!=null?l.getText():null));
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/SVM.g:32:6: POP
+					// /home/acco/workspace/FOOL/SVM.g:33:6: POP
 					{
-					match(input,POP,FOLLOW_POP_in_assembly66); 
+					match(input,POP,FOLLOW_POP_in_assembly67); 
 					code[i++]=POP;
 					}
 					break;
 				case 4 :
-					// /home/acco/workspace/FOOL/SVM.g:33:6: ADD
+					// /home/acco/workspace/FOOL/SVM.g:34:6: ADD
 					{
-					match(input,ADD,FOLLOW_ADD_in_assembly76); 
+					match(input,ADD,FOLLOW_ADD_in_assembly77); 
 					code[i++]=ADD;
 					}
 					break;
 				case 5 :
-					// /home/acco/workspace/FOOL/SVM.g:34:6: SUB
+					// /home/acco/workspace/FOOL/SVM.g:35:6: SUB
 					{
-					match(input,SUB,FOLLOW_SUB_in_assembly86); 
+					match(input,SUB,FOLLOW_SUB_in_assembly87); 
 					code[i++]=SUB;
 					}
 					break;
 				case 6 :
-					// /home/acco/workspace/FOOL/SVM.g:35:6: MULT
+					// /home/acco/workspace/FOOL/SVM.g:36:6: MULT
 					{
-					match(input,MULT,FOLLOW_MULT_in_assembly96); 
+					match(input,MULT,FOLLOW_MULT_in_assembly97); 
 					code[i++]=MULT;
 					}
 					break;
 				case 7 :
-					// /home/acco/workspace/FOOL/SVM.g:36:6: DIV
+					// /home/acco/workspace/FOOL/SVM.g:37:6: DIV
 					{
-					match(input,DIV,FOLLOW_DIV_in_assembly106); 
+					match(input,DIV,FOLLOW_DIV_in_assembly107); 
 					code[i++]=DIV;
 					}
 					break;
 				case 8 :
-					// /home/acco/workspace/FOOL/SVM.g:37:6: STOREW
+					// /home/acco/workspace/FOOL/SVM.g:38:6: STOREW
 					{
-					match(input,STOREW,FOLLOW_STOREW_in_assembly118); 
+					match(input,STOREW,FOLLOW_STOREW_in_assembly119); 
 					code[i++]=STOREW;
 					}
 					break;
 				case 9 :
-					// /home/acco/workspace/FOOL/SVM.g:39:6: LOADW
+					// /home/acco/workspace/FOOL/SVM.g:40:6: LOADW
 					{
-					match(input,LOADW,FOLLOW_LOADW_in_assembly133); 
+					match(input,LOADW,FOLLOW_LOADW_in_assembly134); 
 					code[i++]=LOADW;
 					}
 					break;
 				case 10 :
-					// /home/acco/workspace/FOOL/SVM.g:41:6: l= LABEL COL
+					// /home/acco/workspace/FOOL/SVM.g:42:6: l= LABEL COL
 					{
-					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly168); 
-					match(input,COL,FOLLOW_COL_in_assembly170); 
+					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly169); 
+					match(input,COL,FOLLOW_COL_in_assembly171); 
 					labelAdd.put((l!=null?l.getText():null),i);
 					}
 					break;
 				case 11 :
-					// /home/acco/workspace/FOOL/SVM.g:42:6: BRANCH l= LABEL
+					// /home/acco/workspace/FOOL/SVM.g:43:6: BRANCH l= LABEL
 					{
-					match(input,BRANCH,FOLLOW_BRANCH_in_assembly212); 
-					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly216); 
+					match(input,BRANCH,FOLLOW_BRANCH_in_assembly213); 
+					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly217); 
 					code[i++]=BRANCH; labelRef.put(i++,(l!=null?l.getText():null));
 					}
 					break;
 				case 12 :
-					// /home/acco/workspace/FOOL/SVM.g:43:6: BRANCHEQ l= LABEL
+					// /home/acco/workspace/FOOL/SVM.g:44:6: BRANCHEQ l= LABEL
 					{
-					match(input,BRANCHEQ,FOLLOW_BRANCHEQ_in_assembly240); 
-					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly244); 
+					match(input,BRANCHEQ,FOLLOW_BRANCHEQ_in_assembly241); 
+					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly245); 
 					code[i++]=BRANCHEQ; labelRef.put(i++,(l!=null?l.getText():null));
 					}
 					break;
 				case 13 :
-					// /home/acco/workspace/FOOL/SVM.g:44:6: BRANCHLESS l= LABEL
+					// /home/acco/workspace/FOOL/SVM.g:45:6: BRANCHLESS l= LABEL
 					{
-					match(input,BRANCHLESS,FOLLOW_BRANCHLESS_in_assembly260); 
-					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly264); 
+					match(input,BRANCHLESS,FOLLOW_BRANCHLESS_in_assembly261); 
+					l=(Token)match(input,LABEL,FOLLOW_LABEL_in_assembly265); 
 					code[i++]=BRANCHLESS; labelRef.put(i++,(l!=null?l.getText():null));
 					}
 					break;
 				case 14 :
-					// /home/acco/workspace/FOOL/SVM.g:45:6: JS
+					// /home/acco/workspace/FOOL/SVM.g:46:6: JS
 					{
-					match(input,JS,FOLLOW_JS_in_assembly276); 
+					match(input,JS,FOLLOW_JS_in_assembly277); 
 					code[i++]=JS;
 					}
 					break;
 				case 15 :
-					// /home/acco/workspace/FOOL/SVM.g:47:6: LOADRA
+					// /home/acco/workspace/FOOL/SVM.g:48:6: LOADRA
 					{
-					match(input,LOADRA,FOLLOW_LOADRA_in_assembly430); 
+					match(input,LOADRA,FOLLOW_LOADRA_in_assembly431); 
 					code[i++]=LOADRA;
 					}
 					break;
 				case 16 :
-					// /home/acco/workspace/FOOL/SVM.g:48:6: STORERA
+					// /home/acco/workspace/FOOL/SVM.g:49:6: STORERA
 					{
-					match(input,STORERA,FOLLOW_STORERA_in_assembly444); 
+					match(input,STORERA,FOLLOW_STORERA_in_assembly445); 
 					code[i++]=STORERA;
 					}
 					break;
 				case 17 :
-					// /home/acco/workspace/FOOL/SVM.g:49:6: LOADRV
+					// /home/acco/workspace/FOOL/SVM.g:50:6: LOADRV
 					{
-					match(input,LOADRV,FOLLOW_LOADRV_in_assembly457); 
+					match(input,LOADRV,FOLLOW_LOADRV_in_assembly458); 
 					code[i++]=LOADRV;
 					}
 					break;
 				case 18 :
-					// /home/acco/workspace/FOOL/SVM.g:50:6: STORERV
+					// /home/acco/workspace/FOOL/SVM.g:51:6: STORERV
 					{
-					match(input,STORERV,FOLLOW_STORERV_in_assembly471); 
+					match(input,STORERV,FOLLOW_STORERV_in_assembly472); 
 					code[i++]=STORERV;
 					}
 					break;
 				case 19 :
-					// /home/acco/workspace/FOOL/SVM.g:51:6: LOADFP
+					// /home/acco/workspace/FOOL/SVM.g:52:6: LOADFP
 					{
-					match(input,LOADFP,FOLLOW_LOADFP_in_assembly484); 
+					match(input,LOADFP,FOLLOW_LOADFP_in_assembly485); 
 					code[i++]=LOADFP;
 					}
 					break;
 				case 20 :
-					// /home/acco/workspace/FOOL/SVM.g:52:6: STOREFP
+					// /home/acco/workspace/FOOL/SVM.g:53:6: STOREFP
 					{
-					match(input,STOREFP,FOLLOW_STOREFP_in_assembly498); 
+					match(input,STOREFP,FOLLOW_STOREFP_in_assembly499); 
 					code[i++]=STOREFP;
 					}
 					break;
 				case 21 :
-					// /home/acco/workspace/FOOL/SVM.g:53:6: COPYFP
+					// /home/acco/workspace/FOOL/SVM.g:54:6: COPYFP
 					{
-					match(input,COPYFP,FOLLOW_COPYFP_in_assembly511); 
+					match(input,COPYFP,FOLLOW_COPYFP_in_assembly512); 
 					code[i++]=COPYFP;
 					}
 					break;
 				case 22 :
-					// /home/acco/workspace/FOOL/SVM.g:54:6: LOADHP
+					// /home/acco/workspace/FOOL/SVM.g:55:6: LOADHP
 					{
-					match(input,LOADHP,FOLLOW_LOADHP_in_assembly525); 
+					match(input,LOADHP,FOLLOW_LOADHP_in_assembly526); 
 					code[i++]=LOADHP;
 					}
 					break;
 				case 23 :
-					// /home/acco/workspace/FOOL/SVM.g:55:6: STOREHP
+					// /home/acco/workspace/FOOL/SVM.g:56:6: STOREHP
 					{
-					match(input,STOREHP,FOLLOW_STOREHP_in_assembly539); 
+					match(input,STOREHP,FOLLOW_STOREHP_in_assembly540); 
 					code[i++]=STOREHP;
 					}
 					break;
 				case 24 :
-					// /home/acco/workspace/FOOL/SVM.g:56:6: PRINT
+					// /home/acco/workspace/FOOL/SVM.g:57:6: PRINT
 					{
-					match(input,PRINT,FOLLOW_PRINT_in_assembly552); 
+					match(input,PRINT,FOLLOW_PRINT_in_assembly553); 
 					code[i++]=PRINT;
 					}
 					break;
 				case 25 :
-					// /home/acco/workspace/FOOL/SVM.g:57:6: HALT
+					// /home/acco/workspace/FOOL/SVM.g:58:6: HALT
 					{
-					match(input,HALT,FOLLOW_HALT_in_assembly567); 
+					match(input,HALT,FOLLOW_HALT_in_assembly568); 
 					code[i++]=HALT;
 					}
 					break;
@@ -439,35 +440,35 @@ public class SVMParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_PUSH_in_assembly38 = new BitSet(new long[]{0x0000000000200000L});
-	public static final BitSet FOLLOW_NUMBER_in_assembly42 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_PUSH_in_assembly51 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_LABEL_in_assembly55 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_POP_in_assembly66 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_ADD_in_assembly76 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_SUB_in_assembly86 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_MULT_in_assembly96 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_DIV_in_assembly106 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_STOREW_in_assembly118 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LOADW_in_assembly133 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LABEL_in_assembly168 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_COL_in_assembly170 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_BRANCH_in_assembly212 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_LABEL_in_assembly216 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_BRANCHEQ_in_assembly240 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_LABEL_in_assembly244 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_BRANCHLESS_in_assembly260 = new BitSet(new long[]{0x0000000000004000L});
-	public static final BitSet FOLLOW_LABEL_in_assembly264 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_JS_in_assembly276 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LOADRA_in_assembly430 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_STORERA_in_assembly444 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LOADRV_in_assembly457 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_STORERV_in_assembly471 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LOADFP_in_assembly484 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_STOREFP_in_assembly498 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_COPYFP_in_assembly511 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_LOADHP_in_assembly525 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_STOREHP_in_assembly539 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_PRINT_in_assembly552 = new BitSet(new long[]{0x000000007FDFF6F2L});
-	public static final BitSet FOLLOW_HALT_in_assembly567 = new BitSet(new long[]{0x000000007FDFF6F2L});
+	public static final BitSet FOLLOW_PUSH_in_assembly39 = new BitSet(new long[]{0x0000000000400000L});
+	public static final BitSet FOLLOW_NUMBER_in_assembly43 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_PUSH_in_assembly52 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_LABEL_in_assembly56 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_POP_in_assembly67 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_ADD_in_assembly77 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_SUB_in_assembly87 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_MULT_in_assembly97 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_DIV_in_assembly107 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_STOREW_in_assembly119 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LOADW_in_assembly134 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LABEL_in_assembly169 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_COL_in_assembly171 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_BRANCH_in_assembly213 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_LABEL_in_assembly217 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_BRANCHEQ_in_assembly241 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_LABEL_in_assembly245 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_BRANCHLESS_in_assembly261 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_LABEL_in_assembly265 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_JS_in_assembly277 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LOADRA_in_assembly431 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_STORERA_in_assembly445 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LOADRV_in_assembly458 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_STORERV_in_assembly472 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LOADFP_in_assembly485 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_STOREFP_in_assembly499 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_COPYFP_in_assembly512 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_LOADHP_in_assembly526 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_STOREHP_in_assembly540 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_PRINT_in_assembly553 = new BitSet(new long[]{0x00000000FFBFECF2L});
+	public static final BitSet FOLLOW_HALT_in_assembly568 = new BitSet(new long[]{0x00000000FFBFECF2L});
 }

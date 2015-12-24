@@ -83,46 +83,83 @@ public class FunNode implements Node, DecNode {
 
 	@Override
 	public String codeGeneration() {
+	
+		/* Corpo della funzione:
+		 * la chiamata mi setta il CL, i parametri e l'AL ora devo sistemare il
+		 * return address e eventuali dichiarazioni.
+		 * Il RA viene salvato da JS nel registro RA quindi mi basta pusharlo.
+		 */
+		
 		String address = FOOLLib.freshFunctionLabel();
 		
-		String code="";
+		String declarationsCode="";
 		String popDec="";
 		String popPar ="";
 		
+		/*
+		 * Creo il codice per le dichiarazioni
+		 * */
+		
 		for(int i=0;i<this.declarations.size();i++){
-			code+=this.declarations.get(i).codeGeneration();
+			declarationsCode+=this.declarations.get(i).codeGeneration();
+		}
+		
+		/*
+		 * Creo i pop per la deallocazione delle dichiarazioni
+		 * */
+
+		for(Node dec:declarations){
 			popDec+="pop\n";
+			// se la dichiarazione ha tipo funzione devo eliminare sia l'indirizzo che il suo FP
+			if(((DecNode)dec).getSymType() instanceof ArrowTypeNode){
+				popDec+="pop\n";
+			}
 		}
 		
-		for(int i=0;i<this.parameters.size();i++){
+		/*
+		 * Creo i pop per la deallocazione dei parametri
+		 * */
+		
+		for(Node par:parameters){
 			popPar+="pop\n";
+			if(((DecNode)par).getSymType() instanceof ArrowTypeNode){
+				popPar+="pop\n";
+			}
 		}
 		
+		/*
+		 * Il codice della funzione verrà inserito in fondo nell'assembly.
+		 * */
 		
 		
-		
-		FOOLLib.putCode(address+":\n"+
+		FOOLLib.putCode(	address+":\n"+
 							//aggiungo quello che manca dell'AR: dal return address in poi
-							"cfp\n"+	//setta il registro fp
-							"lra\n"+		//metto il return address che è in RA nello stack
-							code	+	//ora metto le dichiarazioni
+							"cfp\n"+	//ora sto puntanto all'AL => devo settare il FP per questo AR a questo indirizzo quindi FP = SP
+							"lra\n"+	//metto il return address che è in RA sullo stack. JS della chiamata copia l'IP e lo mette in RA
+							"# Dichiarazioni della funzione \n"+
+							declarationsCode	+	//ora metto le dichiarazioni
+							"# Body della funzione\n"+
 							this.body.codeGeneration()+	//chiamo il corpo della funzione
 							"srv\n"	+	// salvo il risultato in un registro
 										//disalloco tutto e risalto a chi mi ha chiamato
 							popDec +	//poppo le dichiarazioni
-							"sra\n"+	//salvo il return address
-							"pop\n"+		//pop dell'AL
+							"sra\n"+	//salvo il return address e lo poppo
+							"pop\n"+	//pop dell'AL
 							popPar+		//poppo i parametri
 										//nel control link c'è il frame pointer del chiamante
 							"sfp\n"+	//ripristino il frame pointer
-							"lrv\n"+		//metto il return value sullo stack
-							"lra\n"+			//metto ra sullo stack che poi uso per saltare
+							"lrv\n"+	//metto il return value sullo stack
+							"lra\n"+	//metto ra sullo stack che poi uso per saltare
 							"js\n"		//salto all'indirizzo che c'è sul top dello stack
 				);
 		
-		return "push "+address +"\n";
 		
-		//devo anche generare il codice della funzione a qualche indirizzo più avanti
+		// questo codice viene inserito nelle dichiarazioni
+		return  "# code generation FUN NODE "+this.id+"\n"
+				+ "lfp\n" +				// pusho l'FP a questo AR per poter successivamente recuperare il contesto
+				"push " +address +"\n"	// pusho l'indirizzo della funzione
+				+ "# ============= \n";	
+		
 	}
 
 	@Override

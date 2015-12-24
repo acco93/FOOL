@@ -27,6 +27,7 @@ grammar SVM;
 
 assembly: ( 
 
+
       PUSH n=NUMBER	{code[i++] = PUSH; code[i++]=Integer.parseInt($n.text);}//push NUMBER on the stack
 	  | PUSH l=LABEL {code[i++] = PUSH; labelRef.put(i++,$l.text);} 	//push the location address pointed by LABEL on the stack	     
 	  | POP	{code[i++]=POP;}	//pop the top of the stack, tra {} c'è un'azione, POP è una costante definita nel parser
@@ -105,6 +106,6 @@ LABEL	 : ('a'..'z'|'A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9')* ;
 NUMBER	 : '0' | ('-')?(('1'..'9')('0'..'9')*) ;
 
 WHITESP  : ( '\t' | ' ' | '\r' | '\n' )+    { $channel=HIDDEN; } ;
-
+COMMENT : '#' .* '\n'  { $channel=HIDDEN; } ;
 ERR   	 : . { System.err.println("Invalid char: "+$text); $channel=HIDDEN; } ; 
 

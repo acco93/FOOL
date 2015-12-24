@@ -29,7 +29,7 @@ public class STEntry {
 	String toPrint(String indent){
 		return 	indent+
 				"STEntry: nesting lvl = "+this.nestingLevel+"\n"+
-				indent+ "STEntry: offset"+this.offset+"\n"+
+				indent+ "STEntry: offset = "+this.offset+"\n"+
 				indent+ "STEntry: type\n"+this.type.toPrint(indent+"  ");
 	}
 

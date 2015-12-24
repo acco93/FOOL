@@ -1,4 +1,3 @@
-
 public class DivNode implements Node{
 
 	private Node left;
