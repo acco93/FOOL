@@ -36,11 +36,15 @@ public class ExecuteVM {
 		while(true){
 			// fetch
 				
-			System.out.println("IP:"+ip);
+			/*System.out.println("IP:"+ip);
 			System.out.println("RA:"+ra);
-			/*System.out.println("FP:"+fp);
+			System.out.println("FP:"+fp);
 			System.out.println("SP:"+sp);
+			System.out.println("HP: "+hp);
+			
 			System.out.println("");*/
+			
+			
 			int bytecode = code[ip++];
 			int arg1, arg2;
 			int address;
@@ -90,6 +94,7 @@ public class ExecuteVM {
 					arg1 = pop();
 					arg2 = pop();
 					memory[arg1]=arg2;
+					this.stackTrace();
 					break;
 					
 				//read the content of the memory cell pointed by the top of the stack
@@ -192,29 +197,30 @@ public class ExecuteVM {
 				
 					
 			}
-			/*System.out.println("");
-			System.out.println("IP:"+ip);
-			System.out.println("RA:"+ra);
-			System.out.println("FP:"+fp);
-			System.out.println("SP:"+sp);	
-			System.out.println("@@@@@@@\n");*/
+
 		}
 
 	}
 	
 	private void stackTrace() {
-		System.out.println("STACK TRACE:");
+		
+		/*System.out.println("MEMORY TRACE:");
 
 		for(int i=MEMSIZE-1;i>=sp;i--){
 			System.out.println(i+": "+memory[i]);
 		}
-		System.out.println("...\n");
+		System.out.println("...");
+		for(int i=hp-1;i>=0;i--){
+			System.out.println(i+": "+memory[i]);
+		}
+		
+		System.out.println("\n");*/
 
 	}
 
 	private int pop(){
 		int value= memory[sp++];
-		//printStack();
+		//stackTrace();
 		return value;
 	}
 	

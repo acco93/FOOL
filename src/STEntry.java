@@ -5,9 +5,9 @@ public class STEntry {
 	private Node type;
 	// mi serve poi durante la generazione di codice per definire il layout
 	private int offset;
-	// type
-	// memory address
 	
+	private boolean isMethod;
+
 	
 	// per variabili e parametri
 	STEntry(int nestingLevel, Node type, int offset){
@@ -21,6 +21,14 @@ public class STEntry {
 		this.nestingLevel = nestingLevel;
 		this.offset = offset;
 	}	
+
+	public void setAsMethod(){
+		this.isMethod = true;
+	}
+	
+	public boolean isMethod(){
+		return this.isMethod;
+	}
 	
 	void addType(Node type){
 		this.type = type;

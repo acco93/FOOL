@@ -1,99 +1,92 @@
 import java.util.ArrayList;
 
-public class FunNode implements Node, DecNode {
+public class MethodNode implements Node, DecNode {
 
-	// nome della funzione
+	// nome del metodo
 	private String id;
-	
+
 	// tipo di ritorno
 	private Node type;
-	
-	// arraylist di parametri
+
+	// parametri
 	private ArrayList<Node> parameters;
-	
+
 	// dichiarazioni
 	private ArrayList<Node> declarations;
-	
-	// corpo della funzione
-	private Node body;	
-	
+
+	// corpo del metodo
+	private Node body;
+
 	// tipo messo in Symbol Table
 	private Node symType;
 	
-	FunNode(String id, Node type){
+	// label utilizzata durante la generazione di codice
+	private String label;
+	
+	MethodNode(String id, Node type) {
 		this.id = id;
 		this.type = type;
 		this.parameters = new ArrayList<Node>();
 		this.declarations = new ArrayList<Node>();
 	}
-	
-	//mi serve un metodo per riempire la lista di parametri
-	//li aggiungo uno alla volta dopo
-	
-	public void addParameter(Node parameter){
+
+
+	public void addParameter(Node parameter) {
 		parameters.add(parameter);
 	}
-	
-	public void addDec(ArrayList<Node> declarations){
+
+	public void addDec(ArrayList<Node> declarations) {
 		this.declarations = declarations;
 	}
-	
-	public void addBody(Node body){
+
+	public void addBody(Node body) {
 		this.body = body;
 	}
-	
-	public void addSymType(Node functionType){
+
+	public void addSymType(Node functionType) {
 		this.symType = functionType;
 	}
-	
+
 	@Override
 	public String toPrint(String indent) {
-		
-		System.out.println(this.body);
-		
-		String result=	indent+
-						"Fun: "+this.id+"\n"+
-						this.type.toPrint(indent+"  ");
-		for(int i=0;i<parameters.size();i++){
-			result+=parameters.get(i).toPrint(indent+"  ");
+		String result = indent + "Method: " +
+						this.id + "\n" + this.type.toPrint(indent + "  ");
+		for (int i = 0; i < parameters.size(); i++) {
+			result += parameters.get(i).toPrint(indent + "  ");
 		}
-		//if(declarations!=null) ho inizializzato l'array nel costruttore
-		for(int i=0;i<declarations.size();i++){
-			result+=declarations.get(i).toPrint(indent+"  ");
+		for (int i = 0; i < declarations.size(); i++) {
+			result += declarations.get(i).toPrint(indent + "  ");
 		}
-		result+=this.body.toPrint(indent+"  ");
+		result += this.body.toPrint(indent + "  ");
 		return result;
 	}
 
 	@Override
+	public Node getSymType() {
+		return this.symType;
+	}
+
+	// setto la label (definita dalla classe)
+	public void setLabel(String label){
+		this.label = label;
+	}
+	
+	@Override
 	public Node typeCheck() {
-		
-		// per i parametri non devo controllare nulla
-		
-		if(!FOOLLib.isSubType(this.body.typeCheck(), type)){
-			System.out.println("Wrong return type for function "+this.id);
-			System.exit(0);
-			
-		}
-		
-		//if(declarations!=null)//devo controllare il caso in cui non ci sono dichiarazioni
-		for(Node node:this.declarations){
-			node.typeCheck();
-		}
-		
-		return this.type;
+		return null;
 	}
 
 	@Override
 	public String codeGeneration() {
-	
+		// come per le funzioni
+
 		/* Corpo della funzione:
 		 * la chiamata mi setta il CL, i parametri e l'AL ora devo sistemare il
 		 * return address e eventuali dichiarazioni.
 		 * Il RA viene salvato da JS nel registro RA quindi mi basta pusharlo.
 		 */
 		
-		String address = FOOLLib.freshFunctionLabel();
+		String address = this.label;
 		
 		String declarationsCode="";
 		String popDec="";
@@ -113,7 +106,7 @@ public class FunNode implements Node, DecNode {
 
 		for(Node dec:declarations){
 			popDec+="pop\n";
-			// se la dichiarazione ha tipo funzione devo eliminare sia l'indirizzo che il suo FP
+			// se la dichiarazione ha tipo funzione devo eliminare sia l'indirizzo che il suo FP (TODO: non possono esserci dichiarazioni di fun credo)
 			if(((DecNode)dec).getSymType() instanceof ArrowTypeNode){
 				popDec+="pop\n";
 			}
@@ -139,9 +132,9 @@ public class FunNode implements Node, DecNode {
 							//aggiungo quello che manca dell'AR: dal return address in poi
 							"cfp\n"+	//ora sto puntanto all'AL => devo settare il FP per questo AR a questo indirizzo quindi FP = SP
 							"lra\n"+	//metto il return address che è in RA sullo stack. JS della chiamata copia l'IP e lo mette in RA
-							"# Dichiarazioni della funzione \n"+
+							"# Dichiarazioni del metodo \n"+
 							declarationsCode	+	//ora metto le dichiarazioni
-							"# Body della funzione\n"+
+							"# Body del metodo\n"+
 							this.body.codeGeneration()+	//chiamo il corpo della funzione
 							"srv\n"	+	// salvo il risultato in un registro
 										//disalloco tutto e risalto a chi mi ha chiamato
@@ -157,17 +150,13 @@ public class FunNode implements Node, DecNode {
 				);
 		
 		
-		// questo codice viene inserito nelle dichiarazioni
-		return  "# code generation FUN NODE "+this.id+"\n"
-				+ "lfp\n" +				// pusho l'FP a questo AR per poter successivamente recuperare il contesto
-				"push " +address +"\n"	// pusho l'indirizzo della funzione
-				+ "# ============= \n";	
+		return  "";	
 		
 	}
 
-	@Override
-	public Node getSymType() {
-		return this.symType;
+
+	public String getLabel() {
+		return this.label;
 	}
 
 }

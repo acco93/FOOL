@@ -19,7 +19,6 @@ public class Test {
         
         // mi fa il typechecking e ritorna il tipo della radice se tutto va bene
         Node type = ast.typeCheck();
-        
         System.out.println("[RIGHT] You have: "+lexer.lexicalErrors+" lexical errors and "+parser.getNumberOfSyntaxErrors()+" syntax errors.");
         System.out.println(type.toPrint("Type checking successful! Program type: "));
         
@@ -35,12 +34,14 @@ public class Test {
         CommonTokenStream tokensVM = new CommonTokenStream(lexerVM);
         SVMParser parserVM = new SVMParser(tokensVM);
         
+        System.out.println("Code successfully generated!");
+        System.out.println("Assembling and running generated code.");
+        
         parserVM.assembly();
         
         ExecuteVM vm = new ExecuteVM(parserVM.code);
         vm.cpu();
         
-        System.out.println("Code successfully generated!\n Assembling and running generated code.");
-        
+                
     }
 }

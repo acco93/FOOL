@@ -49,35 +49,38 @@ public class IdNode implements Node {
 		 * */
 		
 		// mi preparo gli lw per la risalita
-		String getAR = "";
+		String getAR = "# risalgo la catena statica "+ (this.nestingLevel-this.entry.getNestingLevel()) +" volte\n";
 		for(int i=0;i<this.nestingLevel-this.entry.getNestingLevel();i++){
 			getAR+="lw\n";
 		}
 		
 		/*
 		 * Se l'ID ha tipo funzionale allora devo recuperare due cose.
-		 * Faccio un if per leggibilità.
 		 * */
+		
+		System.out.println(this.id+" call nl:"+this.nestingLevel+" dich nl:"+this.entry.getNestingLevel());
 		
 		String code = "# ID "+this.id+"\n";
 		
 		if(this.entry.getType() instanceof ArrowTypeNode){
-			
-			System.out.println("ID funzionale "+this.id);
-			System.out.println("offset "+this.entry.getOffset());
-			System.out.println(this.toPrint(">___"));
+			// caso ID funzionale
+			code += "# ID funzionale\n";
+			code += "# recupero il valore del FP\n";
 			code += "push "+(this.entry.getOffset())+"\n"+
 					"lfp\n"+
 					getAR+
 					"add\n"+
 					"lw\n"+	//recupero il valore del FP
 					
+					"# recupero l'indirizzo della funzione \n"+
 					"push "+(this.entry.getOffset()-1)+"\n"+
 					"lfp\n"+
 					getAR+
 					"add\n"+
 					"lw\n";	//recupero l'indirizzo della funzione
 		} else {
+			// caso ID normale
+			code += "# ID normale (non funzionale) recupero il valore\n";
 			code += "push "+this.entry.getOffset()+"\n" +
 					"lfp\n"+
 					getAR+

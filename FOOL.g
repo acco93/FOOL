@@ -1,77 +1,346 @@
 grammar FOOL;
 
 @header {
+  // import utilizzati nelle classi generate del parser
   import java.util.ArrayList;
   import java.util.HashMap;
 }
 
 
 @members {
-// Queste diventano variabili globali
+// queste diventano campi delle classi generate del parser
 
-// è il livello dell'ambiente globale
+// all'ingresso di ogni scope il nesting level viene incrementato
+// quando entro nel primo scope passa a 0 il che è il livello dell'ambiente globale
+// qui sono dichiarate anche le classi (i loro nomi)
+// le virtual table sono a nesting level 1
 private int nestingLevel = -1; 
 
 private  ArrayList<HashMap<String,STEntry>> symbolTable = new ArrayList<HashMap<String,STEntry>>(); 
+
+// la class table mappa il nome della classe alla CTEntry
+// che contiene varie cose tra cui la virtual table
+private HashMap<String,CTEntry> classTable = new HashMap<String,CTEntry>();
+
+// mappa ID di classi in ID di classi super
+private HashMap<String,String> superType = new HashMap<String,String>();
 
 }
 
 @lexer::members {
 int lexicalErrors=0;
-/* Queste cose diventano un campo della classe SimpleExpLexer.java */
 }
   
-
-
 // PARSER RULES
- 
-// prog ritorna l'albero sintattico
+
+// prog ritorna l'albero sintattico totale corrispondente al programma
 prog returns [Node ast] :
-    // se c'è solo una espressione
-    e = exp SEMIC {$ast = new ProgNode($e.ast);}                     //nessuna dichiarazione: nessun ambiente globale
-    // altrimenti ho anche delle dichiarazioni
-    | LET 
+
+    // se c'è solo una espressione quindi nessuna dichiarazione
+    e = exp SEMIC {$ast = new ProgNode($e.ast);}
+    | 
+    // altrimenti ho anche delle dichiarazioni tra le quali anche classi
+    // (sono sempre dichiarate per prime)
+    LET 
 	      {
+	        // all'inizio del parsing passo il riferimento della map supertype a FOOLLib 
+				   // lo metto qui perchè venga eseguito sempre (quando c'è almeno una dichiarazione di classe)
+				   FOOLLib.setSuperTypeMap(superType);
+	      
+	       // entro in un nuovo scope quindi incremento il nesting level
 	       nestingLevel++; 
+	       // creo la hashmap dove memorizzo le cose che incontro
 	       HashMap<String,STEntry> hm = new HashMap<String,STEntry>();
-	       symbolTable.add(hm);} 
-    d=declist IN e=exp SEMIC 
-         {//ora esco dall'ambiente => rimuovo la tabella nel fronte
-          symbolTable.remove(nestingLevel--);
-          $ast = new LetInNode($d.astList, $e.ast);}  
-    ; //chiude prog
-     
-// ritorna un array list di nodi
-declist returns [ArrayList<Node> astList] :
-//creo l'arraylist vuoto, esso conterrà le dichiarazioni
-    {$astList = new ArrayList<Node>();
-    //inizializzo l'offset
-    int offset = -2;//perchè abbiamo aggiunto l'access link
-    }
-    ( ( 
-       VAR i=ID COLON t=type ASS e=exp      
-        {VarNode v = new VarNode($i.text, $t.ast, $e.ast);
-         $astList.add(v);
-         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+$t.ast);
-         //ora che ho dichiarato la var la aggiungo alla symbol table
-         //recupero l'hash table dell'ambiente locale
-         HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
-         //ora controllo che non ci sia già
-	       if(hm.put($i.text,new STEntry(nestingLevel,$t.ast, offset--))!=null){ //l'offset lo calcolo in base all'ordine in cui incontro le variabili
-	        System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
-	        System.exit(0);
-	       };
-	       if($t.ast instanceof ArrowTypeNode){offset--;}
-         }  //chiude l'azione che inizia dopo la lettura della var, tipo e due punti 
-       |  //oppure                          
-       FUN i=ID COLON t=type 
-        {FunNode f = new FunNode($i.text, $t.ast); 
+	       // la aggiungo alla mia lista di hashmap (la ricaverò tramite get(nestingLevel)
+	       symbolTable.add(hm);
+	       }
+	  // posso quindi incontrare una lista di classi     
+	  c=cllist      
+    // seguita da una lista di dichiarazoni (variabili/funzioni)
+    d=declist 
+    
+    IN 
+    // infine una espressione
+    e=exp SEMIC 
+    
+    {
+      // ora esco dallo scope in cui sono quindi rimuovo la tabella nel fronte
+      // l'albero rimane comunque decorato con le entry
+      symbolTable.remove(nestingLevel--);
+      // creo il nodo da ritornare
+      $ast = new LetInNode($c.astList,$d.astList, $e.ast);}  
+    ;
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ fine prog @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+cllist returns [ArrayList<Node> astList] : 
+  { // inizializzo la lista di classi
+    $astList = new ArrayList<Node>();
+    // le classi stanno tutte nell'ambiente globale
+  }
+  
+  (CLASS i=ID 
+    
+    {    
+    
+    // creo una lista di metodi e una lista di campi
+    ArrayList<Node> fieldsList = new ArrayList<Node>();
+    ArrayList<Node> methodsList = new ArrayList<Node>();
+    // creo un nodo di tipo classe contenente il nome della classe
+    ClassTypeNode classType = new ClassTypeNode($i.text);
+    
         
-         $astList.add(f);  
-         HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
-         //creo una entry con solo il nesting level, ci metterò il tipo quando lo saprò (lo leggo dopo aver letto tutti i parametri)
+    // la symbol table di livello 0 include STEntry per i nomi delle classi
+    // questo per controllare che nello stesso scope non vengano dichiarate altre cose
+    // con lo stesso nome
+    
+    // l'offset credo non sia importante ò.ò
+    HashMap<String,STEntry> hm = symbolTable.get(0);
+    if(hm.put($i.text,new STEntry(nestingLevel,null, 999))!=null){ 
+          System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
+          System.exit(0);
+         };
+    
+    // la CTEntry contiene le info della classe
+    CTEntry entry = new CTEntry();
+    
+    CTEntry superClassEntry = null;
+    
+    }
+     
+   (
+    EXTENDS ei=ID
+    {
+      // se finisco qua dentro significa che estendo da qualcuno, allora devo recuperare la CTEntry
+      // dalla class table (controllando che esiste) e utilizzare il II costruttore di CTEntry (quello
+      // che fa la copia)
+      superClassEntry = classTable.get($ei.text);
+      if(superClassEntry == null){
+          System.out.println("Error: class "+$ei.text +" at line "+ $ei.line +" not declared!");
+          System.exit(0);
+      }
+      // se tutto va bene ridefinisco entry, questo costruttore fa la copia della superClassEntry
+      entry = new CTEntry(superClassEntry);
+      
+      //devo inoltre aggiornare la superType map
+      superType.put($i.text,$ei.text);
+      
+    }
+   )? 
+  
+    
+    {
+    
+    // creo un nodo classe
+    ClassNode c = new ClassNode(classType, fieldsList, methodsList, entry, superClassEntry);
+    // lo aggiungo alla lista delle classi (lista che viene poi restituita)
+    $astList.add(c);
+    
+    // se va tutto bene => posso inserire l'entry anche nella class table
+    classTable.put($i.text, entry);
+    // viene creato un nuovo livello e la relativa Symbol Table (anzichè creata vuota) viene 
+    // settata alla Virtual Table contenuta dentro la nuova CTentry
+    // incremento perchè la virtual table è sempre ad offset 1
+    // in questo modo alla fine riesco a rimuoverla correttamente
+    // i campi e metodi vengono settati a nesting level 1 di default (senza che glielo passi)
+     nestingLevel++; 
+     symbolTable.add(entry.getVirtualTable());
+    }
+    
+    // ora scorro gli elementi della classe e aggiorno la CTEntry ad ogni campo/metodo incontrato:
+   
+    // questo è il costruttore, esso contiene i campi della classe che devono essere inizializzati
+    // alla creazione degli oggetti in quanto essi sono immutabili
+    LPAR
+      // primo campo
+      (pfid=ID COLON pft=basic
+      // lo aggiungo alla CTEntry e alla classe
+      {
+        // addField ritorna il nodo field
+        fieldsList.add(entry.addField($pfid.text,$pft.ast));
+        
+      }
+      
+      // mi occupo degli altri eventuali campi     
+      (     
+      COMMA pnid=ID COLON pnt=basic
+      {
+        
+        fieldsList.add(entry.addField($pnid.text,$pnt.ast));
+      }
+      )* )? 
+    RPAR    
+    
+    // inizia la dichiarazione e definizione dei metodi
+    CLPAR
+    
+    (
+      FUN mid=ID COLON mt=basic 
+      {
+
+       // creo anche il nodo dell'AST
+       MethodNode method = new MethodNode($mid.text, $mt.ast);
+       
+       // aggiungo il metodo alla lista dei metodi (tutte le info: espressione, ecc..)
+       methodsList.add(method);
+       
+       // mi memorizzo il tipo dei parametri il quale andrà insieme al tipo di ritorno a comporre il tipo complessivo del metodo
+        ArrayList<Node> parTypes = new ArrayList<Node>();
+        
+        // creo la symbol table che rappresenta il contesto del metodo
+        nestingLevel++; 
+        HashMap<String,STEntry> hmn = new HashMap<String,STEntry>();
+        symbolTable.add(hmn);
+        // qua mi salvo le dichiarazioni
+        ArrayList<Node> varList = new ArrayList<Node>();
+        // nelle funzioni i parametri iniziano dall'offset 1 e incremento
+        int parOffset = 1;
+        
+        
+        }
+      
+      // ora lavoro sui parametri aggiungengoli al metodo e alla symbol table man mano che li incontro
+      LPAR 
+        (
+          // primo parametro
+          mpfid=ID COLON mpft=type
+          {
+            ParNode firstPar = new ParNode($mpfid.text,$mpft.ast);
+            method.addParameter(firstPar);
+            parTypes.add($mpft.ast);
+                        
+            // verifico eventuali duplicati e aggiungo alla symboltable (primo par) [Remember: i parametri sono allo stesso livello del corpo della fun]
+            if(hmn.put($mpfid.text,new STEntry(nestingLevel,$mpft.ast, parOffset++))!=null){ 
+	            System.out.println("Error: id "+$mpfid.text +" at line "+ $mpfid.line +" already declared!");
+	            System.exit(0);
+            };
+            
+          
+            
+          }
+          // successivi
+          (
+            COMMA mpnid=ID COLON mtnt=type
+            {
+	            ParNode nextPat = new ParNode($mpnid.text,$mtnt.ast);
+	            method.addParameter(nextPat);
+              parTypes.add($mtnt.ast);
+              
+              if(hmn.put($mpnid.text,new STEntry(nestingLevel,$mtnt.ast, parOffset++))!=null){ 
+	              System.out.println("Error: id "+$mpnid.text +" at line "+ $mpnid.line +" already declared!");
+	              System.exit(0);
+	            };
+              
+            }
+          )* )?
+        
+      RPAR
+      // ora ci sono le dichiarazioni (che non possono essere annidate) e potrebbero anche non esserci
+      (
+        LET
+        // scorro tutte le variabili
+        {
+          // il metodo quando verrà invocato avrà l'AR delle funzioni
+          int varOffset = -2;
+        }
+        (
+          VAR vid=ID COLON vty=basic ASS vexp=exp SEMIC
+          {
+             VarNode v = new VarNode($vid.text, $vty.ast, $vexp.ast);
+             varList.add(v);
+             // verifico eventuali duplicati
+             if(hmn.put($vid.text,new STEntry(nestingLevel,$vty.ast, varOffset--))!=null){ 
+             System.out.println("Error: id "+$vty.text +" at line "+ $vid.line +" already declared!");
+             System.exit(0);
+             };
+          }
+        )*
+        // devo aggiungere le dichiarazioni al metodo
+        {method.addDec(varList);}
+        IN 
+        
+      )? 
+      
+      mexp=exp
+      // aggiungo il body al metodo
+      {method.addBody($mexp.ast);}
+      SEMIC
+      
+      {
+        // è finito lo scope del metodo quindo posso rimuovere la symbol table corrispondente
+        // e decremento il NL
+        symbolTable.remove(nestingLevel--);
+        // ed istanziare il nodo che rappresenta il tipo del metodo
+        ArrowTypeNode methodType = new ArrowTypeNode(parTypes,$mt.ast);
+        // aggiungo il tipo complessivo al MethodNode
+        method.addSymType(methodType);  
+        // aggiungo il metodo alla virtual table (nome +metodo che viene aggiunto ad allMethods)
+        entry.addMethod($mid.text, method);
+        
+        
+      }
+      )*                
+       
+      CRPAR
+     
+      {
+        // devo ricordarmi di chiudere il livello della classe!
+        symbolTable.remove(nestingLevel--);
+      }
+      // potrebbero esserci altre classi quindi * 
+      )*
+       ; 
+
+// ritorna un array list di nodi corrispondente a dichiarazioni di variabili e funzioni
+declist returns [ArrayList<Node> astList] :
+
+    {
+      // creo l'arraylist vuoto, esso conterrà le dichiarazioni
+      $astList = new ArrayList<Node>();
+      
+      // l'offset mi serve per recuperare le cose in fase di esecuzione
+      // inizializzo l'offset a -2 perchè nel caso di 
+      // AR dell'ambiente globale a -1 abbiamo il return address fittizio
+      // mentre nel caso di layout AR funzione a 0 c'è l'AL e a -1 il RA
+      int offset = -2;
+    }
+    
+    ( 
+      // le dichiarazioni possono essere di variabili o funzioni
+    ( 
+       // DICHIARAZIONE DI VARIABILE
+       VAR i=ID COLON t=type ASS e=exp
+        {
+          System.out.println("Dich var "+$id.text+" con offset "+offset);
+          VarNode v = new VarNode($i.text, $t.ast, $e.ast);
+          $astList.add(v);
+          // ora che ho dichiarato la var la aggiungo alla symbol table
+          // recupero l'hash table dell'ambiente dove sto parsando
+          HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
+          // controllo che niente sia dichiarato con lo stesso nome
+          
+          if(hm.put($i.text,new STEntry(nestingLevel,$t.ast, offset--))!=null){ 
+            //l'offset lo calcolo in base all'ordine in cui incontro le variabili
+		        System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
+		        System.exit(0);
+		        };
+		      // se la variabile è di tipo funzione occupa due offset
+		      // TODO: è da verificare se può esistere
+		      if($t.ast instanceof ArrowTypeNode){offset--;}
+		     }  //chiude l'azione che inizia dopo la lettura della var, tipo e due punti 
+       |
+       // DICHIARAZIONE DI FUNZIONE                          
+       FUN i=ID COLON t=type 
+        {
+          FunNode f = new FunNode($i.text, $t.ast); 
+          $astList.add(f);  
+          HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
+         // creo una entry con solo il nesting level e l'offset
+         // ci metterò il tipo quando lo saprò (lo capisco dopo aver letto tutti i parametri)
          STEntry entry = new STEntry(nestingLevel,offset);
-         //ora la funzione occupa due offset
+         System.out.println("Dich fun "+$i.text+" con offset "+offset);
+         // la funzione occupa due offset
          offset-=2;
          // inserisco l'ID della funzione nella symbol table	                                             
          if(hm.put($i.text,entry)!=null){
@@ -90,32 +359,35 @@ declist returns [ArrayList<Node> astList] :
           ArrayList<Node> parTypes = new ArrayList<Node>();
           int parOffset = 1; //i parametri iniziano da 1 nel layout e l'offset si incrementa
          }
-         //dichiarazione dei parametri, è scritta così perchè
-         //voglio almeno un parametro, e se ce n'è più di uno
-         //voglio la virgola in mezzo
+         // dichiarazione dei parametri
           (fid=ID COLON fty=type 
-            { parTypes.add($fty.ast);
-             
+            { 
+              System.out.println($fid.text+" con offset "+parOffset);
+              parTypes.add($fty.ast);
               ParNode fpar = new ParNode($fid.text, $fty.ast);
               f.addParameter(fpar);
+             if($fty.ast instanceof ArrowTypeNode){parOffset++;}
               if(hmn.put($fid.text,new STEntry(nestingLevel,$fty.ast,parOffset++))!=null){
                 System.out.println("Error: id "+$fid.text +" at line "+ $fid.line +" already declared!");
                 System.exit(0);
               };
-              if($fty.ast instanceof ArrowTypeNode){parOffset++;}
+              
              }                                
-             //è molto simile alle variabili, mi creo un parnode mettendoci l'id 
+             // è molto simile alle variabili, mi creo un parnode mettendoci l'id 
              // e il tipo e lo aggiungo all'oggetto funnode .addParameter Poi 
              // aggiungo la dichiarazione del parametro STEntry alla symbol table hmn
              (COMMA id=ID COLON ty=type 
-              { parTypes.add($ty.ast);
+              { 
+                System.out.println("Par "+$id.text+" con offset "+parOffset);
+                parTypes.add($ty.ast);
                 ParNode par = new ParNode($id.text, $ty.ast);
                 f.addParameter(par);
+                if($ty.ast instanceof ArrowTypeNode){parOffset++;}
                 if(hmn.put($id.text,new STEntry(nestingLevel,$ty.ast, parOffset++))!=null){
                   System.out.println("Error: id "+$id.text +" at line "+ $id.line +" already declared!");
                   System.exit(0);
                 };
-               if($ty.ast instanceof ArrowTypeNode){parOffset++;}
+               
                }
               )*  //potrebbero esserci più parametri
               )?  //potrebbero non esserci parametri affatto
@@ -147,8 +419,6 @@ exp returns [Node ast] :
         )*;
 
 
-
-
 term returns [Node ast] :
   f=factor {$ast = $f.ast;} 
       (
@@ -166,20 +436,36 @@ factor returns [Node ast]:
     )*
   ;     
      
-
-
-
-
 value returns [Node ast] :
         n=NAT { $ast = new NatNode(Integer.parseInt($n.text)); } |
 				TRUE {$ast = new BoolNode(true);}   |
 				FALSE {$ast = new BoolNode(false);} |                              
+				NULL {$ast = new EmptyNode();}|
+				NEW nid=ID LPAR
+				{
+				  // creo la lista dei parametri che contengono le espressioni passate alla new
+				  ArrayList<Node> parList = new ArrayList<Node>();
+				  // recupero la CTEntry che descrive la classe
+				  CTEntry classEntry = classTable.get($nid.text);
+				  // verifico che sia effettivamente definita
+				  if(classEntry == null){
+				    System.out.println("Error: class "+$nid.text+" at line " +$nid.line+ " not declared!");
+            System.exit(0);
+				  }
+				  // creo il new node
+				  NewNode nn = new NewNode($nid.text,classEntry, parList);
+				}
+				  // aggiungo i parametri man mano che li incotro
+				 (nfe=exp {parList.add($nfe.ast);} (COMMA nne=exp {parList.add($nne.ast);})* )? RPAR 
+				 // restituisco il new Node
+				 {$ast = nn;}
+				  |      
 				LPAR e=exp RPAR {$ast = $e.ast;}  |                      
         IF c=exp THEN CLPAR t=exp CRPAR
                  ELSE CLPAR e=exp CRPAR {$ast = new IfElseNode($c.ast, $t.ast, $e.ast);}         |
         NOT LPAR e=exp {$ast = new NotNode($e.ast);} RPAR |
         PRINT LPAR e=exp {$ast = new PrintNode($e.ast);} RPAR |
-        i=ID {
+        i=ID {        
               //cerco l'id nella symbol table
               int j = nestingLevel;
               STEntry entry = null;
@@ -194,25 +480,61 @@ value returns [Node ast] :
                 System.exit(0);
               }
               
+               
               $ast = new IdNode($i.text,entry,nestingLevel);
               //quando trovo un id ricerco nella symbol table
               //perchè vogliamo associare all'idNode corrispondente a questo id la sua dichiarazione nella symbol table (cioè la STEntry).
           
             } /*dentro ad una espressione possiamo usare un identificatore*/
-            (LPAR {ArrayList<Node> argList = new ArrayList<Node>();}
+            
+            (
+            
+              LPAR {ArrayList<Node> argList = new ArrayList<Node>();}
               //devo distinguere il primo dai successivi a causa della virgola
               (fa=exp {argList.add($fa.ast);}
               (COMMA a=exp {argList.add($a.ast);})*
               )?
-            RPAR {$ast = new CallNode($i.text, entry, argList, nestingLevel);} //se eseguo quello qui dentro sostituisco l'IdNode generato sopra
-            )?
+            RPAR {$ast = new CallNode($i.text, entry, argList, nestingLevel);} //se eseguo quello qui dentro sostituisco l'IdNode generato sopra  
+        
+        |
+            DOT mid=ID 
+            {
+              // la variabile che punta all'oggetto è dichiarata nello stack
+              // l'id dell'oggetto della classe è catturato da $i settato li su
+              // innanzitutto verifico se classe e metodo esistono
+              
+              // ricavo il tipo dell'oggetto
+              ClassTypeNode classType = (ClassTypeNode)entry.getType();
+              // cerco nella class table la classe
+              CTEntry classEntry = classTable.get(classType.getType());
+              if(classEntry == null){
+	              System.out.println("Error: class "+classType.getType()+" at line " +$i.line+ " not declared!");
+	              System.exit(0);
+              } 
+              // cerco il metodo nella virtual table
+              STEntry methodEntry = classEntry.getVirtualTable().get($mid.text);
+              if(methodEntry == null){
+                System.out.println("Error: method "+$mid.text+" at line " +$mid.line+ " not defined!");
+                System.exit(0);
+              }
+            }
+            //parametri del metodo
+            {
+              // creo una lista di parametri
+              ArrayList<Node> parList = new ArrayList<Node>();
+            }
+            LPAR
+             (fe = exp {parList.add($fe.ast);} (COMMA ne=exp {parList.add($ne.ast);})* )? 
+            RPAR 
             
+            {
+              // creo il nodo che verrà restituito
+              $ast = new ClassCallNode($i.text, entry, $mid.text, methodEntry, parList,nestingLevel);
+            }
+            
+            )?  
         ;
-                              // le parentesi non influiscono nell'albero di sintassi astratta
-
-
-
-
+                              
 type  returns [Node ast]  : 
          b=basic  {$ast = $b.ast;} 
       |  a=arrow {$ast = $a.ast;} 
@@ -224,11 +546,9 @@ type  returns [Node ast]  :
 basic  returns [Node ast] : 
     INT {$ast = new IntTypeNode();}   
   | BOOL {$ast = new BoolTypeNode();}              
-  | ID                        
+  | i=ID   {$ast = new ClassTypeNode($i.text);}                     
   ;  
-  
-  
-    
+   
 arrow  returns [Node ast] : 
   {
     //lista dei parametri
@@ -267,12 +587,17 @@ IF  : 'if' ;
 THEN  : 'then' ;
 ELSE  : 'else' ;
 PRINT : 'print' ;
-FUN : 'fun' ; 
+FUN : 'fun' ;
+CLASS : 'class' ; 
+EXTENDS : 'extends' ; 
+NEW   : 'new' ; 
+NULL    : 'null' ;   
 LET     : 'let' ; 
 IN      : 'in' ;
 VAR     : 'var' ;
 COLON   : ':' ; 
 COMMA : ',' ;
+DOT : '.' ;
 ASS : '=' ;
 INT : 'int' ;
 
