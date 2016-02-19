@@ -28,8 +28,8 @@ public class EqualNode implements Node {
 		}
 		
 		
-		if(!(FOOLLib.isSubType(l, r) ||
-				FOOLLib.isSubType(r, l))){
+		if(FOOLLib.lowestCommonAncestor(l, r)==null &&
+				FOOLLib.lowestCommonAncestor(r, l)==null){
 					System.out.println("Incompatible types in equal!");
 					System.exit(0);
 				}

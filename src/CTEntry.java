@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class CTEntry {
 
@@ -24,6 +25,10 @@ public class CTEntry {
 	// array come: offset metodo
 	private ArrayList<Node> allMethods;
 
+	// insieme che contiene i metodi/campi dichiarati da questa classi e non dei quali
+	// è stato fatto override
+	HashSet<Integer> locals;
+	
 	// costruttore vuoto, caso in cui non eredito da alcuna classe
 	CTEntry() {
 		this.virtualTable = new HashMap<String, STEntry>();
@@ -31,6 +36,7 @@ public class CTEntry {
 		this.offsetMethods = 0;
 		this.allFields = new ArrayList<Node>();
 		this.allMethods = new ArrayList<Node>();
+		this.locals = new HashSet<Integer>();
 	}
 
 	// costruttore copie, se eridito da qualcuno
@@ -40,6 +46,7 @@ public class CTEntry {
 		this.offsetMethods = entry.getOffsetMethods();
 		this.allFields = new ArrayList<Node>(entry.getAllFields());
 		this.allMethods = new ArrayList<Node>(entry.getAllMethods());
+		this.locals = new HashSet<Integer>();
 		
 	}
 
@@ -71,10 +78,12 @@ public class CTEntry {
 		STEntry lastEntry = this.virtualTable.get(name);
 		STEntry entry;
 		FieldNode field = new FieldNode(name, type);
+		int offset;
+		
 		if(lastEntry != null){
 			// caso 1: il campo esiste già nella virtual table => overriding (lo aggiorno)
 			// leggo l'offset che era stato assegnato
-			int offset = lastEntry.getOffset();
+			offset = lastEntry.getOffset();
 			// creo una nuova STEntry che sostituisce la precedente
 			entry = new STEntry(1,type,offset);
 			// sostituisco anche in allFields
@@ -87,6 +96,7 @@ public class CTEntry {
 			// il nesting level è per forza 1
 			// utilizzo l'offset dei campi al quale ero arrivato
 			entry = new STEntry(1,type,this.offsetFields);
+			offset = this.offsetFields;
 			// il quale va decrementato (in base al layout dell'oggetto)
 			this.offsetFields--;
 			// aggiungo semplicemente in fondo
@@ -95,6 +105,15 @@ public class CTEntry {
 		
 		// inserisco l'entry nella virtual table
 		this.virtualTable.put(name, entry);
+		
+		// controllo che non sia già stato definito (tramite locals e l'offset)
+		
+		if(!this.locals.add(offset)){
+			// ritorna true se non era presente
+			System.out.println("Error: field "+name+ " declared twice!");
+			System.exit(0);
+		}
+		
 		return field;
 		
 	}
@@ -104,13 +123,15 @@ public class CTEntry {
         STEntry lastEntry = this.virtualTable.get(name);
 		STEntry entry;
 		
+		int offset;
+		
 		if(lastEntry != null){
-			
-			int offset = lastEntry.getOffset();
+			offset = lastEntry.getOffset();
 			entry = new STEntry(1,method.getSymType(),offset);
 			this.allMethods.set(offset, method);
 		} else {
 			entry = new STEntry(1,method.getSymType(),this.offsetMethods);
+			offset = this.offsetMethods;
 			entry.isMethod();
 			this.offsetMethods++;
 			this.allMethods.add(method);
@@ -119,11 +140,19 @@ public class CTEntry {
 		
 		this.virtualTable.put(name, entry);
 	
+		if(!this.locals.add(offset)){
+			System.out.println("Error: method "+name+ " declared twice!");
+			System.exit(0);
+		}
 		
 	}
 
 	public String toPrint(String string) {
 		return "";
+	}
+
+	public HashSet<Integer> getLocals() {
+		return this.locals;
 	}
 
 

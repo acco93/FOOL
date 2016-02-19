@@ -86,6 +86,87 @@ public class FOOLLib {
 
 	}
 
+	public static Node lowestCommonAncestor(Node a, Node b){
+		
+		// casi particolari: ho un null => torno l'altro
+		if(a instanceof EmptyTypeNode){ return b;}
+		if(b instanceof EmptyTypeNode){ return a;}
+		
+		
+		if(a instanceof ClassTypeNode && b instanceof ClassTypeNode){
+			// se sto lavorando con classi
+			
+			
+			// considero a, risalgo le sue superclassi tramite la map superType
+			String currentClassID = ((ClassTypeNode) a).getType();
+			
+			Node currentType = a;
+			String superClassID = null;
+			
+			do {
+		
+				// controllo che b non sia un sottotipo della classe attualmente considerata
+				if(FOOLLib.isSubType(b, currentType)){
+					// nel caso in cui lo sia => ritorno la classe corrente
+					return currentType;
+				}
+				// altrimenti ricavo l'ID della superclasse tramite la map superType
+				superClassID = FOOLLib.superType.get(currentClassID);
+				currentClassID = superClassID;
+				// e con quello costruisco un nodo ClassTypeNode per il tipo della super classe
+				// (aggiornando la var utilizzata nel controllo)
+				currentType = new ClassTypeNode(superClassID);
+				
+			} while(superClassID!=null);
+			
+			
+		} else if (a instanceof ArrowTypeNode && b instanceof ArrowTypeNode){
+			// se sto lavorando con tipo funzionali (con lo stesso numero di parametri)
+			
+			ArrowTypeNode typeA = (ArrowTypeNode) a;
+			ArrowTypeNode typeB = (ArrowTypeNode) b;
+			
+			if(typeA.getParList().size() != typeB.getParList().size()){return null;}
+			
+			// controllo il tipo di ritorno ricorsivamente
+			Node retType = FOOLLib.lowestCommonAncestor(typeA.getRet(), typeB.getRet()); 
+			if(retType==null) {
+				retType = FOOLLib.lowestCommonAncestor(typeB.getRet(), typeA.getRet());
+				if(retType == null){
+					// fallisco
+					return null;
+				}
+			}
+			
+			ArrayList<Node> parList = new ArrayList<Node>();
+			for(int i=0;i<typeA.getParList().size();i++){
+				if(FOOLLib.isSubType(typeA.getParList().get(i), typeB.getParList().get(i))){
+					parList.add(typeA.getParList().get(i));
+				} else if(FOOLLib.isSubType(typeB.getParList().get(i), typeA.getParList().get(i))){
+					parList.add(typeB.getParList().get(i));
+				} else
+					// fallisco
+					return null;
+			}
+			
+			// sono arrivato in fondo, ritorno il tipo lowestCommonAncestor
+			return new ArrowTypeNode(parList, retType);
+			
+		} else {
+			// sto lavorando con tipi primitivi (faccio quello che facevo prima)
+			
+			if(a instanceof IntTypeNode || b instanceof IntTypeNode){
+				return new IntTypeNode();
+			} else {
+				return new BoolTypeNode();
+			}
+
+			
+		}
+			
+		return null;
+	}
+	
 	public static String freshLabel() {
 		return "label" + (labelCounter++);
 	}

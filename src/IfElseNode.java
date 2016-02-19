@@ -34,11 +34,18 @@ public class IfElseNode implements Node{
 		Node t = this.thenNode.typeCheck();
 		Node e = this.elseNode.typeCheck();
 		
-		if(FOOLLib.isSubType(t, e)){
-			return e;
+		Node lca = null;
+		
+		// richiamo lowestCommonAncestor sul tipo dell' espressione del then
+		lca = FOOLLib.lowestCommonAncestor(t, e);
+		if(lca != null){
+			return lca;
 		}
-		if(FOOLLib.isSubType(e, t)){
-			return t;
+		
+		// richiamo lowestCommonAncestor sul tipo dell' espressione dell'else
+		lca = FOOLLib.lowestCommonAncestor(e, t);
+		if(lca != null){
+			return lca;
 		}
 		
 		System.out.println("Incompatible types in then & else branches");
