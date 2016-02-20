@@ -1,35 +1,31 @@
- let
+let
+
+  class Account (money:int) {
+    fun getMon:int () money;
+  }
   
-  class A (x:bool, y:int) {
-	fun getX:int() x;
-  	fun getY:int() y;
+  class TradingAcc extends Account (invested:int) {
+    fun getInv:int () invested;
   }
-
-  class B extends A (x:int, y:int) {
-	fun getX:int() x+1;
-  	fun getY:int() y+1;
-  }
-
-
-  fun f:int(x:A, rel:(A)->bool) 
-  	if(rel(x))
-  	 then {x.getX()}
-	 else {x.getY()};
-
-  fun r:bool(x:A)
-  	if(x.getX() == x.getY())
-  	 then {true}
-  	 else {false};
-
-  fun make:A(a:A)
-  	if(a == null)
-  	 then {new B(1,1)}	
-	 else {a};
-	 
-var x:A = null;
-
-in
-	print(f(make(x),r));
+  
+  class BankLoan (loan: Account) {
+    fun getLoan:Account () loan;
+    fun openLoan:Account (m:TradingAcc) if ((m.getMon()+m.getInv())>=30000) 
+      then {new Account(loan.getMon())} 
+      else {null};
+  } 
+  
+  class MyBankLoan extends BankLoan (loan: TradingAcc) {
+    fun openLoan:TradingAcc (l:Account) if (l.getMon()>=20000) 
+      then {new TradingAcc(loan.getMon(),loan.getInv())} 
+      else {null};
+  } 
+    
+  var bl:BankLoan = new MyBankLoan(new TradingAcc(50000,40000));
+  var myTradingAcc:TradingAcc = new TradingAcc(20000,5000);
+  var myLoan:Account = bl.openLoan(myTradingAcc);
+      
+in print(if (myLoan==null) then {0} else {myLoan.getMon()}); 
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi High Order
 

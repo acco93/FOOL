@@ -55,12 +55,13 @@ public class ClassNode implements Node, DecNode {
 			ArrayList<Node> superFields = this.superEntry.getAllFields();
 			
 			// recupero il tipo dei metodi dalla CTEntry che descrive la classe
-			ArrayList<Node> classMethods = this.classEntry.getAllFields();
+			ArrayList<Node> classMethods = this.classEntry.getAllMethods();
 			// recupero il tipo dei campi dalla CTEntry che descrive la super classe
-			ArrayList<Node> superMethods = this.superEntry.getAllFields();
+			ArrayList<Node> superMethods = this.superEntry.getAllMethods();
 			
-			// recupero i campi che potrebbero essere stati ridefiniti
+			// recupero gli offset di campi e metodi definiti nella classe
 			HashSet<Integer> locals = this.classEntry.getLocals();
+			HashSet<Integer> superLocals = this.superEntry.getLocals();
 			
 			// i metodi sono covarianti: il tipo dei campi della sottoclasse deve essere maggiore del tipo dei campi della super classe
 			// in questo modo non ci sono problemi nell'utilizzatli con metodi della sopraclasse
@@ -69,6 +70,12 @@ public class ClassNode implements Node, DecNode {
 			Iterator<Integer> it = locals.iterator();
 			while(it.hasNext()){
 				int offset = it.next();
+				System.out.println(this.type.getType());
+				System.out.println(superLocals.contains(offset)+" "+offset);
+				if(!superLocals.contains(offset)){
+					// se la superclasse non contiene questo offset => significa è qualcosa di nuovo
+					continue;
+				}
 				if(offset<0){
 					// ... dei campi se sono negativi
 					int i = -(offset)-1;
@@ -76,7 +83,7 @@ public class ClassNode implements Node, DecNode {
 					DecNode classField = (DecNode) classFields.get(i);
 					DecNode superField = (DecNode) superFields.get(i);
 					System.out.println(classField.getSymType()+" "+superField.getSymType());
-					if(FOOLLib.lowestCommonAncestor(superField.getSymType(),classField.getSymType()) == null){
+					if(FOOLLib.lowestCommonAncestor(classField.getSymType(),superField.getSymType()) == null){
 						System.out.println("Wrong type for "+i+"-th overridden field in "+this.type.getType());
 						System.exit(0);
 					}
@@ -84,9 +91,13 @@ public class ClassNode implements Node, DecNode {
 					int i = offset;
 					// ... dei metodi se sono positivi o zero
 					// estraggo i tipi (altrimenti ho MethodNode)
+					
+
 					DecNode classMethod = (DecNode) classMethods.get(i);
-					DecNode superMethod = (DecNode) superMethods.get(i);
-					System.out.println(classMethod+" "+superMethod);
+					DecNode superMethod = (DecNode) superMethods.get(i);					
+		
+
+					System.out.println(classMethod.getSymType()+" "+superMethod.getSymType());
 					/*if(!FOOLLib.isSubType(classMethod.getSymType(),superMethod.getSymType())){
 						System.out.println("Wrong type for "+i+"-th field");
 						System.exit(0);
