@@ -1,31 +1,25 @@
-let
-
-  class Account (money:int) {
-    fun getMon:int () money;
-  }
+let 
+  var x:int = 3;
+  var y:int = 0;
   
-  class TradingAcc extends Account (invested:int) {
-    fun getInv:int () invested;
-  }
+  fun a:int ()
+  	let
+  		var z:int = x;
+  		fun b:int (x:int) x+1;
+  	in
+  		x+b(1);
+ 
   
-  class BankLoan (loan: Account) {
-    fun getLoan:Account () loan;
-    fun openLoan:Account (m:TradingAcc) if ((m.getMon()+m.getInv())>=30000) 
-      then {new Account(loan.getMon())} 
-      else {null};
-  } 
-  
-  class MyBankLoan extends BankLoan (loan: TradingAcc) {
-    fun openLoan:TradingAcc (l:Account) if (l.getMon()>=20000) 
-      then {new TradingAcc(loan.getMon(),loan.getInv())} 
-      else {null};
-  } 
-    
-  var bl:BankLoan = new MyBankLoan(new TradingAcc(50000,40000));
-  var myTradingAcc:TradingAcc = new TradingAcc(20000,5000);
-  var myLoan:Account = bl.openLoan(myTradingAcc);
+  fun g:int (f1:()->int, f2:(int,int)->int, x:int, y:int)
+  	if f2(f1(),x+y) >= 10
+      then { true }
+      else { false };
       
-in print(if (myLoan==null) then {0} else {myLoan.getMon()}); 
+  fun l:int (x:int, y:int) x+y;
+  
+in
+	print(g(a,l,x,y));
+
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi High Order
 
