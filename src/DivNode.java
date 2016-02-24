@@ -22,7 +22,7 @@ public class DivNode implements Node{
 				
 		if(!(FOOLLib.isSubType(left.typeCheck(), new IntTypeNode()) &&
 				FOOLLib.isSubType(right.typeCheck(), new IntTypeNode()))){
-					System.out.println("Non integers in subtraction!");
+					System.out.println("Non integers in division!");
 					System.exit(0);
 				}
 

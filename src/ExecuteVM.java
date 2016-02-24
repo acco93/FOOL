@@ -94,7 +94,6 @@ public class ExecuteVM {
 					arg1 = pop();
 					arg2 = pop();
 					memory[arg1]=arg2;
-					this.stackTrace();
 					break;
 					
 				//read the content of the memory cell pointed by the top of the stack
@@ -191,8 +190,8 @@ public class ExecuteVM {
 					
 				//interrupt the execution
 				case SVMParser.HALT:
-					System.out.println("SUCCESSFULLY EXECUTED.");
-					this.stackTrace();
+					System.out.println("\n--------------------\nSUCCESSFULLY EXECUTED.");
+					this.memoryTrace();
 					return;
 				
 					
@@ -202,7 +201,7 @@ public class ExecuteVM {
 
 	}
 	
-	private void stackTrace() {
+	private void memoryTrace() {
 		
 		/*System.out.println("MEMORY TRACE:");
 
@@ -220,12 +219,11 @@ public class ExecuteVM {
 
 	private int pop(){
 		int value= memory[sp++];
-		//stackTrace();
 		return value;
 	}
 	
 	private void push(int value){
 		memory[--sp] = value;
-		stackTrace();
+		memoryTrace();
 	}
 }

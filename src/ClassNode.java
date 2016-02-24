@@ -37,9 +37,7 @@ public class ClassNode implements Node, DecNode {
 
 	@Override
 	public Node typeCheck() {
-		
-		System.out.println("class typechecking");
-		
+				
 		// verifico che effettivamente le espressioni definite nel metodo
 		// ritornino il tipo di ritorno dichiarato
 		for(int i=0;i<this.methods.size();i++){
@@ -70,8 +68,6 @@ public class ClassNode implements Node, DecNode {
 			Iterator<Integer> it = locals.iterator();
 			while(it.hasNext()){
 				int offset = it.next();
-				System.out.println(this.type.getType());
-				System.out.println(superLocals.contains(offset)+" "+offset);
 				if(!superLocals.contains(offset)){
 					// se la superclasse non contiene questo offset => significa è qualcosa di nuovo
 					continue;
@@ -82,7 +78,6 @@ public class ClassNode implements Node, DecNode {
 					// estraggo i tipi (altrimenti ho FieldNode)
 					DecNode classField = (DecNode) classFields.get(i);
 					DecNode superField = (DecNode) superFields.get(i);
-					System.out.println(classField.getSymType()+" "+superField.getSymType());
 					if(FOOLLib.lowestCommonAncestor(classField.getSymType(),superField.getSymType()) == null){
 						System.out.println("Wrong type for "+i+"-th overridden field in "+this.type.getType());
 						System.exit(0);
@@ -97,7 +92,6 @@ public class ClassNode implements Node, DecNode {
 					DecNode superMethod = (DecNode) superMethods.get(i);					
 		
 
-					System.out.println(classMethod.getSymType()+" "+superMethod.getSymType());
 					/*if(!FOOLLib.isSubType(classMethod.getSymType(),superMethod.getSymType())){
 						System.out.println("Wrong type for "+i+"-th field");
 						System.exit(0);
@@ -113,7 +107,7 @@ public class ClassNode implements Node, DecNode {
 			
 		}
 		
-		//ritorniamo null perchè è una dichiarazione
+		//ritorno null perchè è una dichiarazione
 		return null;
 	}
 
@@ -128,7 +122,7 @@ public class ClassNode implements Node, DecNode {
 		for(int i=0;i<this.methods.size();i++){
 						this.methods.get(i).codeGeneration();
 		}
-		
+		// non alloca niente sullo stack
 		return "";
 	}
 

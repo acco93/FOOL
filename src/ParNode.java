@@ -10,9 +10,7 @@ public class ParNode implements Node, DecNode {
 	}
 	
 	@Override
-	public String toPrint(String indent) {
-		
-		
+	public String toPrint(String indent) {		
 		return 	indent+
 				"Par: "+this.id+"\n"+
 				this.type.toPrint(indent+"  ");

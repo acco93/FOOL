@@ -1,24 +1,10 @@
-let 
-  var x:int = 3;
-  var y:int = 0;
-  
-  fun a:int ()
-  	let
-  		var z:int = x;
-  		fun b:int (x:int) x+1;
-  	in
-  		x+b(1);
- 
-  
-  fun g:int (f1:()->int, f2:(int,int)->int, x:int, y:int)
-  	if f2(f1(),x+y) >= 10
-      then { true }
-      else { false };
-      
-  fun l:int (x:int, y:int) x+y;
-  
+let
+	class A() {}
+	var x:A = new A();
+	var y:A = new A();
 in
-	print(g(a,l,x,y));
+	print(x==y)
+;
 
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi High Order

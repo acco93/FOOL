@@ -51,7 +51,7 @@ public class IfElseNode implements Node{
 		System.out.println("Incompatible types in then & else branches");
 		System.exit(0);
 		
-		//in generale non è possibile controllare le esecuzioni con il typecheckin
+		// in generale non è possibile controllare le esecuzioni con il typechecking
 		// infatti ora vuole la return
 		
 		

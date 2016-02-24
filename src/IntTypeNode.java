@@ -14,7 +14,6 @@ public class IntTypeNode implements Node{
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

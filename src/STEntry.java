@@ -1,9 +1,10 @@
 
 public class STEntry {
 
+	// nesting level dichiarazione oggetto
 	private int nestingLevel;
 	private Node type;
-	// mi serve poi durante la generazione di codice per definire il layout
+	// utilizzato durante la generazione di codice in base al layout per individuare questo oggetto
 	private int offset;
 	
 	private boolean isMethod;
@@ -38,7 +39,8 @@ public class STEntry {
 		return 	indent+
 				"STEntry: nesting lvl = "+this.nestingLevel+"\n"+
 				indent+ "STEntry: offset = "+this.offset+"\n"+
-				indent+ "STEntry: type\n"+this.type.toPrint(indent+"  ");
+				indent+ "STEntry: type\n"+this.type.toPrint(indent+"  ")+
+				indent+ "STEntry: isMethod = "+this.isMethod+"\n";
 	}
 
 	public Node getType() {

@@ -19,13 +19,11 @@ public class ClassTypeNode implements Node{
 
 	@Override
 	public Node typeCheck() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

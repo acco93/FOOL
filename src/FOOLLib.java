@@ -4,16 +4,17 @@ import java.util.HashMap;
 public class FOOLLib {
 	// contiene funzioni ausiliarie
 
+	// label utilizzate dalle condizioni
 	private static int labelCounter = 0;
+	// label utilizzate per le funzioni
 	private static int functionLabelCounter = 0;
-
+	// contiene tutto il codice delle funzioni, verrà aggiunto in fondo all'assembly
 	private static String functionsCode = "";
+	// map: classID -> superClassID
 	private static HashMap<String, String> superType;
 
 	// valuta se il tipo di a <= del tipo b
 	public static boolean isSubType(Node a, Node b) {
-
-		// verifica se una classe è un nipote di un'altra classe
 
 		boolean result;
 
@@ -78,8 +79,7 @@ public class FOOLLib {
 			// altrimenti faccio il controllo di subtyping normale
 			result = a.getClass().equals(b.getClass()) || (a instanceof BoolTypeNode && b instanceof IntTypeNode);
 
-			// == controlla i riferimenti mentre equals i contenuti degli
-			// oggetti
+			// == controlla i riferimenti mentre equals i contenuti degli oggetti
 		}
 
 		return result;

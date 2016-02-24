@@ -4,6 +4,7 @@ public class IdNode implements Node {
 	private String id;
 	// l'entry della dichiarazione dell'ID
 	private STEntry entry;
+	// nesting level dell'utilizzo
 	private int nestingLevel;
 	
 	
@@ -16,7 +17,6 @@ public class IdNode implements Node {
 	
 	@Override
 	public String toPrint(String indent) {
-		//aggiungere come figlio la stampa dell'STEntry
 		return indent+"Id: "+this.id+" at nesting level "+this.nestingLevel+"\n"+
 				this.entry.toPrint(indent+"  ");
 	}
@@ -39,7 +39,7 @@ public class IdNode implements Node {
 		/* IdNode rappresenta un qualsiasi ID -> variabile o funzione.
 		 * La entry collegata mi individua la dichiarazione di questo ID (grazie al lavoro fatto durante la creazione
 		 * della symbol table). Per recuperare il valore della variabile o FP e ind funzione
-		 * utilizzo il frame pointer FP (punto fisso sul quale posso contare) che qualcuno avrà settato.
+		 * utilizzo il frame pointer FP (punto fisso sul quale posso contare) che qualcuno avrà settato (la chiamata a funzione).
 		 * Se l'ID è dichiarato localmente allora semplicemente lo raggiungo tramite il
 		 * FP e l'offset. Nel caso in cui non lo sia devo risalire la catena statica e andare
 		 * a recuperare i valori/e nell'AR della dichiarazione.
@@ -57,9 +57,7 @@ public class IdNode implements Node {
 		/*
 		 * Se l'ID ha tipo funzionale allora devo recuperare due cose.
 		 * */
-		
-		System.out.println(this.id+" call nl:"+this.nestingLevel+" dich nl:"+this.entry.getNestingLevel());
-		
+
 		String code = "# ID "+this.id+"\n";
 		
 		if(this.entry.getType() instanceof ArrowTypeNode){

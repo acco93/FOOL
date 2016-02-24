@@ -17,7 +17,7 @@ public class MethodNode implements Node, DecNode {
 	// corpo del metodo
 	private Node body;
 
-	// tipo messo in Symbol Table
+	// tipo messo in Virtual Table
 	private Node symType;
 	
 	// label utilizzata durante la generazione di codice
@@ -73,7 +73,20 @@ public class MethodNode implements Node, DecNode {
 	
 	@Override
 	public Node typeCheck() {
-		return null;
+		
+		// verifico che l'espressione ritorni il tipo dichiarato dal metodo
+		if(!FOOLLib.isSubType(this.body.typeCheck(), type)){
+			System.out.println("Wrong return type for method "+this.id);
+			System.exit(0);
+			
+		}
+		// controllo le dichiarazioni
+		for(Node node:this.declarations){
+			node.typeCheck();
+		}
+		
+		return this.type;
+		
 	}
 
 	@Override
@@ -86,6 +99,7 @@ public class MethodNode implements Node, DecNode {
 		 * Il RA viene salvato da JS nel registro RA quindi mi basta pusharlo.
 		 */
 		
+		// recupero la label che mi è stata settata dalla classe
 		String address = this.label;
 		
 		String declarationsCode="";
@@ -104,12 +118,8 @@ public class MethodNode implements Node, DecNode {
 		 * Creo i pop per la deallocazione delle dichiarazioni
 		 * */
 
-		for(Node dec:declarations){
+		for(int i=0;i<declarations.size();i++){
 			popDec+="pop\n";
-			// se la dichiarazione ha tipo funzione devo eliminare sia l'indirizzo che il suo FP (TODO: non possono esserci dichiarazioni di fun credo)
-			if(((DecNode)dec).getSymType() instanceof ArrowTypeNode){
-				popDec+="pop\n";
-			}
 		}
 		
 		/*
@@ -118,6 +128,7 @@ public class MethodNode implements Node, DecNode {
 		
 		for(Node par:parameters){
 			popPar+="pop\n";
+			// possono esistere parametri di tipo funzionale (ma non dichiarazioni)
 			if(((DecNode)par).getSymType() instanceof ArrowTypeNode){
 				popPar+="pop\n";
 			}
@@ -150,6 +161,8 @@ public class MethodNode implements Node, DecNode {
 				);
 		
 		
+		// non viene allocato niente sullo stack
+		// nel new node verrà creata la dispatch table
 		return  "";	
 		
 	}

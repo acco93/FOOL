@@ -38,7 +38,6 @@ public class ArrowTypeNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

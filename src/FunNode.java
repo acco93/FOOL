@@ -49,15 +49,13 @@ public class FunNode implements Node, DecNode {
 	@Override
 	public String toPrint(String indent) {
 		
-		System.out.println(this.body);
-		
 		String result=	indent+
 						"Fun: "+this.id+"\n"+
 						this.type.toPrint(indent+"  ");
 		for(int i=0;i<parameters.size();i++){
 			result+=parameters.get(i).toPrint(indent+"  ");
 		}
-		//if(declarations!=null) ho inizializzato l'array nel costruttore
+		
 		for(int i=0;i<declarations.size();i++){
 			result+=declarations.get(i).toPrint(indent+"  ");
 		}
@@ -76,7 +74,6 @@ public class FunNode implements Node, DecNode {
 			
 		}
 		
-		//if(declarations!=null)//devo controllare il caso in cui non ci sono dichiarazioni
 		for(Node node:this.declarations){
 			node.typeCheck();
 		}
@@ -160,8 +157,8 @@ public class FunNode implements Node, DecNode {
 		// questo codice viene inserito nelle dichiarazioni
 		return  "# code generation FUN NODE "+this.id+"\n"
 				+ "lfp\n" +				// pusho l'FP a questo AR per poter successivamente recuperare il contesto
-				"push " +address +"\n"	// pusho l'indirizzo della funzione
-				+ "# ============= \n";	
+				"push " +address +"\n";	// pusho l'indirizzo della funzione
+	
 		
 	}
 

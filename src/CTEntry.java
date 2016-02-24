@@ -82,12 +82,12 @@ public class CTEntry {
 		
 		if(lastEntry != null){
 			// caso 1: il campo esiste già nella virtual table => overriding (lo aggiorno)
+			
 			// leggo l'offset che era stato assegnato
 			offset = lastEntry.getOffset();
 			// creo una nuova STEntry che sostituisce la precedente
 			entry = new STEntry(1,type,offset);
 			// sostituisco anche in allFields
-			
 			this.allFields.set(-(offset)-1, field);
 		} else {
 			// caso 2: campo nuovo
@@ -147,8 +147,11 @@ public class CTEntry {
 		
 	}
 
-	public String toPrint(String string) {
-		return "";
+	public String toPrint(String indent) {
+		return 	indent+"CTEntry: virtualTable = "+this.virtualTable.toString()+"\n"+
+				indent+"CTEntry: offsetFields = "+this.offsetFields+"\n"+
+				indent+"CTEntry: offsetMethods = "+this.offsetMethods+"\n"+
+				indent+"CTEntry: locals = "+this.locals.toString()+"\n";
 	}
 
 	public HashSet<Integer> getLocals() {

@@ -47,7 +47,7 @@ public class LetInNode implements Node {
 	@Override
 	public String codeGeneration() {
 		String code="";
-		//metto il return value fittizio per uniformità
+		//metto il return address fittizio per uniformità
 		code+="# return address fittizio \n";
 		code += "push 0\n\n";
 		for(int i=0;i<this.classes.size();i++){

@@ -35,7 +35,8 @@ public class Test {
         SVMParser parserVM = new SVMParser(tokensVM);
         
         System.out.println("Code successfully generated!");
-        System.out.println("Assembling and running generated code.");
+        System.out.println("Assembling and running generated code.\n--------------------\n");
+        
         
         parserVM.assembly();
         
