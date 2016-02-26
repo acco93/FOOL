@@ -78,7 +78,7 @@ public class ClassNode implements Node, DecNode {
 					// estraggo i tipi (altrimenti ho FieldNode)
 					DecNode classField = (DecNode) classFields.get(i);
 					DecNode superField = (DecNode) superFields.get(i);
-					if(FOOLLib.lowestCommonAncestor(classField.getSymType(),superField.getSymType()) == null){
+					if(FOOLLib.isSubType(classField.getSymType(),superField.getSymType()) == false){
 						System.out.println("Wrong type for "+i+"-th overridden field in "+this.type.getType());
 						System.exit(0);
 					}
@@ -97,7 +97,8 @@ public class ClassNode implements Node, DecNode {
 						System.exit(0);
 						
 					}*/
-					if(FOOLLib.lowestCommonAncestor(classMethod.getSymType(),superMethod.getSymType())==null){
+					
+					if(FOOLLib.isSubType(classMethod.getSymType(),superMethod.getSymType())==false){
 						System.out.println("Wrong type for "+i+"-th overridden method in "+this.type.getType());
 						System.exit(0);
 						

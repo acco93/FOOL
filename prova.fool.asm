@@ -1,20 +1,37 @@
 # return address fittizio 
 push 0
 
-# creazione oggetto di classe A
-# metto hp sullo stack (object pointer)
+# creazione oggetto di classe Integer
+# pusho l'0-esimo parametro della new sullo stack
+push 10
+# salvo l'0-esimo campo nell'heap
 lhp
-# caso particolare: classe senza campi ne metodi
+sw
 # incremento hp
 lhp
 push 1
 add
 # salvo hp
 shp
-# creazione oggetto di classe A
 # metto hp sullo stack (object pointer)
 lhp
-# caso particolare: classe senza campi ne metodi
+# metto l'indirizzo dell'0-esimo metodo nell'heap 
+push function0 
+lhp
+sw
+# incremento hp
+lhp
+push 1
+add
+# salvo hp
+shp
+# creazione oggetto di classe Printer
+# metto hp sullo stack (object pointer)
+lhp
+# metto l'indirizzo dell'0-esimo metodo nell'heap 
+push function1 
+lhp
+sw
 # incremento hp
 lhp
 push 1
@@ -22,6 +39,8 @@ add
 # salvo hp
 shp
 
+#setto il CL
+lfp
 # ID x
 # ID normale (non funzionale) recupero il valore
 push -2
@@ -29,18 +48,70 @@ lfp
 # risalgo la catena statica 0 volte
 add
 lw
-# ID y
-# ID normale (non funzionale) recupero il valore
+# setto l'AL
 push -3
 lfp
-# risalgo la catena statica 0 volte
 add
 lw
-beq label0
+# setto l'indirizzo a cui saltare
+push -3
+lfp
+add
+lw
 push 0
-b label1
-label0:  
-push 1 
-label1:
+add
+lw
+js
 print
 halt
+
+function0:
+cfp
+lra
+# Dichiarazioni del metodo 
+# Body del metodo
+# ID v
+# ID normale (non funzionale) recupero il valore
+push -1
+lfp
+# risalgo la catena statica 1 volte
+lw
+add
+lw
+srv
+sra
+pop
+sfp
+lrv
+lra
+js
+
+function1:
+cfp
+lra
+# Dichiarazioni del metodo 
+# Body del metodo
+#setto il CL
+lfp
+# setto l'AL
+push 1
+lfp
+add
+lw
+# setto l'indirizzo a cui saltare
+push 1
+lfp
+add
+lw
+push 0
+add
+lw
+js
+srv
+sra
+pop
+pop
+sfp
+lrv
+lra
+js

@@ -1,11 +1,22 @@
 let
-	class A() {}
-	var x:A = new A();
-	var y:A = new A();
-in
-	print(x==y)
-;
 
+ class Printable(v:int){
+ 	fun value:int() v;
+ }
+
+  class Printer () {
+    fun printValue:int(p:Printable) p.value();
+  }
+ 
+
+  
+  class Integer extends Printable(){
+  
+  }
+  
+  var x:Integer = new Integer(10);  
+  var p:Printer = new Printer();
+in print(p.printValue(x));
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi High Order
 

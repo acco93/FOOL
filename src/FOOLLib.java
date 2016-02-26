@@ -12,6 +12,7 @@ public class FOOLLib {
 	private static String functionsCode = "";
 	// map: classID -> superClassID
 	private static HashMap<String, String> superType;
+	private static HashMap<String, CTEntry> classTable;
 
 	// valuta se il tipo di a <= del tipo b
 	public static boolean isSubType(Node a, Node b) {
@@ -25,7 +26,7 @@ public class FOOLLib {
 
 			Node a_ret = ((ArrowTypeNode) a).getRet();
 			Node b_ret = ((ArrowTypeNode) b).getRet();
-			boolean result_ret = FOOLLib.isSubType(b_ret, a_ret);
+			boolean result_ret = FOOLLib.isSubType(a_ret, b_ret);
 
 			// relazione di contro-varianza sul tipo dei parametri
 			// cioè posso prendere un argomenti più generali
@@ -36,7 +37,7 @@ public class FOOLLib {
 			boolean result_par = true;
 
 			for (int i = 0; i < a_par.size(); i++) {
-				result_par &= FOOLLib.isSubType(a_par.get(i), b_par.get(i));
+				result_par &= FOOLLib.isSubType(b_par.get(i), a_par.get(i));
 			}
 
 			result = result_ret && result_par;
@@ -187,5 +188,16 @@ public class FOOLLib {
 		FOOLLib.superType = superType;
 
 	}
+
+	public static void setClassTable(HashMap<String, CTEntry> classTable) {
+		FOOLLib.classTable = classTable;
+	}
+
+	public static HashMap<String, CTEntry> getClassTable() {
+		return classTable;
+	}
+	
+	
+	
 
 }

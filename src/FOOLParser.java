@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2016-02-22 18:41:18
+// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2016-02-26 09:12:04
 
   // import utilizzati nelle classi generate del parser
   import java.util.ArrayList;
@@ -148,6 +148,7 @@ public class FOOLParser extends Parser {
 					         // all'inizio del parsing passo il riferimento della map supertype a FOOLLib per poterlo
 					         // utilizzare nel typechecking
 								   FOOLLib.setSuperTypeMap(superType);
+					         FOOLLib.setClassTable(classTable);
 						       // entro in un nuovo scope quindi incremento il nesting level
 						       nestingLevel++; 
 						       // creo la hashmap dove memorizzo le cose che incontro
@@ -194,7 +195,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "cllist"
-	// /home/acco/workspace/FOOL/FOOL.g:75:1: cllist returns [ArrayList<Node> astList] : ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )* ;
+	// /home/acco/workspace/FOOL/FOOL.g:76:1: cllist returns [ArrayList<Node> astList] : ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )* ;
 	public final ArrayList<Node> cllist() throws RecognitionException {
 		ArrayList<Node> astList = null;
 
@@ -217,14 +218,14 @@ public class FOOLParser extends Parser {
 		Node mexp =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:75:42: ( ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )* )
-			// /home/acco/workspace/FOOL/FOOL.g:77:5: ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )*
+			// /home/acco/workspace/FOOL/FOOL.g:76:42: ( ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )* )
+			// /home/acco/workspace/FOOL/FOOL.g:78:5: ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )*
 			{
 			 
 			    // inizializzo la lista di classi
 			    astList = new ArrayList<Node>();
 			    
-			// /home/acco/workspace/FOOL/FOOL.g:82:3: ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )*
+			// /home/acco/workspace/FOOL/FOOL.g:83:3: ( CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR )*
 			loop10:
 			while (true) {
 				int alt10=2;
@@ -235,7 +236,7 @@ public class FOOLParser extends Parser {
 
 				switch (alt10) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:82:4: CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR
+					// /home/acco/workspace/FOOL/FOOL.g:83:4: CLASS i= ID ( EXTENDS ei= ID )? LPAR (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )? RPAR CLPAR ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )* CRPAR
 					{
 					match(input,CLASS,FOLLOW_CLASS_in_cllist199); 
 					i=(Token)match(input,ID,FOLLOW_ID_in_cllist203); 
@@ -264,7 +265,7 @@ public class FOOLParser extends Parser {
 					    CTEntry superClassEntry = null;
 					    
 					    
-					// /home/acco/workspace/FOOL/FOOL.g:110:4: ( EXTENDS ei= ID )?
+					// /home/acco/workspace/FOOL/FOOL.g:111:4: ( EXTENDS ei= ID )?
 					int alt2=2;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0==EXTENDS) ) {
@@ -272,7 +273,7 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt2) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:111:5: EXTENDS ei= ID
+							// /home/acco/workspace/FOOL/FOOL.g:112:5: EXTENDS ei= ID
 							{
 							match(input,EXTENDS,FOLLOW_EXTENDS_in_cllist232); 
 							ei=(Token)match(input,ID,FOLLOW_ID_in_cllist236); 
@@ -322,7 +323,7 @@ public class FOOLParser extends Parser {
 					     symbolTable.add(entry.getVirtualTable());
 					    
 					match(input,LPAR,FOLLOW_LPAR_in_cllist293); 
-					// /home/acco/workspace/FOOL/FOOL.g:162:7: (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )?
+					// /home/acco/workspace/FOOL/FOOL.g:163:7: (pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )* )?
 					int alt4=2;
 					int LA4_0 = input.LA(1);
 					if ( (LA4_0==ID) ) {
@@ -330,7 +331,7 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt4) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:162:8: pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )*
+							// /home/acco/workspace/FOOL/FOOL.g:163:8: pfid= ID COLON pft= basic ( COMMA pnid= ID COLON pnt= basic )*
 							{
 							pfid=(Token)match(input,ID,FOLLOW_ID_in_cllist311); 
 							match(input,COLON,FOLLOW_COLON_in_cllist313); 
@@ -343,7 +344,7 @@ public class FOOLParser extends Parser {
 							        fieldsList.add(entry.addField((pfid!=null?pfid.getText():null),(pft!=null?((FOOLParser.basic_return)pft).ast:null)));
 							        
 							      
-							// /home/acco/workspace/FOOL/FOOL.g:171:7: ( COMMA pnid= ID COLON pnt= basic )*
+							// /home/acco/workspace/FOOL/FOOL.g:172:7: ( COMMA pnid= ID COLON pnt= basic )*
 							loop3:
 							while (true) {
 								int alt3=2;
@@ -354,7 +355,7 @@ public class FOOLParser extends Parser {
 
 								switch (alt3) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:172:7: COMMA pnid= ID COLON pnt= basic
+									// /home/acco/workspace/FOOL/FOOL.g:173:7: COMMA pnid= ID COLON pnt= basic
 									{
 									match(input,COMMA,FOLLOW_COMMA_in_cllist367); 
 									pnid=(Token)match(input,ID,FOLLOW_ID_in_cllist371); 
@@ -381,7 +382,7 @@ public class FOOLParser extends Parser {
 
 					match(input,RPAR,FOLLOW_RPAR_in_cllist404); 
 					match(input,CLPAR,FOLLOW_CLPAR_in_cllist424); 
-					// /home/acco/workspace/FOOL/FOOL.g:182:5: ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )*
+					// /home/acco/workspace/FOOL/FOOL.g:183:5: ( FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -392,7 +393,7 @@ public class FOOLParser extends Parser {
 
 						switch (alt9) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:183:7: FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC
+							// /home/acco/workspace/FOOL/FOOL.g:184:7: FUN mid= ID COLON mt= basic LPAR (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )? RPAR ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )? mexp= exp SEMIC
 							{
 							match(input,FUN,FOLLOW_FUN_in_cllist443); 
 							mid=(Token)match(input,ID,FOLLOW_ID_in_cllist447); 
@@ -427,7 +428,7 @@ public class FOOLParser extends Parser {
 							       // ps. a 0 ho l'AL e a -1 il RA
 							       
 							match(input,LPAR,FOLLOW_LPAR_in_cllist484); 
-							// /home/acco/workspace/FOOL/FOOL.g:212:9: (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )?
+							// /home/acco/workspace/FOOL/FOOL.g:213:9: (mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )* )?
 							int alt6=2;
 							int LA6_0 = input.LA(1);
 							if ( (LA6_0==ID) ) {
@@ -435,7 +436,7 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt6) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:214:11: mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )*
+									// /home/acco/workspace/FOOL/FOOL.g:215:11: mpfid= ID COLON mpft= type ( COMMA mpnid= ID COLON mtnt= type )*
 									{
 									mpfid=(Token)match(input,ID,FOLLOW_ID_in_cllist520); 
 									match(input,COLON,FOLLOW_COLON_in_cllist522); 
@@ -455,7 +456,7 @@ public class FOOLParser extends Parser {
 										            System.exit(0);
 									            };     
 									          
-									// /home/acco/workspace/FOOL/FOOL.g:228:11: ( COMMA mpnid= ID COLON mtnt= type )*
+									// /home/acco/workspace/FOOL/FOOL.g:229:11: ( COMMA mpnid= ID COLON mtnt= type )*
 									loop5:
 									while (true) {
 										int alt5=2;
@@ -466,7 +467,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt5) {
 										case 1 :
-											// /home/acco/workspace/FOOL/FOOL.g:229:13: COMMA mpnid= ID COLON mtnt= type
+											// /home/acco/workspace/FOOL/FOOL.g:230:13: COMMA mpnid= ID COLON mtnt= type
 											{
 											match(input,COMMA,FOLLOW_COMMA_in_cllist575); 
 											mpnid=(Token)match(input,ID,FOLLOW_ID_in_cllist579); 
@@ -500,7 +501,7 @@ public class FOOLParser extends Parser {
 							}
 
 							match(input,RPAR,FOLLOW_RPAR_in_cllist632); 
-							// /home/acco/workspace/FOOL/FOOL.g:245:7: ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )?
+							// /home/acco/workspace/FOOL/FOOL.g:246:7: ( LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN )?
 							int alt8=2;
 							int LA8_0 = input.LA(1);
 							if ( (LA8_0==LET) ) {
@@ -508,10 +509,10 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt8) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:246:9: LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN
+									// /home/acco/workspace/FOOL/FOOL.g:247:9: LET ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )* IN
 									{
 									match(input,LET,FOLLOW_LET_in_cllist657); 
-									// /home/acco/workspace/FOOL/FOOL.g:248:9: ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )*
+									// /home/acco/workspace/FOOL/FOOL.g:249:9: ( VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC )*
 									loop7:
 									while (true) {
 										int alt7=2;
@@ -522,7 +523,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt7) {
 										case 1 :
-											// /home/acco/workspace/FOOL/FOOL.g:249:11: VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC
+											// /home/acco/workspace/FOOL/FOOL.g:250:11: VAR vid= ID COLON vty= basic ASS vexp= exp SEMIC
 											{
 											match(input,VAR,FOLLOW_VAR_in_cllist688); 
 											vid=(Token)match(input,ID,FOLLOW_ID_in_cllist692); 
@@ -616,7 +617,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "declist"
-	// /home/acco/workspace/FOOL/FOOL.g:295:1: declist returns [ArrayList<Node> astList] : ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ ;
+	// /home/acco/workspace/FOOL/FOOL.g:296:1: declist returns [ArrayList<Node> astList] : ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ ;
 	public final ArrayList<Node> declist() throws RecognitionException {
 		ArrayList<Node> astList = null;
 
@@ -631,8 +632,8 @@ public class FOOLParser extends Parser {
 		ArrayList<Node> d =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:295:43: ( ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ )
-			// /home/acco/workspace/FOOL/FOOL.g:297:5: ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
+			// /home/acco/workspace/FOOL/FOOL.g:296:43: ( ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+ )
+			// /home/acco/workspace/FOOL/FOOL.g:298:5: ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
 			{
 
 			      // creo l'arraylist vuoto, esso conterrà le dichiarazioni
@@ -644,7 +645,7 @@ public class FOOLParser extends Parser {
 			      // mentre nel caso di layout AR funzione a 0 c'è l'AL e a -1 il RA
 			      int offset = -2;
 			    
-			// /home/acco/workspace/FOOL/FOOL.g:308:5: ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
+			// /home/acco/workspace/FOOL/FOOL.g:309:5: ( ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC )+
 			int cnt15=0;
 			loop15:
 			while (true) {
@@ -656,9 +657,9 @@ public class FOOLParser extends Parser {
 
 				switch (alt15) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:310:5: ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC
+					// /home/acco/workspace/FOOL/FOOL.g:311:5: ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp ) SEMIC
 					{
-					// /home/acco/workspace/FOOL/FOOL.g:310:5: ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp )
+					// /home/acco/workspace/FOOL/FOOL.g:311:5: ( VAR i= ID COLON t= type ASS e= exp | FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp )
 					int alt14=2;
 					int LA14_0 = input.LA(1);
 					if ( (LA14_0==VAR) ) {
@@ -676,7 +677,7 @@ public class FOOLParser extends Parser {
 
 					switch (alt14) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:312:8: VAR i= ID COLON t= type ASS e= exp
+							// /home/acco/workspace/FOOL/FOOL.g:313:8: VAR i= ID COLON t= type ASS e= exp
 							{
 							match(input,VAR,FOLLOW_VAR_in_declist974); 
 							i=(Token)match(input,ID,FOLLOW_ID_in_declist978); 
@@ -708,7 +709,7 @@ public class FOOLParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /home/acco/workspace/FOOL/FOOL.g:330:8: FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp
+							// /home/acco/workspace/FOOL/FOOL.g:331:8: FUN i= ID COLON t= type LPAR (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )? RPAR ( LET d= declist IN )? e= exp
 							{
 							match(input,FUN,FOLLOW_FUN_in_declist1026); 
 							i=(Token)match(input,ID,FOLLOW_ID_in_declist1030); 
@@ -743,7 +744,7 @@ public class FOOLParser extends Parser {
 							        
 							         
 							match(input,LPAR,FOLLOW_LPAR_in_declist1091); 
-							// /home/acco/workspace/FOOL/FOOL.g:360:11: (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )?
+							// /home/acco/workspace/FOOL/FOOL.g:361:11: (fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )* )?
 							int alt12=2;
 							int LA12_0 = input.LA(1);
 							if ( (LA12_0==ID) ) {
@@ -751,7 +752,7 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt12) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:360:12: fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )*
+									// /home/acco/workspace/FOOL/FOOL.g:361:12: fid= ID COLON fty= type ( COMMA id= ID COLON ty= type )*
 									{
 									fid=(Token)match(input,ID,FOLLOW_ID_in_declist1127); 
 									match(input,COLON,FOLLOW_COLON_in_declist1129); 
@@ -772,7 +773,7 @@ public class FOOLParser extends Parser {
 									              };
 									              
 									             
-									// /home/acco/workspace/FOOL/FOOL.g:375:14: ( COMMA id= ID COLON ty= type )*
+									// /home/acco/workspace/FOOL/FOOL.g:376:14: ( COMMA id= ID COLON ty= type )*
 									loop11:
 									while (true) {
 										int alt11=2;
@@ -783,7 +784,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt11) {
 										case 1 :
-											// /home/acco/workspace/FOOL/FOOL.g:375:15: COMMA id= ID COLON ty= type
+											// /home/acco/workspace/FOOL/FOOL.g:376:15: COMMA id= ID COLON ty= type
 											{
 											match(input,COMMA,FOLLOW_COMMA_in_declist1207); 
 											id=(Token)match(input,ID,FOLLOW_ID_in_declist1211); 
@@ -823,7 +824,7 @@ public class FOOLParser extends Parser {
 							            // aggiungo il tipo anche al FunNode
 							            f.addSymType(functionType);
 							          
-							// /home/acco/workspace/FOOL/FOOL.g:396:10: ( LET d= declist IN )?
+							// /home/acco/workspace/FOOL/FOOL.g:397:10: ( LET d= declist IN )?
 							int alt13=2;
 							int LA13_0 = input.LA(1);
 							if ( (LA13_0==LET) ) {
@@ -831,7 +832,7 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt13) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:396:11: LET d= declist IN
+									// /home/acco/workspace/FOOL/FOOL.g:397:11: LET d= declist IN
 									{
 									match(input,LET,FOLLOW_LET_in_declist1308); 
 									pushFollow(FOLLOW_declist_in_declist1312);
@@ -887,7 +888,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "exp"
-	// /home/acco/workspace/FOOL/FOOL.g:405:1: exp returns [Node ast] : v= term ( PLUS l= term | MINUS l= term | OR l= term )* ;
+	// /home/acco/workspace/FOOL/FOOL.g:406:1: exp returns [Node ast] : v= term ( PLUS l= term | MINUS l= term | OR l= term )* ;
 	public final Node exp() throws RecognitionException {
 		Node ast = null;
 
@@ -896,15 +897,15 @@ public class FOOLParser extends Parser {
 		Node l =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:405:24: (v= term ( PLUS l= term | MINUS l= term | OR l= term )* )
-			// /home/acco/workspace/FOOL/FOOL.g:406:3: v= term ( PLUS l= term | MINUS l= term | OR l= term )*
+			// /home/acco/workspace/FOOL/FOOL.g:406:24: (v= term ( PLUS l= term | MINUS l= term | OR l= term )* )
+			// /home/acco/workspace/FOOL/FOOL.g:407:3: v= term ( PLUS l= term | MINUS l= term | OR l= term )*
 			{
 			pushFollow(FOLLOW_term_in_exp1518);
 			v=term();
 			state._fsp--;
 
 			ast = v;
-			// /home/acco/workspace/FOOL/FOOL.g:407:9: ( PLUS l= term | MINUS l= term | OR l= term )*
+			// /home/acco/workspace/FOOL/FOOL.g:408:9: ( PLUS l= term | MINUS l= term | OR l= term )*
 			loop16:
 			while (true) {
 				int alt16=4;
@@ -927,7 +928,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt16) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:408:13: PLUS l= term
+					// /home/acco/workspace/FOOL/FOOL.g:409:13: PLUS l= term
 					{
 					match(input,PLUS,FOLLOW_PLUS_in_exp1544); 
 					pushFollow(FOLLOW_term_in_exp1548);
@@ -938,7 +939,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:409:13: MINUS l= term
+					// /home/acco/workspace/FOOL/FOOL.g:410:13: MINUS l= term
 					{
 					match(input,MINUS,FOLLOW_MINUS_in_exp1564); 
 					pushFollow(FOLLOW_term_in_exp1568);
@@ -949,7 +950,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/FOOL.g:410:13: OR l= term
+					// /home/acco/workspace/FOOL/FOOL.g:411:13: OR l= term
 					{
 					match(input,OR,FOLLOW_OR_in_exp1584); 
 					pushFollow(FOLLOW_term_in_exp1588);
@@ -982,7 +983,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "term"
-	// /home/acco/workspace/FOOL/FOOL.g:414:1: term returns [Node ast] : f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* ;
+	// /home/acco/workspace/FOOL/FOOL.g:415:1: term returns [Node ast] : f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* ;
 	public final Node term() throws RecognitionException {
 		Node ast = null;
 
@@ -991,15 +992,15 @@ public class FOOLParser extends Parser {
 		Node l =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:414:25: (f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* )
-			// /home/acco/workspace/FOOL/FOOL.g:415:3: f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// /home/acco/workspace/FOOL/FOOL.g:415:25: (f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )* )
+			// /home/acco/workspace/FOOL/FOOL.g:416:3: f= factor ( TIMES l= factor | DIV l= factor | AND l= factor )*
 			{
 			pushFollow(FOLLOW_factor_in_term1618);
 			f=factor();
 			state._fsp--;
 
 			ast = f;
-			// /home/acco/workspace/FOOL/FOOL.g:416:7: ( TIMES l= factor | DIV l= factor | AND l= factor )*
+			// /home/acco/workspace/FOOL/FOOL.g:417:7: ( TIMES l= factor | DIV l= factor | AND l= factor )*
 			loop17:
 			while (true) {
 				int alt17=4;
@@ -1022,7 +1023,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt17) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:417:11: TIMES l= factor
+					// /home/acco/workspace/FOOL/FOOL.g:418:11: TIMES l= factor
 					{
 					match(input,TIMES,FOLLOW_TIMES_in_term1641); 
 					pushFollow(FOLLOW_factor_in_term1645);
@@ -1033,7 +1034,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:418:11: DIV l= factor
+					// /home/acco/workspace/FOOL/FOOL.g:419:11: DIV l= factor
 					{
 					match(input,DIV,FOLLOW_DIV_in_term1659); 
 					pushFollow(FOLLOW_factor_in_term1664);
@@ -1044,7 +1045,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/FOOL.g:419:11: AND l= factor
+					// /home/acco/workspace/FOOL/FOOL.g:420:11: AND l= factor
 					{
 					match(input,AND,FOLLOW_AND_in_term1678); 
 					pushFollow(FOLLOW_factor_in_term1683);
@@ -1077,7 +1078,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "factor"
-	// /home/acco/workspace/FOOL/FOOL.g:422:1: factor returns [Node ast] : v= value ( EQ v= value | GR v= value | LE v= value )* ;
+	// /home/acco/workspace/FOOL/FOOL.g:423:1: factor returns [Node ast] : v= value ( EQ v= value | GR v= value | LE v= value )* ;
 	public final Node factor() throws RecognitionException {
 		Node ast = null;
 
@@ -1085,15 +1086,15 @@ public class FOOLParser extends Parser {
 		Node v =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:422:26: (v= value ( EQ v= value | GR v= value | LE v= value )* )
-			// /home/acco/workspace/FOOL/FOOL.g:423:3: v= value ( EQ v= value | GR v= value | LE v= value )*
+			// /home/acco/workspace/FOOL/FOOL.g:423:26: (v= value ( EQ v= value | GR v= value | LE v= value )* )
+			// /home/acco/workspace/FOOL/FOOL.g:424:3: v= value ( EQ v= value | GR v= value | LE v= value )*
 			{
 			pushFollow(FOLLOW_value_in_factor1768);
 			v=value();
 			state._fsp--;
 
 			ast = v;
-			// /home/acco/workspace/FOOL/FOOL.g:424:7: ( EQ v= value | GR v= value | LE v= value )*
+			// /home/acco/workspace/FOOL/FOOL.g:425:7: ( EQ v= value | GR v= value | LE v= value )*
 			loop18:
 			while (true) {
 				int alt18=4;
@@ -1116,7 +1117,7 @@ public class FOOLParser extends Parser {
 				}
 				switch (alt18) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:425:9: EQ v= value
+					// /home/acco/workspace/FOOL/FOOL.g:426:9: EQ v= value
 					{
 					match(input,EQ,FOLLOW_EQ_in_factor1789); 
 					pushFollow(FOLLOW_value_in_factor1793);
@@ -1127,7 +1128,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:426:9: GR v= value
+					// /home/acco/workspace/FOOL/FOOL.g:427:9: GR v= value
 					{
 					match(input,GR,FOLLOW_GR_in_factor1805); 
 					pushFollow(FOLLOW_value_in_factor1809);
@@ -1138,7 +1139,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/FOOL.g:427:9: LE v= value
+					// /home/acco/workspace/FOOL/FOOL.g:428:9: LE v= value
 					{
 					match(input,LE,FOLLOW_LE_in_factor1821); 
 					pushFollow(FOLLOW_value_in_factor1825);
@@ -1171,7 +1172,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "value"
-	// /home/acco/workspace/FOOL/FOOL.g:431:1: value returns [Node ast] : (n= NAT | TRUE | FALSE | NULL | NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR | LPAR e= exp RPAR | IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR | NOT LPAR e= exp RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )? );
+	// /home/acco/workspace/FOOL/FOOL.g:432:1: value returns [Node ast] : (n= NAT | TRUE | FALSE | NULL | NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR | LPAR e= exp RPAR | IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR | NOT LPAR e= exp RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )? );
 	public final Node value() throws RecognitionException {
 		Node ast = null;
 
@@ -1191,7 +1192,7 @@ public class FOOLParser extends Parser {
 		Node ne =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:431:26: (n= NAT | TRUE | FALSE | NULL | NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR | LPAR e= exp RPAR | IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR | NOT LPAR e= exp RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )? )
+			// /home/acco/workspace/FOOL/FOOL.g:432:26: (n= NAT | TRUE | FALSE | NULL | NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR | LPAR e= exp RPAR | IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR | NOT LPAR e= exp RPAR | PRINT LPAR e= exp RPAR |i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )? )
 			int alt26=10;
 			switch ( input.LA(1) ) {
 			case NAT:
@@ -1251,35 +1252,35 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt26) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:432:9: n= NAT
+					// /home/acco/workspace/FOOL/FOOL.g:433:9: n= NAT
 					{
 					n=(Token)match(input,NAT,FOLLOW_NAT_in_value1869); 
 					 ast = new NatNode(Integer.parseInt((n!=null?n.getText():null))); 
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:433:5: TRUE
+					// /home/acco/workspace/FOOL/FOOL.g:434:5: TRUE
 					{
 					match(input,TRUE,FOLLOW_TRUE_in_value1879); 
 					ast = new BoolNode(true);
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/FOOL.g:434:5: FALSE
+					// /home/acco/workspace/FOOL/FOOL.g:435:5: FALSE
 					{
 					match(input,FALSE,FOLLOW_FALSE_in_value1891); 
 					ast = new BoolNode(false);
 					}
 					break;
 				case 4 :
-					// /home/acco/workspace/FOOL/FOOL.g:435:5: NULL
+					// /home/acco/workspace/FOOL/FOOL.g:436:5: NULL
 					{
 					match(input,NULL,FOLLOW_NULL_in_value1931); 
 					ast = new EmptyNode();
 					}
 					break;
 				case 5 :
-					// /home/acco/workspace/FOOL/FOOL.g:436:5: NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR
+					// /home/acco/workspace/FOOL/FOOL.g:437:5: NEW nid= ID LPAR (nfe= exp ( COMMA nne= exp )* )? RPAR
 					{
 					match(input,NEW,FOLLOW_NEW_in_value1940); 
 					nid=(Token)match(input,ID,FOLLOW_ID_in_value1944); 
@@ -1297,7 +1298,7 @@ public class FOOLParser extends Parser {
 									  // creo il new node
 									  NewNode nn = new NewNode((nid!=null?nid.getText():null),classEntry, parList);
 									
-					// /home/acco/workspace/FOOL/FOOL.g:451:6: (nfe= exp ( COMMA nne= exp )* )?
+					// /home/acco/workspace/FOOL/FOOL.g:452:6: (nfe= exp ( COMMA nne= exp )* )?
 					int alt20=2;
 					int LA20_0 = input.LA(1);
 					if ( (LA20_0==FALSE||(LA20_0 >= ID && LA20_0 <= IF)||LA20_0==LPAR||(LA20_0 >= NAT && LA20_0 <= NULL)||LA20_0==PRINT||LA20_0==TRUE) ) {
@@ -1305,14 +1306,14 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt20) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:451:7: nfe= exp ( COMMA nne= exp )*
+							// /home/acco/workspace/FOOL/FOOL.g:452:7: nfe= exp ( COMMA nne= exp )*
 							{
 							pushFollow(FOLLOW_exp_in_value1969);
 							nfe=exp();
 							state._fsp--;
 
 							parList.add(nfe);
-							// /home/acco/workspace/FOOL/FOOL.g:451:40: ( COMMA nne= exp )*
+							// /home/acco/workspace/FOOL/FOOL.g:452:40: ( COMMA nne= exp )*
 							loop19:
 							while (true) {
 								int alt19=2;
@@ -1323,7 +1324,7 @@ public class FOOLParser extends Parser {
 
 								switch (alt19) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:451:41: COMMA nne= exp
+									// /home/acco/workspace/FOOL/FOOL.g:452:41: COMMA nne= exp
 									{
 									match(input,COMMA,FOLLOW_COMMA_in_value1974); 
 									pushFollow(FOLLOW_exp_in_value1978);
@@ -1349,7 +1350,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 6 :
-					// /home/acco/workspace/FOOL/FOOL.g:454:5: LPAR e= exp RPAR
+					// /home/acco/workspace/FOOL/FOOL.g:455:5: LPAR e= exp RPAR
 					{
 					match(input,LPAR,FOLLOW_LPAR_in_value2015); 
 					pushFollow(FOLLOW_exp_in_value2019);
@@ -1361,7 +1362,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 7 :
-					// /home/acco/workspace/FOOL/FOOL.g:455:9: IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR
+					// /home/acco/workspace/FOOL/FOOL.g:456:9: IF c= exp THEN CLPAR t= exp CRPAR ELSE CLPAR e= exp CRPAR
 					{
 					match(input,IF,FOLLOW_IF_in_value2058); 
 					pushFollow(FOLLOW_exp_in_value2062);
@@ -1386,7 +1387,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 8 :
-					// /home/acco/workspace/FOOL/FOOL.g:457:9: NOT LPAR e= exp RPAR
+					// /home/acco/workspace/FOOL/FOOL.g:458:9: NOT LPAR e= exp RPAR
 					{
 					match(input,NOT,FOLLOW_NOT_in_value2121); 
 					match(input,LPAR,FOLLOW_LPAR_in_value2123); 
@@ -1399,7 +1400,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 9 :
-					// /home/acco/workspace/FOOL/FOOL.g:458:9: PRINT LPAR e= exp RPAR
+					// /home/acco/workspace/FOOL/FOOL.g:459:9: PRINT LPAR e= exp RPAR
 					{
 					match(input,PRINT,FOLLOW_PRINT_in_value2143); 
 					match(input,LPAR,FOLLOW_LPAR_in_value2145); 
@@ -1412,7 +1413,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 10 :
-					// /home/acco/workspace/FOOL/FOOL.g:459:9: i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )?
+					// /home/acco/workspace/FOOL/FOOL.g:460:9: i= ID ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )?
 					{
 					i=(Token)match(input,ID,FOLLOW_ID_in_value2167); 
 					        
@@ -1434,7 +1435,7 @@ public class FOOLParser extends Parser {
 					              ast = new IdNode((i!=null?i.getText():null),entry,nestingLevel);
 					          
 					            
-					// /home/acco/workspace/FOOL/FOOL.g:479:13: ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )?
+					// /home/acco/workspace/FOOL/FOOL.g:480:13: ( LPAR (fa= exp ( COMMA a= exp )* )? RPAR | DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR )?
 					int alt25=3;
 					int LA25_0 = input.LA(1);
 					if ( (LA25_0==LPAR) ) {
@@ -1445,11 +1446,11 @@ public class FOOLParser extends Parser {
 					}
 					switch (alt25) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:481:15: LPAR (fa= exp ( COMMA a= exp )* )? RPAR
+							// /home/acco/workspace/FOOL/FOOL.g:482:15: LPAR (fa= exp ( COMMA a= exp )* )? RPAR
 							{
 							match(input,LPAR,FOLLOW_LPAR_in_value2228); 
 							ArrayList<Node> argList = new ArrayList<Node>();
-							// /home/acco/workspace/FOOL/FOOL.g:482:15: (fa= exp ( COMMA a= exp )* )?
+							// /home/acco/workspace/FOOL/FOOL.g:483:15: (fa= exp ( COMMA a= exp )* )?
 							int alt22=2;
 							int LA22_0 = input.LA(1);
 							if ( (LA22_0==FALSE||(LA22_0 >= ID && LA22_0 <= IF)||LA22_0==LPAR||(LA22_0 >= NAT && LA22_0 <= NULL)||LA22_0==PRINT||LA22_0==TRUE) ) {
@@ -1457,14 +1458,14 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt22) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:482:16: fa= exp ( COMMA a= exp )*
+									// /home/acco/workspace/FOOL/FOOL.g:483:16: fa= exp ( COMMA a= exp )*
 									{
 									pushFollow(FOLLOW_exp_in_value2249);
 									fa=exp();
 									state._fsp--;
 
 									argList.add(fa);
-									// /home/acco/workspace/FOOL/FOOL.g:483:15: ( COMMA a= exp )*
+									// /home/acco/workspace/FOOL/FOOL.g:484:15: ( COMMA a= exp )*
 									loop21:
 									while (true) {
 										int alt21=2;
@@ -1475,7 +1476,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt21) {
 										case 1 :
-											// /home/acco/workspace/FOOL/FOOL.g:483:16: COMMA a= exp
+											// /home/acco/workspace/FOOL/FOOL.g:484:16: COMMA a= exp
 											{
 											match(input,COMMA,FOLLOW_COMMA_in_value2268); 
 											pushFollow(FOLLOW_exp_in_value2272);
@@ -1501,7 +1502,7 @@ public class FOOLParser extends Parser {
 							}
 							break;
 						case 2 :
-							// /home/acco/workspace/FOOL/FOOL.g:489:13: DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR
+							// /home/acco/workspace/FOOL/FOOL.g:490:13: DOT mid= ID LPAR (fe= exp ( COMMA ne= exp )* )? RPAR
 							{
 							match(input,DOT,FOLLOW_DOT_in_value2378); 
 							mid=(Token)match(input,ID,FOLLOW_ID_in_value2382); 
@@ -1531,7 +1532,7 @@ public class FOOLParser extends Parser {
 							              ArrayList<Node> parList = new ArrayList<Node>();
 							            
 							match(input,LPAR,FOLLOW_LPAR_in_value2438); 
-							// /home/acco/workspace/FOOL/FOOL.g:517:14: (fe= exp ( COMMA ne= exp )* )?
+							// /home/acco/workspace/FOOL/FOOL.g:518:14: (fe= exp ( COMMA ne= exp )* )?
 							int alt24=2;
 							int LA24_0 = input.LA(1);
 							if ( (LA24_0==FALSE||(LA24_0 >= ID && LA24_0 <= IF)||LA24_0==LPAR||(LA24_0 >= NAT && LA24_0 <= NULL)||LA24_0==PRINT||LA24_0==TRUE) ) {
@@ -1539,14 +1540,14 @@ public class FOOLParser extends Parser {
 							}
 							switch (alt24) {
 								case 1 :
-									// /home/acco/workspace/FOOL/FOOL.g:517:15: fe= exp ( COMMA ne= exp )*
+									// /home/acco/workspace/FOOL/FOOL.g:518:15: fe= exp ( COMMA ne= exp )*
 									{
 									pushFollow(FOLLOW_exp_in_value2458);
 									fe=exp();
 									state._fsp--;
 
 									parList.add(fe);
-									// /home/acco/workspace/FOOL/FOOL.g:517:48: ( COMMA ne= exp )*
+									// /home/acco/workspace/FOOL/FOOL.g:518:48: ( COMMA ne= exp )*
 									loop23:
 									while (true) {
 										int alt23=2;
@@ -1557,7 +1558,7 @@ public class FOOLParser extends Parser {
 
 										switch (alt23) {
 										case 1 :
-											// /home/acco/workspace/FOOL/FOOL.g:517:49: COMMA ne= exp
+											// /home/acco/workspace/FOOL/FOOL.g:518:49: COMMA ne= exp
 											{
 											match(input,COMMA,FOLLOW_COMMA_in_value2463); 
 											pushFollow(FOLLOW_exp_in_value2467);
@@ -1607,7 +1608,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "type"
-	// /home/acco/workspace/FOOL/FOOL.g:528:1: type returns [Node ast] : (b= basic |a= arrow );
+	// /home/acco/workspace/FOOL/FOOL.g:529:1: type returns [Node ast] : (b= basic |a= arrow );
 	public final Node type() throws RecognitionException {
 		Node ast = null;
 
@@ -1616,7 +1617,7 @@ public class FOOLParser extends Parser {
 		Node a =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:528:27: (b= basic |a= arrow )
+			// /home/acco/workspace/FOOL/FOOL.g:529:27: (b= basic |a= arrow )
 			int alt27=2;
 			int LA27_0 = input.LA(1);
 			if ( (LA27_0==BOOL||LA27_0==ID||LA27_0==INT) ) {
@@ -1634,7 +1635,7 @@ public class FOOLParser extends Parser {
 
 			switch (alt27) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:529:10: b= basic
+					// /home/acco/workspace/FOOL/FOOL.g:530:10: b= basic
 					{
 					pushFollow(FOLLOW_basic_in_type2612);
 					b=basic();
@@ -1644,7 +1645,7 @@ public class FOOLParser extends Parser {
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:530:10: a= arrow
+					// /home/acco/workspace/FOOL/FOOL.g:531:10: a= arrow
 					{
 					pushFollow(FOLLOW_arrow_in_type2629);
 					a=arrow();
@@ -1674,7 +1675,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "basic"
-	// /home/acco/workspace/FOOL/FOOL.g:536:1: basic returns [Node ast] : ( INT | BOOL |i= ID );
+	// /home/acco/workspace/FOOL/FOOL.g:537:1: basic returns [Node ast] : ( INT | BOOL |i= ID );
 	public final FOOLParser.basic_return basic() throws RecognitionException {
 		FOOLParser.basic_return retval = new FOOLParser.basic_return();
 		retval.start = input.LT(1);
@@ -1682,7 +1683,7 @@ public class FOOLParser extends Parser {
 		Token i=null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:536:27: ( INT | BOOL |i= ID )
+			// /home/acco/workspace/FOOL/FOOL.g:537:27: ( INT | BOOL |i= ID )
 			int alt28=3;
 			switch ( input.LA(1) ) {
 			case INT:
@@ -1707,21 +1708,21 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt28) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:537:5: INT
+					// /home/acco/workspace/FOOL/FOOL.g:538:5: INT
 					{
 					match(input,INT,FOLLOW_INT_in_basic2662); 
 					retval.ast = new IntTypeNode();
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/FOOL.g:538:5: BOOL
+					// /home/acco/workspace/FOOL/FOOL.g:539:5: BOOL
 					{
 					match(input,BOOL,FOLLOW_BOOL_in_basic2673); 
 					retval.ast = new BoolTypeNode();
 					}
 					break;
 				case 3 :
-					// /home/acco/workspace/FOOL/FOOL.g:539:5: i= ID
+					// /home/acco/workspace/FOOL/FOOL.g:540:5: i= ID
 					{
 					i=(Token)match(input,ID,FOLLOW_ID_in_basic2697); 
 					retval.ast = new ClassTypeNode((i!=null?i.getText():null));
@@ -1746,7 +1747,7 @@ public class FOOLParser extends Parser {
 
 
 	// $ANTLR start "arrow"
-	// /home/acco/workspace/FOOL/FOOL.g:542:1: arrow returns [Node ast] : LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic ;
+	// /home/acco/workspace/FOOL/FOOL.g:543:1: arrow returns [Node ast] : LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic ;
 	public final Node arrow() throws RecognitionException {
 		Node ast = null;
 
@@ -1755,15 +1756,15 @@ public class FOOLParser extends Parser {
 		ParserRuleReturnScope b =null;
 
 		try {
-			// /home/acco/workspace/FOOL/FOOL.g:542:27: ( LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic )
-			// /home/acco/workspace/FOOL/FOOL.g:543:3: LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic
+			// /home/acco/workspace/FOOL/FOOL.g:543:27: ( LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic )
+			// /home/acco/workspace/FOOL/FOOL.g:544:3: LPAR (t= type ( COMMA t= type )* )? RPAR ARROW b= basic
 			{
 
 			    //lista dei parametri
 			    ArrayList<Node> parList = new ArrayList<Node>();
 			  
 			match(input,LPAR,FOLLOW_LPAR_in_arrow2750); 
-			// /home/acco/workspace/FOOL/FOOL.g:547:8: (t= type ( COMMA t= type )* )?
+			// /home/acco/workspace/FOOL/FOOL.g:548:8: (t= type ( COMMA t= type )* )?
 			int alt30=2;
 			int LA30_0 = input.LA(1);
 			if ( (LA30_0==BOOL||LA30_0==ID||LA30_0==INT||LA30_0==LPAR) ) {
@@ -1771,14 +1772,14 @@ public class FOOLParser extends Parser {
 			}
 			switch (alt30) {
 				case 1 :
-					// /home/acco/workspace/FOOL/FOOL.g:547:9: t= type ( COMMA t= type )*
+					// /home/acco/workspace/FOOL/FOOL.g:548:9: t= type ( COMMA t= type )*
 					{
 					pushFollow(FOLLOW_type_in_arrow2755);
 					t=type();
 					state._fsp--;
 
 					parList.add(t);
-					// /home/acco/workspace/FOOL/FOOL.g:547:39: ( COMMA t= type )*
+					// /home/acco/workspace/FOOL/FOOL.g:548:39: ( COMMA t= type )*
 					loop29:
 					while (true) {
 						int alt29=2;
@@ -1789,7 +1790,7 @@ public class FOOLParser extends Parser {
 
 						switch (alt29) {
 						case 1 :
-							// /home/acco/workspace/FOOL/FOOL.g:547:40: COMMA t= type
+							// /home/acco/workspace/FOOL/FOOL.g:548:40: COMMA t= type
 							{
 							match(input,COMMA,FOLLOW_COMMA_in_arrow2760); 
 							pushFollow(FOLLOW_type_in_arrow2764);

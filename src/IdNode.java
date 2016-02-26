@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class IdNode implements Node {
 
@@ -29,6 +30,19 @@ public class IdNode implements Node {
 			System.out.println("Wrong usage of function identifier");
 			System.exit(0);
 		}*/
+		
+		// controllo che non sia un metodo
+		if(this.entry.isMethod()){
+			System.out.println("Wrong usage of method identifier");
+			System.exit(0);
+		}
+		// o il nome di una classe
+		
+		HashMap<String, CTEntry> classTable = FOOLLib.getClassTable();
+		if(classTable.get(this.id)!=null || this.id.equals("null")){
+			System.out.println("Wrong usage of class identifier");
+			System.exit(0);
+		}
 		
 		return entry.getType();
 	}

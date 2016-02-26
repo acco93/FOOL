@@ -46,6 +46,7 @@ prog returns [Node ast] :
          // all'inizio del parsing passo il riferimento della map supertype a FOOLLib per poterlo
          // utilizzare nel typechecking
 			   FOOLLib.setSuperTypeMap(superType);
+         FOOLLib.setClassTable(classTable);
 	       // entro in un nuovo scope quindi incremento il nesting level
 	       nestingLevel++; 
 	       // creo la hashmap dove memorizzo le cose che incontro
