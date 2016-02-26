@@ -27,9 +27,7 @@ public class EqualNode implements Node {
 			System.exit(0);
 		}
 		
-		
-		if(FOOLLib.lowestCommonAncestor(l, r)==null &&
-				FOOLLib.lowestCommonAncestor(r, l)==null){
+		if(FOOLLib.lowestCommonAncestor(l, r)==null){
 					System.out.println("Incompatible types in equal!");
 					System.exit(0);
 				}

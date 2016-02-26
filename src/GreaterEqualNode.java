@@ -28,11 +28,10 @@ public class GreaterEqualNode implements Node {
 			System.exit(0);
 		}
 		
-		if(!(FOOLLib.isSubType(l, r) ||
-				FOOLLib.isSubType(r, l))){
-					System.out.println("Incompatible types in >= !");
-					System.exit(0);
-				}
+		if(FOOLLib.lowestCommonAncestor(l, r)==null){
+			System.out.println("Incompatible types in >=!");
+			System.exit(0);
+		}
 
 		return new BoolTypeNode();
 	}
