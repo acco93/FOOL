@@ -27,7 +27,9 @@ public class ClassCallNode implements Node{
 	@Override
 	public String toPrint(String indent) {
 		String result=indent+"ClassCall "+this.objId+"."+this.methodId+"\n";
+		result += indent+"Object entry ("+this.objId+")\n";
 		result += this.entry.toPrint(indent+"  ");
+		result += indent+"Method entry ("+this.methodId+")\n";
 		result += this.methodEntry.toPrint(indent+"  ");
 		for(int i=0;i<this.argList.size();i++){
 			result += this.argList.get(i).toPrint(indent+"  ");			

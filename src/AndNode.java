@@ -35,7 +35,7 @@ public class AndNode implements Node {
 		String labelA = FOOLLib.freshLabel();
 		String labelB = FOOLLib.freshLabel();
 		
-		return 	//valuto l'espressione sinistra e salto a labelA se valuta false
+		return 	//valuto l'espressione sinistra e salto a labelA se valuta false (regola del cortocircuito)
 				left.codeGeneration()+
 				"push 0\n"+
 				"beq "+labelA+ "\n" +

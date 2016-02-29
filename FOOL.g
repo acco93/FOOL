@@ -264,6 +264,17 @@ cllist returns [ArrayList<Node> astList] :
         
       )? 
       
+      {
+       // istanzio il nodo che rappresenta il tipo del metodo
+        ArrowTypeNode methodType = new ArrowTypeNode(parTypes,$mt.ast);
+        // aggiungo il tipo complessivo al MethodNode
+        method.addSymType(methodType);  
+        // aggiungo il metodo alla virtual table e ad allMethods
+        // NB. è necessario farlo prima di processare l'exp nel caso in cui
+        // il metodo richiami se stesso
+        entry.addMethod($mid.text, method);
+      }
+      
       mexp=exp
       // aggiungo il body al metodo
       {method.addBody($mexp.ast);}
@@ -273,12 +284,6 @@ cllist returns [ArrayList<Node> astList] :
         // è finito lo scope del metodo quindo posso rimuovere la symbol table corrispondente
         // e decrementare il NL
         symbolTable.remove(nestingLevel--);
-        // istanzio il nodo che rappresenta il tipo del metodo
-        ArrowTypeNode methodType = new ArrowTypeNode(parTypes,$mt.ast);
-        // aggiungo il tipo complessivo al MethodNode
-        method.addSymType(methodType);  
-        // aggiungo il metodo alla virtual table e ad allMethods)
-        entry.addMethod($mid.text, method);
       }
       )*                
        

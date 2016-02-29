@@ -202,8 +202,8 @@ public class ExecuteVM {
 	}
 	
 	private void memoryTrace() {
-		
-		/*System.out.println("MEMORY TRACE:");
+		/*
+		System.out.println("MEMORY TRACE:");
 
 		for(int i=MEMSIZE-1;i>=sp;i--){
 			System.out.println(i+": "+memory[i]);
@@ -213,8 +213,8 @@ public class ExecuteVM {
 			System.out.println(i+": "+memory[i]);
 		}
 		
-		System.out.println("\n");*/
-
+		System.out.println("\n");
+		 */
 	}
 
 	private int pop(){

@@ -90,13 +90,6 @@ public class ClassNode implements Node, DecNode {
 
 					DecNode classMethod = (DecNode) classMethods.get(i);
 					DecNode superMethod = (DecNode) superMethods.get(i);					
-		
-
-					/*if(!FOOLLib.isSubType(classMethod.getSymType(),superMethod.getSymType())){
-						System.out.println("Wrong type for "+i+"-th field");
-						System.exit(0);
-						
-					}*/
 					
 					if(FOOLLib.isSubType(classMethod.getSymType(),superMethod.getSymType())==false){
 						System.out.println("Wrong type for "+i+"-th overridden method in "+this.type.getType());

@@ -4,9 +4,9 @@ public class CallNode implements Node {
 
 	// nome della funzione chiamata
 	private String id;
-	// entry contenente l'ArrowTypeNode della funzione
+	// entry contenente le info riguardanti la dichiarazione della funzione
 	private STEntry entry;
-	// argomenti passati alla chiamata
+	// argomenti passati alla chiamata (espressioni)
 	private ArrayList<Node> argList;
 	// nesting level della chiamata della funzione, nella entry c'è quello della
 	// dichiarazione
@@ -39,7 +39,7 @@ public class CallNode implements Node {
 
 		// tipo di ritorno della funzione definito nella dichiarazione
 		ArrowTypeNode type = (ArrowTypeNode) this.entry.getType();
-		Node node = type.getRet();
+		Node retType = type.getRet();
 
 		// lista dei tipi dei parametri formali definiti nella dichiarazione
 		ArrayList<Node> parList = type.getParList();
@@ -62,7 +62,7 @@ public class CallNode implements Node {
 		}
 
 		// ritorno il tipo dichiarato dentro arrowTypeNode
-		return node;
+		return retType;
 	}
 
 	@Override
@@ -114,6 +114,7 @@ public class CallNode implements Node {
 		 * sono le salite da fare.
 		 */
 
+		
 		String getAR = "# risalgo la catena statica " + (this.nestingLevel - this.entry.getNestingLevel()) + " volte\n";
 		for (int i = 0; i < this.nestingLevel - this.entry.getNestingLevel(); i++) {
 			getAR += "lw\n";
@@ -133,6 +134,14 @@ public class CallNode implements Node {
 
 		if (this.entry.isMethod()) {
 			/* Devo recuperare solamente l'indirizzo*/
+			// Tramite l'object pointer arrivo nell'heap e con l'offset recupero
+			// l'indirizzo del metodo
+			
+			code +="# setto l'AL recuperando l'object pointer\n";
+			code +=	"lfp\n"+
+					getAR;			
+			
+			code +="# recupero l'indirizzo del metodo\n";
 			code += "push "+this.entry.getOffset()+"\n" +
 					"lfp\n"+
 					getAR+
@@ -146,8 +155,7 @@ public class CallNode implements Node {
 			 * trovo l'indirizzo della funzione
 			 */
 			code += "# setto l'AL\n" +
-					"push " +
-					(this.entry.getOffset()) + "\n" + // pusho l'offset della dichiarazione della f nel suo AR
+					"push " + (this.entry.getOffset()) + "\n" + // pusho l'offset della dichiarazione della f nel suo AR
 					"lfp\n" + // pusho FP (che punta all'AL)
 					getAR + // mi permette di risalire la catena statica
 					"add\n" + // sommando mi posiziono sull'FP della funzione
@@ -159,8 +167,10 @@ public class CallNode implements Node {
 
 			// ora vado a recuperare l'indirizzo della funzione nello stesso
 			// modo (spostandomi di -1)
-			"# setto l'indirizzo a cui saltare\n" + "push " + (this.entry.getOffset() - 1) + "\n" + "lfp\n" + getAR
-					+ "add\n" + "lw\n";
+					"# setto l'indirizzo a cui saltare\n" +
+					"push " + (this.entry.getOffset() - 1) +"\n" +
+					"lfp\n" + getAR +
+					"add\n" + "lw\n";
 
 		}
 		/*

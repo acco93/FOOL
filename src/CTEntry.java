@@ -138,6 +138,7 @@ public class CTEntry {
 			
 		}
 		
+		entry.setAsMethod();
 		this.virtualTable.put(name, entry);
 	
 		if(!this.locals.add(offset)){

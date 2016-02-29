@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// rappresenta il tipo delle funzioni/metodi
 public class ArrowTypeNode implements Node {
 
 	// tipo dei parametri
