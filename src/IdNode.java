@@ -12,7 +12,7 @@ public class IdNode implements Node {
 	IdNode(String id, STEntry entry, int nestingLevel){
 		this.id = id;
 		this.entry = entry;
-		//questo è il nesting level di dove sono usati, nella entry c'è quello della dichiarazione
+		//questo è il nesting level di dove è usato l'ID, nella entry c'è quello della dichiarazione
 		this.nestingLevel = nestingLevel;
 	}
 	

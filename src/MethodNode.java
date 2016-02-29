@@ -6,7 +6,7 @@ public class MethodNode implements Node, DecNode {
 	private String id;
 
 	// tipo di ritorno
-	private Node type;
+	private Node retType;
 
 	// parametri
 	private ArrayList<Node> parameters;
@@ -25,7 +25,7 @@ public class MethodNode implements Node, DecNode {
 	
 	MethodNode(String id, Node type) {
 		this.id = id;
-		this.type = type;
+		this.retType = type;
 		this.parameters = new ArrayList<Node>();
 		this.declarations = new ArrayList<Node>();
 	}
@@ -50,7 +50,7 @@ public class MethodNode implements Node, DecNode {
 	@Override
 	public String toPrint(String indent) {
 		String result = indent + "Method: " +
-						this.id + "\n" + this.type.toPrint(indent + "  ");
+						this.id + "\n" + this.retType.toPrint(indent + "  ");
 		for (int i = 0; i < parameters.size(); i++) {
 			result += parameters.get(i).toPrint(indent + "  ");
 		}
@@ -75,7 +75,7 @@ public class MethodNode implements Node, DecNode {
 	public Node typeCheck() {
 		
 		// verifico che l'espressione ritorni il tipo dichiarato dal metodo
-		if(!FOOLLib.isSubType(this.body.typeCheck(), type)){
+		if(!FOOLLib.isSubType(this.body.typeCheck(), retType)){
 			System.out.println("Wrong return type for method "+this.id);
 			System.exit(0);
 			
@@ -85,7 +85,7 @@ public class MethodNode implements Node, DecNode {
 			node.typeCheck();
 		}
 		
-		return this.type;
+		return this.retType;
 		
 	}
 

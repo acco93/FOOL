@@ -39,7 +39,7 @@ public class CTEntry {
 		this.locals = new HashSet<Integer>();
 	}
 
-	// costruttore copie, se eridito da qualcuno
+	// costruttore copia, se eridito da qualcuno copio tutte le sue info
 	CTEntry(CTEntry entry) {
 		this.virtualTable = new HashMap<String,STEntry>(entry.getVirtualTable());
 		this.offsetFields = entry.getOffsetFields();

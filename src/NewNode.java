@@ -30,7 +30,7 @@ public class NewNode implements Node{
 	@Override
 	public Node typeCheck() {
 	
-		// controllo che il numero degli argomenti passati sia quello richiesti
+		// controllo che il numero degli argomenti passati sia quello richiesto
 		if(this.entry.getAllFields().size()!=argList.size()){
 			System.out.println("Wrong number of parameters in the creation of an object of class "+this.classId);
 			System.exit(0);

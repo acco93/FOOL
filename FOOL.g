@@ -35,7 +35,6 @@ int lexicalErrors=0;
 
 // rappresenta l'AST corrispondente al programma
 prog returns [Node ast] :
-
     // se c'è solo una espressione quindi nessuna dichiarazione
     e = exp SEMIC {$ast = new ProgNode($e.ast);}
     | 
@@ -90,19 +89,16 @@ cllist returns [ArrayList<Node> astList] :
     // questo per controllare che nello stesso scope non vengano dichiarate altre cose
     // con lo stesso nome
     
-    // essendo le dichiarazione nell'ambiente globale è necessario che nestingLevel == 0
-    assert nestingLevel == 0;
-    
-    // l'offset della entry della dichiarazoine della classe non verrà mai utilizzato 
+    // l'offset della entry della dichiarazoine della classe non verrà mai utilizzato in quanto
     // la dichiarazione non viene messa in memoria (stack o heap)
     
     HashMap<String,STEntry> hm = symbolTable.get(nestingLevel);
-    if(hm.put($i.text,new STEntry(nestingLevel,null, 999))!=null){ 
+    if(hm.put($i.text,new STEntry(nestingLevel,null, 2666))!=null){ 
           System.out.println("Error: id "+$i.text +" at line "+ $i.line +" already declared!");
           System.exit(0);
          };
     
-    // creo la CTEntry la quale conterra le info della classe
+    // creo la CTEntry che conterrà le info della classe
     CTEntry entry = new CTEntry();
     CTEntry superClassEntry = null;
     
@@ -112,7 +108,7 @@ cllist returns [ArrayList<Node> astList] :
     EXTENDS ei=ID
     {
       // se finisco qua dentro significa che estendo da qualcuno, allora devo recuperare la CTEntry
-      // dalla class table (controllando che esista) e utilizzare il II costruttore di CTEntry (quello
+      // dalla class table della super classe (controllando che esista) e utilizzare il II costruttore di CTEntry (quello
       // che fa la copia)
       superClassEntry = classTable.get($ei.text);
       if(superClassEntry == null){
@@ -131,14 +127,14 @@ cllist returns [ArrayList<Node> astList] :
     
     {
     
-    // creo una lista di metodi e una lista di campi vuote
+    // creo una lista di metodi e una lista di campi vuoti
     ArrayList<Node> fieldsList = new ArrayList<Node>();
     ArrayList<Node> methodsList = new ArrayList<Node>();
     // creo un nodo di tipo classe contenente il nome della classe
     ClassTypeNode classType = new ClassTypeNode($i.text);
     // creo un nodo classe 
     ClassNode c = new ClassNode(classType, fieldsList, methodsList, entry, superClassEntry);
-    // lo aggiungo alla lista delle classi (lista che viene poi restituita)
+    // lo aggiungo alla lista delle classi (lista che verrà infine restituita)
     $astList.add(c);
     
     // Inserisco l'entry anche nella class table (il controllo che non sia un nome già usato è stato fatto
@@ -149,7 +145,7 @@ cllist returns [ArrayList<Node> astList] :
     // settata alla Virtual Table contenuta dentro la nuova CTentry
     // incremento perchè la virtual table è sempre ad offset 1
     // in questo modo alla fine riesco a rimuoverla correttamente
-    // i campi e metodi vengono settati a nesting level 1 di default (senza che glielo passi)
+    // i campi e metodi vengono settati a nesting level 1 di default (senza doverglielo passare, vedi addMethod e addField in CTEntry)
      nestingLevel++; 
      symbolTable.add(entry.getVirtualTable());
     }
@@ -163,7 +159,7 @@ cllist returns [ArrayList<Node> astList] :
       (pfid=ID COLON pft=basic
       // lo aggiungo alla CTEntry e alla classe
       {
-        // addField ritorna il nodo field
+        // addField ritorna il nodo field che vado ad aggiungere alla lista dei campi definiti in questa classe
         fieldsList.add(entry.addField($pfid.text,$pft.ast));
         
       }
@@ -329,7 +325,7 @@ declist returns [ArrayList<Node> astList] :
 		        };
 		      // se la variabile è di tipo funzione occupa due offset
 		      // TODO: è da verificare se può esistere (non credo)
-		      if($t.ast instanceof ArrowTypeNode){offset--;}
+		      // if($t.ast instanceof ArrowTypeNode){offset--;}
 		     }
        |
        // DICHIARAZIONE DI FUNZIONE                          
@@ -414,7 +410,9 @@ exp returns [Node ast] :
             PLUS l=term {$ast = new PlusNode($ast,$l.ast);}
           | MINUS l=term {$ast = new MinusNode($ast,$l.ast);}
           | OR l=term {$ast = new OrNode($ast,$l.ast);}
-        )*;
+        )* |
+     DEBUG LPAR e=exp RPAR {$ast = new DebugNode($e.ast);}  
+        ;
 
 
 term returns [Node ast] :
@@ -557,6 +555,8 @@ arrow  returns [Node ast] :
 
 
 // LEXER RULES
+
+DEBUG : 'debug';
 
 PLUS	: '+' ;
 TIMES	: '*' ;

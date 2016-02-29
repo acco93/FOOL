@@ -6,7 +6,7 @@ public class FunNode implements Node, DecNode {
 	private String id;
 	
 	// tipo di ritorno
-	private Node type;
+	private Node retType;
 	
 	// arraylist di parametri
 	private ArrayList<Node> parameters;
@@ -22,7 +22,7 @@ public class FunNode implements Node, DecNode {
 	
 	FunNode(String id, Node type){
 		this.id = id;
-		this.type = type;
+		this.retType = type;
 		this.parameters = new ArrayList<Node>();
 		this.declarations = new ArrayList<Node>();
 	}
@@ -51,7 +51,7 @@ public class FunNode implements Node, DecNode {
 		
 		String result=	indent+
 						"Fun: "+this.id+"\n"+
-						this.type.toPrint(indent+"  ");
+						this.retType.toPrint(indent+"  ");
 		for(int i=0;i<parameters.size();i++){
 			result+=parameters.get(i).toPrint(indent+"  ");
 		}
@@ -66,9 +66,9 @@ public class FunNode implements Node, DecNode {
 	@Override
 	public Node typeCheck() {
 		
-		// per i parametri non devo controllare nulla
+		// per i parametri non devo controllare nulla perchè sono solo definizioni del tipo che voglio
 		
-		if(!FOOLLib.isSubType(this.body.typeCheck(), type)){
+		if(!FOOLLib.isSubType(this.body.typeCheck(), retType)){
 			System.out.println("Wrong return type for function "+this.id);
 			System.exit(0);
 			
@@ -78,7 +78,7 @@ public class FunNode implements Node, DecNode {
 			node.typeCheck();
 		}
 		
-		return this.type;
+		return this.retType;
 	}
 
 	@Override

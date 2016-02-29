@@ -56,6 +56,8 @@ assembly: (
 	  | STOREHP     {code[i++]=STOREHP;}//pop the top of the stack and copy it in the HP register    
 	  | PRINT       {code[i++]=PRINT;}//visualize the top of the stack without removing it   
 	  | HALT        {code[i++]=HALT;}//interrupt the execution    
+	  | DEBUG       {code[i++]=DEBUG;}
+	  | NODEBUG     {code[i++]=NODEBUG;}
 	  )* {
 	        for(Integer refAdd : labelRef.keySet()){
 	        //ciclo sull'insieme delle chiavi di label ref
@@ -76,6 +78,9 @@ assembly: (
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/
+
+DEBUG : 'debug';
+NODEBUG : 'nodebug';
 
 PUSH	 : 'push' ; 	
 POP	 : 'pop' ; 	

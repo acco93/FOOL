@@ -132,11 +132,7 @@ public class FOOLLib {
 			// controllo il tipo di ritorno ricorsivamente
 			Node retType = FOOLLib.lowestCommonAncestor(typeA.getRet(), typeB.getRet()); 
 			if(retType==null) {
-				retType = FOOLLib.lowestCommonAncestor(typeB.getRet(), typeA.getRet());
-				if(retType == null){
-					// fallisco
-					return null;
-				}
+				return null;
 			}
 			
 			ArrayList<Node> parList = new ArrayList<Node>();

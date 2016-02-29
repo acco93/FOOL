@@ -71,9 +71,11 @@ public class CallNode implements Node {
 		/*
 		 * Chiamata di una funzione: devo costruire la prima parte
 		 * dell'Activation Record della funzione che sto invocando. Devo settare
-		 * (in ordine): - CL: indirizzo dell'AR chiamante (che è questo in cui
-		 * sono) - parametri: dall'ultimo al primo - AL: indirizzo dell'AR dove
-		 * è dichiarata la funzione, per poter recuperare il contesto
+		 * (in ordine): 
+		 * - CL: indirizzo dell'AR chiamante (che è questo in cui
+		 * sono) 
+		 * - parametri: dall'ultimo al primo 
+		 * - AL: indirizzo dell'AR dove è dichiarata la funzione, per poter recuperare il "contesto"
 		 * 
 		 */
 
@@ -127,13 +129,15 @@ public class CallNode implements Node {
 
 		/*
 		 * Le dichiarazioni di funzione (dopo l'high order) occupano due offset
-		 * nello stack: - ad offset definito nella sym table è presente l'FP al
-		 * loro AR - ad (offset definito nella sym table)-1 è presente
-		 * l'indirizzo della funzione
+		 * nello stack: 
+		 * - ad offset definito nella sym table è presente l'FP al loro AR 
+		 * - ad (offset definito nella sym table)-1 è presente l'indirizzo della funzione
 		 */
 
+		
+		// caso di chiamata di un metodo internamente alla classe
 		if (this.entry.isMethod()) {
-			/* Devo recuperare solamente l'indirizzo*/
+
 			// Tramite l'object pointer arrivo nell'heap e con l'offset recupero
 			// l'indirizzo del metodo
 			
@@ -141,7 +145,7 @@ public class CallNode implements Node {
 			code +=	"lfp\n"+
 					getAR;			
 			
-			code +="# recupero l'indirizzo del metodo\n";
+			code +="# recupero l'indirizzo del metodo al quale salterò\n";
 			code += "push "+this.entry.getOffset()+"\n" +
 					"lfp\n"+
 					getAR+

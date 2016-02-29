@@ -47,7 +47,7 @@ public class ClassCallNode implements Node{
 	
 		// tipo di ritorno del metodo definito nella dichiarazione
 		ArrowTypeNode type = (ArrowTypeNode) this.methodEntry.getType();
-		Node node = type.getRet();
+		Node retType = type.getRet();
 		
 		// lista dei tipi dei parametri formali definiti nella dichiarazione
 		ArrayList<Node> parList = type.getParList();
@@ -69,7 +69,7 @@ public class ClassCallNode implements Node{
 		}
 		
 		//ritorno il tipo dichiarato dentro arrowTypeNode
-		return node;
+		return retType;
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class ClassCallNode implements Node{
 		
 		code +="#setto il CL\nlfp\n";	// control link
 		
-		// parametri
+		// parametri (dall'ultimo al primo (vedi layout))
 		for(int i=this.argList.size()-1;i>=0;i--){
 			code+=this.argList.get(i).codeGeneration();
 		}
@@ -92,7 +92,7 @@ public class ClassCallNode implements Node{
 			getAR+="lw\n";
 		}
 		
-		code+=  "# setto l'AL\n"
+		code+=  "# setto l'AL recuperando l'object pointer\n"
 				+ "push "+(this.entry.getOffset())+"\n"+	//pusho l'offset della dichiarazione dell'oggetto nel suo AR
 				"lfp\n"+	// pusho FP (che punta all'AL) 
 				getAR+		// mi permette di risalire la catena statica

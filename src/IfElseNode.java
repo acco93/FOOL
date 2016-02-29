@@ -26,8 +26,6 @@ public class IfElseNode implements Node{
 		// i tipi ritornati da then e else devono essere compatibili
 		// le sono => torno la superclasse
 	
-		System.out.println(this.conditionNode.typeCheck());
-		
 		if(!(FOOLLib.isSubType(this.conditionNode.typeCheck(), new BoolTypeNode()))){
 			System.out.println("Non boolean condition in if");
 			System.exit(0);			

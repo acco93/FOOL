@@ -26,6 +26,8 @@ public class ExecuteVM {
 	// return value
 	private int rv=0;
 	
+	private boolean debug = false;
+	
 	// Costruttore
 	ExecuteVM(int[] code){
 		this.code = code;
@@ -33,7 +35,17 @@ public class ExecuteVM {
 	}
 
 	void cpu() {
-		while(true){
+		
+		boolean cycle = true;
+		boolean success = true;
+		while(cycle){
+			
+			if(sp<=hp){
+				cycle = false;
+				success = false;
+				continue;
+			}
+			
 			// fetch
 				
 			/*System.out.println("IP:"+ip);
@@ -188,21 +200,37 @@ public class ExecuteVM {
 					System.out.println((sp<MEMSIZE)?memory[sp]:"Empty stack!");
 					break;
 					
+				case SVMParser.DEBUG:
+					debug = true;
+					break;
+
+				case SVMParser.NODEBUG:
+					debug = false;
+					break;
+					
 				//interrupt the execution
 				case SVMParser.HALT:
-					System.out.println("\n--------------------\nSUCCESSFULLY EXECUTED.");
-					this.memoryTrace();
-					return;
-				
-					
+					cycle = false;
+					continue;					
 			}
 
 		}
+		
+		System.out.println("\n--------------------");
 
+		if(!success){
+			System.out.println("RUNTIME ERROR!");
+		} else {
+			System.out.println("SUCCESSFULLY EXECUTED.");
+		}
+		
 	}
 	
+
 	private void memoryTrace() {
-		/*
+		
+		if(!debug){return;}
+		
 		System.out.println("MEMORY TRACE:");
 
 		for(int i=MEMSIZE-1;i>=sp;i--){
@@ -214,7 +242,7 @@ public class ExecuteVM {
 		}
 		
 		System.out.println("\n");
-		 */
+		 
 	}
 
 	private int pop(){

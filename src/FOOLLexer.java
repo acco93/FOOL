@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2016-02-29 17:45:15
+// $ANTLR 3.5.2 /home/acco/workspace/FOOL/FOOL.g 2016-02-29 22:24:20
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -18,37 +18,38 @@ public class FOOLLexer extends Lexer {
 	public static final int COMMA=11;
 	public static final int COMMENT=12;
 	public static final int CRPAR=13;
-	public static final int DIV=14;
-	public static final int DOT=15;
-	public static final int ELSE=16;
-	public static final int EQ=17;
-	public static final int ERR=18;
-	public static final int EXTENDS=19;
-	public static final int FALSE=20;
-	public static final int FUN=21;
-	public static final int GR=22;
-	public static final int ID=23;
-	public static final int IF=24;
-	public static final int IN=25;
-	public static final int INT=26;
-	public static final int LE=27;
-	public static final int LET=28;
-	public static final int LPAR=29;
-	public static final int MINUS=30;
-	public static final int NAT=31;
-	public static final int NEW=32;
-	public static final int NOT=33;
-	public static final int NULL=34;
-	public static final int OR=35;
-	public static final int PLUS=36;
-	public static final int PRINT=37;
-	public static final int RPAR=38;
-	public static final int SEMIC=39;
-	public static final int THEN=40;
-	public static final int TIMES=41;
-	public static final int TRUE=42;
-	public static final int VAR=43;
-	public static final int WHITESP=44;
+	public static final int DEBUG=14;
+	public static final int DIV=15;
+	public static final int DOT=16;
+	public static final int ELSE=17;
+	public static final int EQ=18;
+	public static final int ERR=19;
+	public static final int EXTENDS=20;
+	public static final int FALSE=21;
+	public static final int FUN=22;
+	public static final int GR=23;
+	public static final int ID=24;
+	public static final int IF=25;
+	public static final int IN=26;
+	public static final int INT=27;
+	public static final int LE=28;
+	public static final int LET=29;
+	public static final int LPAR=30;
+	public static final int MINUS=31;
+	public static final int NAT=32;
+	public static final int NEW=33;
+	public static final int NOT=34;
+	public static final int NULL=35;
+	public static final int OR=36;
+	public static final int PLUS=37;
+	public static final int PRINT=38;
+	public static final int RPAR=39;
+	public static final int SEMIC=40;
+	public static final int THEN=41;
+	public static final int TIMES=42;
+	public static final int TRUE=43;
+	public static final int VAR=44;
+	public static final int WHITESP=45;
 
 	int lexicalErrors=0;
 
@@ -67,6 +68,27 @@ public class FOOLLexer extends Lexer {
 		super(input,state);
 	}
 	@Override public String getGrammarFileName() { return "/home/acco/workspace/FOOL/FOOL.g"; }
+
+	// $ANTLR start "DEBUG"
+	public final void mDEBUG() throws RecognitionException {
+		try {
+			int _type = DEBUG;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /home/acco/workspace/FOOL/FOOL.g:559:7: ( 'debug' )
+			// /home/acco/workspace/FOOL/FOOL.g:559:9: 'debug'
+			{
+			match("debug"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "DEBUG"
 
 	// $ANTLR start "PLUS"
 	public final void mPLUS() throws RecognitionException {
@@ -1086,292 +1108,299 @@ public class FOOLLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/acco/workspace/FOOL/FOOL.g:1:8: ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | CLASS | EXTENDS | NEW | NULL | LET | IN | VAR | COLON | COMMA | DOT | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR )
-		int alt6=41;
+		// /home/acco/workspace/FOOL/FOOL.g:1:8: ( DEBUG | PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | CLASS | EXTENDS | NEW | NULL | LET | IN | VAR | COLON | COMMA | DOT | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR )
+		int alt6=42;
 		alt6 = dfa6.predict(input);
 		switch (alt6) {
 			case 1 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:10: PLUS
+				// /home/acco/workspace/FOOL/FOOL.g:1:10: DEBUG
+				{
+				mDEBUG(); 
+
+				}
+				break;
+			case 2 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:16: PLUS
 				{
 				mPLUS(); 
 
 				}
 				break;
-			case 2 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:15: TIMES
+			case 3 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:21: TIMES
 				{
 				mTIMES(); 
 
 				}
 				break;
-			case 3 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:21: MINUS
+			case 4 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:27: MINUS
 				{
 				mMINUS(); 
 
 				}
 				break;
-			case 4 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:27: DIV
+			case 5 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:33: DIV
 				{
 				mDIV(); 
 
 				}
 				break;
-			case 5 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:31: SEMIC
+			case 6 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:37: SEMIC
 				{
 				mSEMIC(); 
 
 				}
 				break;
-			case 6 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:37: OR
+			case 7 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:43: OR
 				{
 				mOR(); 
 
 				}
 				break;
-			case 7 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:40: AND
+			case 8 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:46: AND
 				{
 				mAND(); 
 
 				}
 				break;
-			case 8 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:44: NOT
+			case 9 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:50: NOT
 				{
 				mNOT(); 
 
 				}
 				break;
-			case 9 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:48: GR
+			case 10 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:54: GR
 				{
 				mGR(); 
 
 				}
 				break;
-			case 10 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:51: LE
+			case 11 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:57: LE
 				{
 				mLE(); 
 
 				}
 				break;
-			case 11 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:54: EQ
+			case 12 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:60: EQ
 				{
 				mEQ(); 
 
 				}
 				break;
-			case 12 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:57: NAT
+			case 13 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:63: NAT
 				{
 				mNAT(); 
 
 				}
 				break;
-			case 13 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:61: TRUE
+			case 14 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:67: TRUE
 				{
 				mTRUE(); 
 
 				}
 				break;
-			case 14 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:66: FALSE
+			case 15 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:72: FALSE
 				{
 				mFALSE(); 
 
 				}
 				break;
-			case 15 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:72: LPAR
+			case 16 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:78: LPAR
 				{
 				mLPAR(); 
 
 				}
 				break;
-			case 16 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:77: RPAR
+			case 17 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:83: RPAR
 				{
 				mRPAR(); 
 
 				}
 				break;
-			case 17 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:82: CLPAR
+			case 18 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:88: CLPAR
 				{
 				mCLPAR(); 
 
 				}
 				break;
-			case 18 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:88: CRPAR
+			case 19 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:94: CRPAR
 				{
 				mCRPAR(); 
 
 				}
 				break;
-			case 19 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:94: IF
+			case 20 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:100: IF
 				{
 				mIF(); 
 
 				}
 				break;
-			case 20 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:97: THEN
+			case 21 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:103: THEN
 				{
 				mTHEN(); 
 
 				}
 				break;
-			case 21 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:102: ELSE
+			case 22 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:108: ELSE
 				{
 				mELSE(); 
 
 				}
 				break;
-			case 22 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:107: PRINT
+			case 23 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:113: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
-			case 23 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:113: FUN
+			case 24 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:119: FUN
 				{
 				mFUN(); 
 
 				}
 				break;
-			case 24 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:117: CLASS
+			case 25 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:123: CLASS
 				{
 				mCLASS(); 
 
 				}
 				break;
-			case 25 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:123: EXTENDS
+			case 26 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:129: EXTENDS
 				{
 				mEXTENDS(); 
 
 				}
 				break;
-			case 26 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:131: NEW
+			case 27 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:137: NEW
 				{
 				mNEW(); 
 
 				}
 				break;
-			case 27 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:135: NULL
+			case 28 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:141: NULL
 				{
 				mNULL(); 
 
 				}
 				break;
-			case 28 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:140: LET
+			case 29 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:146: LET
 				{
 				mLET(); 
 
 				}
 				break;
-			case 29 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:144: IN
+			case 30 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:150: IN
 				{
 				mIN(); 
 
 				}
 				break;
-			case 30 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:147: VAR
+			case 31 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:153: VAR
 				{
 				mVAR(); 
 
 				}
 				break;
-			case 31 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:151: COLON
+			case 32 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:157: COLON
 				{
 				mCOLON(); 
 
 				}
 				break;
-			case 32 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:157: COMMA
+			case 33 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:163: COMMA
 				{
 				mCOMMA(); 
 
 				}
 				break;
-			case 33 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:163: DOT
+			case 34 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:169: DOT
 				{
 				mDOT(); 
 
 				}
 				break;
-			case 34 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:167: ASS
+			case 35 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:173: ASS
 				{
 				mASS(); 
 
 				}
 				break;
-			case 35 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:171: INT
+			case 36 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:177: INT
 				{
 				mINT(); 
 
 				}
 				break;
-			case 36 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:175: ARROW
+			case 37 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:181: ARROW
 				{
 				mARROW(); 
 
 				}
 				break;
-			case 37 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:181: BOOL
+			case 38 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:187: BOOL
 				{
 				mBOOL(); 
 
 				}
 				break;
-			case 38 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:186: ID
+			case 39 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:192: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 39 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:189: WHITESP
+			case 40 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:195: WHITESP
 				{
 				mWHITESP(); 
 
 				}
 				break;
-			case 40 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:197: COMMENT
+			case 41 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:203: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 41 :
-				// /home/acco/workspace/FOOL/FOOL.g:1:205: ERR
+			case 42 :
+				// /home/acco/workspace/FOOL/FOOL.g:1:211: ERR
 				{
 				mERR(); 
 
@@ -1384,89 +1413,85 @@ public class FOOLLexer extends Lexer {
 
 	protected DFA6 dfa6 = new DFA6(this);
 	static final String DFA6_eotS =
-		"\3\uffff\1\44\1\46\1\uffff\2\40\1\55\2\40\1\61\2\uffff\2\55\4\uffff\6"+
-		"\55\3\uffff\1\55\14\uffff\3\55\6\uffff\4\55\4\uffff\1\117\1\121\6\55\3"+
-		"\uffff\1\55\1\uffff\1\131\1\132\4\55\1\137\1\uffff\1\140\1\uffff\4\55"+
-		"\1\145\1\146\1\55\2\uffff\1\150\1\151\1\152\1\55\2\uffff\1\154\3\55\2"+
-		"\uffff\1\160\3\uffff\1\161\1\uffff\1\55\1\163\1\164\2\uffff\1\55\2\uffff"+
-		"\1\166\1\uffff";
+		"\1\uffff\1\43\2\uffff\1\47\1\51\1\uffff\2\41\1\43\2\41\1\63\2\uffff\2"+
+		"\43\4\uffff\6\43\3\uffff\1\43\3\uffff\1\43\12\uffff\3\43\5\uffff\4\43"+
+		"\4\uffff\1\122\1\124\6\43\3\uffff\1\43\1\uffff\1\43\1\135\1\136\4\43\1"+
+		"\143\1\uffff\1\144\1\uffff\4\43\1\151\1\152\2\43\2\uffff\1\155\1\156\1"+
+		"\157\1\43\2\uffff\1\161\3\43\2\uffff\1\165\1\166\3\uffff\1\167\1\uffff"+
+		"\1\43\1\171\1\172\3\uffff\1\43\2\uffff\1\174\1\uffff";
 	static final String DFA6_eofS =
-		"\167\uffff";
+		"\175\uffff";
 	static final String DFA6_minS =
-		"\1\0\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\145\3\75\2\uffff\1\150\1\141"+
-		"\4\uffff\1\146\1\154\1\162\1\154\1\145\1\141\3\uffff\1\157\14\uffff\1"+
-		"\164\1\167\1\154\6\uffff\1\165\1\145\1\154\1\156\4\uffff\2\60\1\163\1"+
-		"\164\1\151\1\141\1\164\1\162\3\uffff\1\157\1\uffff\2\60\1\154\1\145\1"+
-		"\156\1\163\1\60\1\uffff\1\60\1\uffff\2\145\1\156\1\163\2\60\1\154\2\uffff"+
-		"\3\60\1\145\2\uffff\1\60\1\156\1\164\1\163\2\uffff\1\60\3\uffff\1\60\1"+
-		"\uffff\1\144\2\60\2\uffff\1\163\2\uffff\1\60\1\uffff";
+		"\1\0\1\145\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\145\3\75\2\uffff\1\150"+
+		"\1\141\4\uffff\1\146\1\154\1\162\1\154\1\145\1\141\3\uffff\1\157\3\uffff"+
+		"\1\142\12\uffff\1\164\1\167\1\154\5\uffff\1\165\1\145\1\154\1\156\4\uffff"+
+		"\2\60\1\163\1\164\1\151\1\141\1\164\1\162\3\uffff\1\157\1\uffff\1\165"+
+		"\2\60\1\154\1\145\1\156\1\163\1\60\1\uffff\1\60\1\uffff\2\145\1\156\1"+
+		"\163\2\60\1\154\1\147\2\uffff\3\60\1\145\2\uffff\1\60\1\156\1\164\1\163"+
+		"\2\uffff\2\60\3\uffff\1\60\1\uffff\1\144\2\60\3\uffff\1\163\2\uffff\1"+
+		"\60\1\uffff";
 	static final String DFA6_maxS =
-		"\1\uffff\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\165\3\75\2\uffff\1\162"+
-		"\1\165\4\uffff\1\156\1\170\1\162\1\154\1\145\1\141\3\uffff\1\157\14\uffff"+
-		"\1\164\1\167\1\154\6\uffff\1\165\1\145\1\154\1\156\4\uffff\2\172\1\163"+
-		"\1\164\1\151\1\141\1\164\1\162\3\uffff\1\157\1\uffff\2\172\1\154\1\145"+
-		"\1\156\1\163\1\172\1\uffff\1\172\1\uffff\2\145\1\156\1\163\2\172\1\154"+
-		"\2\uffff\3\172\1\145\2\uffff\1\172\1\156\1\164\1\163\2\uffff\1\172\3\uffff"+
-		"\1\172\1\uffff\1\144\2\172\2\uffff\1\163\2\uffff\1\172\1\uffff";
+		"\1\uffff\1\145\2\uffff\1\76\1\52\1\uffff\1\174\1\46\1\165\3\75\2\uffff"+
+		"\1\162\1\165\4\uffff\1\156\1\170\1\162\1\154\1\145\1\141\3\uffff\1\157"+
+		"\3\uffff\1\142\12\uffff\1\164\1\167\1\154\5\uffff\1\165\1\145\1\154\1"+
+		"\156\4\uffff\2\172\1\163\1\164\1\151\1\141\1\164\1\162\3\uffff\1\157\1"+
+		"\uffff\1\165\2\172\1\154\1\145\1\156\1\163\1\172\1\uffff\1\172\1\uffff"+
+		"\2\145\1\156\1\163\2\172\1\154\1\147\2\uffff\3\172\1\145\2\uffff\1\172"+
+		"\1\156\1\164\1\163\2\uffff\2\172\3\uffff\1\172\1\uffff\1\144\2\172\3\uffff"+
+		"\1\163\2\uffff\1\172\1\uffff";
 	static final String DFA6_acceptS =
-		"\1\uffff\1\1\1\2\2\uffff\1\5\6\uffff\2\14\2\uffff\1\17\1\20\1\21\1\22"+
-		"\6\uffff\1\37\1\40\1\41\1\uffff\1\46\1\47\1\51\1\1\1\2\1\44\1\3\1\50\1"+
-		"\4\1\5\1\6\1\7\3\uffff\1\46\1\11\1\12\1\13\1\42\1\14\4\uffff\1\17\1\20"+
-		"\1\21\1\22\10\uffff\1\37\1\40\1\41\1\uffff\1\47\7\uffff\1\23\1\uffff\1"+
-		"\35\7\uffff\1\10\1\32\4\uffff\1\27\1\43\4\uffff\1\34\1\36\1\uffff\1\33"+
-		"\1\15\1\24\1\uffff\1\25\3\uffff\1\45\1\16\1\uffff\1\26\1\30\1\uffff\1"+
-		"\31";
+		"\2\uffff\1\2\1\3\2\uffff\1\6\6\uffff\2\15\2\uffff\1\20\1\21\1\22\1\23"+
+		"\6\uffff\1\40\1\41\1\42\1\uffff\1\47\1\50\1\52\1\uffff\1\47\1\2\1\3\1"+
+		"\45\1\4\1\51\1\5\1\6\1\7\1\10\3\uffff\1\12\1\13\1\14\1\43\1\15\4\uffff"+
+		"\1\20\1\21\1\22\1\23\10\uffff\1\40\1\41\1\42\1\uffff\1\50\10\uffff\1\24"+
+		"\1\uffff\1\36\10\uffff\1\11\1\33\4\uffff\1\30\1\44\4\uffff\1\35\1\37\2"+
+		"\uffff\1\34\1\16\1\25\1\uffff\1\26\3\uffff\1\46\1\1\1\17\1\uffff\1\27"+
+		"\1\31\1\uffff\1\32";
 	static final String DFA6_specialS =
-		"\1\0\166\uffff}>";
+		"\1\0\174\uffff}>";
 	static final String[] DFA6_transitionS = {
-			"\11\40\2\37\2\40\1\37\22\40\1\37\5\40\1\7\1\40\1\20\1\21\1\2\1\1\1\33"+
-			"\1\3\1\34\1\4\1\15\11\14\1\32\1\5\1\12\1\13\1\11\2\40\32\36\6\40\1\36"+
-			"\1\35\1\27\1\36\1\25\1\17\2\36\1\24\2\36\1\30\1\36\1\10\1\36\1\26\3\36"+
-			"\1\16\1\36\1\31\4\36\1\22\1\6\1\23\uff82\40",
+			"\11\41\2\40\2\41\1\40\22\41\1\40\5\41\1\10\1\41\1\21\1\22\1\3\1\2\1\34"+
+			"\1\4\1\35\1\5\1\16\11\15\1\33\1\6\1\13\1\14\1\12\2\41\32\37\6\41\1\37"+
+			"\1\36\1\30\1\1\1\26\1\20\2\37\1\25\2\37\1\31\1\37\1\11\1\37\1\27\3\37"+
+			"\1\17\1\37\1\32\4\37\1\23\1\7\1\24\uff82\41",
+			"\1\42",
 			"",
 			"",
-			"\1\43",
-			"\1\45",
-			"",
+			"\1\46",
 			"\1\50",
-			"\1\51",
-			"\1\53\11\uffff\1\52\5\uffff\1\54",
-			"\1\56",
-			"\1\57",
+			"",
+			"\1\53",
+			"\1\54",
+			"\1\56\11\uffff\1\55\5\uffff\1\57",
 			"\1\60",
+			"\1\61",
+			"\1\62",
 			"",
 			"",
-			"\1\64\11\uffff\1\63",
-			"\1\65\23\uffff\1\66",
+			"\1\66\11\uffff\1\65",
+			"\1\67\23\uffff\1\70",
 			"",
 			"",
 			"",
 			"",
-			"\1\73\7\uffff\1\74",
-			"\1\75\13\uffff\1\76",
-			"\1\77",
-			"\1\100",
+			"\1\75\7\uffff\1\76",
+			"\1\77\13\uffff\1\100",
 			"\1\101",
 			"\1\102",
-			"",
-			"",
-			"",
-			"\1\106",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
+			"\1\103",
+			"\1\104",
 			"",
 			"",
 			"",
 			"\1\110",
-			"\1\111",
+			"",
+			"",
+			"",
 			"\1\112",
+			"",
+			"",
+			"",
+			"",
 			"",
 			"",
 			"",
@@ -1476,70 +1501,82 @@ public class FOOLLexer extends Lexer {
 			"\1\113",
 			"\1\114",
 			"\1\115",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"\1\116",
+			"\1\117",
+			"\1\120",
+			"\1\121",
 			"",
 			"",
 			"",
 			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\23\55\1\120\6\55",
-			"\1\122",
-			"\1\123",
-			"\1\124",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\23\43\1\123\6\43",
 			"\1\125",
 			"\1\126",
 			"\1\127",
-			"",
-			"",
-			"",
 			"\1\130",
+			"\1\131",
+			"\1\132",
 			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
+			"",
+			"",
 			"\1\133",
+			"",
 			"\1\134",
-			"\1\135",
-			"\1\136",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\1\137",
+			"\1\140",
 			"\1\141",
 			"\1\142",
-			"\1\143",
-			"\1\144",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"",
+			"\1\145",
+			"\1\146",
 			"\1\147",
-			"",
-			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
+			"\1\150",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
 			"\1\153",
+			"\1\154",
 			"",
 			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\1\155",
-			"\1\156",
-			"\1\157",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\1\160",
 			"",
 			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"",
-			"",
-			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
 			"\1\162",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
+			"\1\163",
+			"\1\164",
 			"",
 			"",
-			"\1\165",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
 			"",
 			"",
-			"\12\55\7\uffff\32\55\6\uffff\32\55",
+			"",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"",
+			"\1\170",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
+			"",
+			"",
+			"",
+			"\1\173",
+			"",
+			"",
+			"\12\43\7\uffff\32\43\6\uffff\32\43",
 			""
 	};
 
@@ -1574,7 +1611,7 @@ public class FOOLLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | CLASS | EXTENDS | NEW | NULL | LET | IN | VAR | COLON | COMMA | DOT | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR );";
+			return "1:1: Tokens : ( DEBUG | PLUS | TIMES | MINUS | DIV | SEMIC | OR | AND | NOT | GR | LE | EQ | NAT | TRUE | FALSE | LPAR | RPAR | CLPAR | CRPAR | IF | THEN | ELSE | PRINT | FUN | CLASS | EXTENDS | NEW | NULL | LET | IN | VAR | COLON | COMMA | DOT | ASS | INT | ARROW | BOOL | ID | WHITESP | COMMENT | ERR );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
@@ -1584,38 +1621,39 @@ public class FOOLLexer extends Lexer {
 					case 0 : 
 						int LA6_0 = input.LA(1);
 						s = -1;
-						if ( (LA6_0=='+') ) {s = 1;}
-						else if ( (LA6_0=='*') ) {s = 2;}
-						else if ( (LA6_0=='-') ) {s = 3;}
-						else if ( (LA6_0=='/') ) {s = 4;}
-						else if ( (LA6_0==';') ) {s = 5;}
-						else if ( (LA6_0=='|') ) {s = 6;}
-						else if ( (LA6_0=='&') ) {s = 7;}
-						else if ( (LA6_0=='n') ) {s = 8;}
-						else if ( (LA6_0=='>') ) {s = 9;}
-						else if ( (LA6_0=='<') ) {s = 10;}
-						else if ( (LA6_0=='=') ) {s = 11;}
-						else if ( ((LA6_0 >= '1' && LA6_0 <= '9')) ) {s = 12;}
-						else if ( (LA6_0=='0') ) {s = 13;}
-						else if ( (LA6_0=='t') ) {s = 14;}
-						else if ( (LA6_0=='f') ) {s = 15;}
-						else if ( (LA6_0=='(') ) {s = 16;}
-						else if ( (LA6_0==')') ) {s = 17;}
-						else if ( (LA6_0=='{') ) {s = 18;}
-						else if ( (LA6_0=='}') ) {s = 19;}
-						else if ( (LA6_0=='i') ) {s = 20;}
-						else if ( (LA6_0=='e') ) {s = 21;}
-						else if ( (LA6_0=='p') ) {s = 22;}
-						else if ( (LA6_0=='c') ) {s = 23;}
-						else if ( (LA6_0=='l') ) {s = 24;}
-						else if ( (LA6_0=='v') ) {s = 25;}
-						else if ( (LA6_0==':') ) {s = 26;}
-						else if ( (LA6_0==',') ) {s = 27;}
-						else if ( (LA6_0=='.') ) {s = 28;}
-						else if ( (LA6_0=='b') ) {s = 29;}
-						else if ( ((LA6_0 >= 'A' && LA6_0 <= 'Z')||LA6_0=='a'||LA6_0=='d'||(LA6_0 >= 'g' && LA6_0 <= 'h')||(LA6_0 >= 'j' && LA6_0 <= 'k')||LA6_0=='m'||LA6_0=='o'||(LA6_0 >= 'q' && LA6_0 <= 's')||LA6_0=='u'||(LA6_0 >= 'w' && LA6_0 <= 'z')) ) {s = 30;}
-						else if ( ((LA6_0 >= '\t' && LA6_0 <= '\n')||LA6_0=='\r'||LA6_0==' ') ) {s = 31;}
-						else if ( ((LA6_0 >= '\u0000' && LA6_0 <= '\b')||(LA6_0 >= '\u000B' && LA6_0 <= '\f')||(LA6_0 >= '\u000E' && LA6_0 <= '\u001F')||(LA6_0 >= '!' && LA6_0 <= '%')||LA6_0=='\''||(LA6_0 >= '?' && LA6_0 <= '@')||(LA6_0 >= '[' && LA6_0 <= '`')||(LA6_0 >= '~' && LA6_0 <= '\uFFFF')) ) {s = 32;}
+						if ( (LA6_0=='d') ) {s = 1;}
+						else if ( (LA6_0=='+') ) {s = 2;}
+						else if ( (LA6_0=='*') ) {s = 3;}
+						else if ( (LA6_0=='-') ) {s = 4;}
+						else if ( (LA6_0=='/') ) {s = 5;}
+						else if ( (LA6_0==';') ) {s = 6;}
+						else if ( (LA6_0=='|') ) {s = 7;}
+						else if ( (LA6_0=='&') ) {s = 8;}
+						else if ( (LA6_0=='n') ) {s = 9;}
+						else if ( (LA6_0=='>') ) {s = 10;}
+						else if ( (LA6_0=='<') ) {s = 11;}
+						else if ( (LA6_0=='=') ) {s = 12;}
+						else if ( ((LA6_0 >= '1' && LA6_0 <= '9')) ) {s = 13;}
+						else if ( (LA6_0=='0') ) {s = 14;}
+						else if ( (LA6_0=='t') ) {s = 15;}
+						else if ( (LA6_0=='f') ) {s = 16;}
+						else if ( (LA6_0=='(') ) {s = 17;}
+						else if ( (LA6_0==')') ) {s = 18;}
+						else if ( (LA6_0=='{') ) {s = 19;}
+						else if ( (LA6_0=='}') ) {s = 20;}
+						else if ( (LA6_0=='i') ) {s = 21;}
+						else if ( (LA6_0=='e') ) {s = 22;}
+						else if ( (LA6_0=='p') ) {s = 23;}
+						else if ( (LA6_0=='c') ) {s = 24;}
+						else if ( (LA6_0=='l') ) {s = 25;}
+						else if ( (LA6_0=='v') ) {s = 26;}
+						else if ( (LA6_0==':') ) {s = 27;}
+						else if ( (LA6_0==',') ) {s = 28;}
+						else if ( (LA6_0=='.') ) {s = 29;}
+						else if ( (LA6_0=='b') ) {s = 30;}
+						else if ( ((LA6_0 >= 'A' && LA6_0 <= 'Z')||LA6_0=='a'||(LA6_0 >= 'g' && LA6_0 <= 'h')||(LA6_0 >= 'j' && LA6_0 <= 'k')||LA6_0=='m'||LA6_0=='o'||(LA6_0 >= 'q' && LA6_0 <= 's')||LA6_0=='u'||(LA6_0 >= 'w' && LA6_0 <= 'z')) ) {s = 31;}
+						else if ( ((LA6_0 >= '\t' && LA6_0 <= '\n')||LA6_0=='\r'||LA6_0==' ') ) {s = 32;}
+						else if ( ((LA6_0 >= '\u0000' && LA6_0 <= '\b')||(LA6_0 >= '\u000B' && LA6_0 <= '\f')||(LA6_0 >= '\u000E' && LA6_0 <= '\u001F')||(LA6_0 >= '!' && LA6_0 <= '%')||LA6_0=='\''||(LA6_0 >= '?' && LA6_0 <= '@')||(LA6_0 >= '[' && LA6_0 <= '`')||(LA6_0 >= '~' && LA6_0 <= '\uFFFF')) ) {s = 33;}
 						if ( s>=0 ) return s;
 						break;
 			}

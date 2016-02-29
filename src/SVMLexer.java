@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 /home/acco/workspace/FOOL/SVM.g 2016-02-08 09:06:03
+// $ANTLR 3.5.2 /home/acco/workspace/FOOL/SVM.g 2016-02-29 22:10:56
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -15,28 +15,30 @@ public class SVMLexer extends Lexer {
 	public static final int COL=8;
 	public static final int COMMENT=9;
 	public static final int COPYFP=10;
-	public static final int DIV=11;
-	public static final int ERR=12;
-	public static final int HALT=13;
-	public static final int JS=14;
-	public static final int LABEL=15;
-	public static final int LOADFP=16;
-	public static final int LOADHP=17;
-	public static final int LOADRA=18;
-	public static final int LOADRV=19;
-	public static final int LOADW=20;
-	public static final int MULT=21;
-	public static final int NUMBER=22;
-	public static final int POP=23;
-	public static final int PRINT=24;
-	public static final int PUSH=25;
-	public static final int STOREFP=26;
-	public static final int STOREHP=27;
-	public static final int STORERA=28;
-	public static final int STORERV=29;
-	public static final int STOREW=30;
-	public static final int SUB=31;
-	public static final int WHITESP=32;
+	public static final int DEBUG=11;
+	public static final int DIV=12;
+	public static final int ERR=13;
+	public static final int HALT=14;
+	public static final int JS=15;
+	public static final int LABEL=16;
+	public static final int LOADFP=17;
+	public static final int LOADHP=18;
+	public static final int LOADRA=19;
+	public static final int LOADRV=20;
+	public static final int LOADW=21;
+	public static final int MULT=22;
+	public static final int NODEBUG=23;
+	public static final int NUMBER=24;
+	public static final int POP=25;
+	public static final int PRINT=26;
+	public static final int PUSH=27;
+	public static final int STOREFP=28;
+	public static final int STOREHP=29;
+	public static final int STORERA=30;
+	public static final int STORERV=31;
+	public static final int STOREW=32;
+	public static final int SUB=33;
+	public static final int WHITESP=34;
 
 	// delegates
 	// delegators
@@ -53,13 +55,55 @@ public class SVMLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "/home/acco/workspace/FOOL/SVM.g"; }
 
+	// $ANTLR start "DEBUG"
+	public final void mDEBUG() throws RecognitionException {
+		try {
+			int _type = DEBUG;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /home/acco/workspace/FOOL/SVM.g:82:7: ( 'debug' )
+			// /home/acco/workspace/FOOL/SVM.g:82:9: 'debug'
+			{
+			match("debug"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "DEBUG"
+
+	// $ANTLR start "NODEBUG"
+	public final void mNODEBUG() throws RecognitionException {
+		try {
+			int _type = NODEBUG;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// /home/acco/workspace/FOOL/SVM.g:83:9: ( 'nodebug' )
+			// /home/acco/workspace/FOOL/SVM.g:83:11: 'nodebug'
+			{
+			match("nodebug"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "NODEBUG"
+
 	// $ANTLR start "PUSH"
 	public final void mPUSH() throws RecognitionException {
 		try {
 			int _type = PUSH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:80:7: ( 'push' )
-			// /home/acco/workspace/FOOL/SVM.g:80:9: 'push'
+			// /home/acco/workspace/FOOL/SVM.g:85:7: ( 'push' )
+			// /home/acco/workspace/FOOL/SVM.g:85:9: 'push'
 			{
 			match("push"); 
 
@@ -79,8 +123,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = POP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:81:6: ( 'pop' )
-			// /home/acco/workspace/FOOL/SVM.g:81:8: 'pop'
+			// /home/acco/workspace/FOOL/SVM.g:86:6: ( 'pop' )
+			// /home/acco/workspace/FOOL/SVM.g:86:8: 'pop'
 			{
 			match("pop"); 
 
@@ -100,8 +144,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = ADD;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:82:6: ( 'add' )
-			// /home/acco/workspace/FOOL/SVM.g:82:8: 'add'
+			// /home/acco/workspace/FOOL/SVM.g:87:6: ( 'add' )
+			// /home/acco/workspace/FOOL/SVM.g:87:8: 'add'
 			{
 			match("add"); 
 
@@ -121,8 +165,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = SUB;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:83:6: ( 'sub' )
-			// /home/acco/workspace/FOOL/SVM.g:83:8: 'sub'
+			// /home/acco/workspace/FOOL/SVM.g:88:6: ( 'sub' )
+			// /home/acco/workspace/FOOL/SVM.g:88:8: 'sub'
 			{
 			match("sub"); 
 
@@ -142,8 +186,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = MULT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:84:7: ( 'mult' )
-			// /home/acco/workspace/FOOL/SVM.g:84:9: 'mult'
+			// /home/acco/workspace/FOOL/SVM.g:89:7: ( 'mult' )
+			// /home/acco/workspace/FOOL/SVM.g:89:9: 'mult'
 			{
 			match("mult"); 
 
@@ -163,8 +207,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = DIV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:85:6: ( 'div' )
-			// /home/acco/workspace/FOOL/SVM.g:85:8: 'div'
+			// /home/acco/workspace/FOOL/SVM.g:90:6: ( 'div' )
+			// /home/acco/workspace/FOOL/SVM.g:90:8: 'div'
 			{
 			match("div"); 
 
@@ -184,8 +228,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:86:9: ( 'sw' )
-			// /home/acco/workspace/FOOL/SVM.g:86:11: 'sw'
+			// /home/acco/workspace/FOOL/SVM.g:91:9: ( 'sw' )
+			// /home/acco/workspace/FOOL/SVM.g:91:11: 'sw'
 			{
 			match("sw"); 
 
@@ -205,8 +249,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADW;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:87:8: ( 'lw' )
-			// /home/acco/workspace/FOOL/SVM.g:87:10: 'lw'
+			// /home/acco/workspace/FOOL/SVM.g:92:8: ( 'lw' )
+			// /home/acco/workspace/FOOL/SVM.g:92:10: 'lw'
 			{
 			match("lw"); 
 
@@ -226,8 +270,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCH;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:88:9: ( 'b' )
-			// /home/acco/workspace/FOOL/SVM.g:88:11: 'b'
+			// /home/acco/workspace/FOOL/SVM.g:93:9: ( 'b' )
+			// /home/acco/workspace/FOOL/SVM.g:93:11: 'b'
 			{
 			match('b'); 
 			}
@@ -246,8 +290,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCHEQ;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:89:10: ( 'beq' )
-			// /home/acco/workspace/FOOL/SVM.g:89:12: 'beq'
+			// /home/acco/workspace/FOOL/SVM.g:94:10: ( 'beq' )
+			// /home/acco/workspace/FOOL/SVM.g:94:12: 'beq'
 			{
 			match("beq"); 
 
@@ -267,8 +311,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = BRANCHLESS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:90:11: ( 'bless' )
-			// /home/acco/workspace/FOOL/SVM.g:90:12: 'bless'
+			// /home/acco/workspace/FOOL/SVM.g:95:11: ( 'bless' )
+			// /home/acco/workspace/FOOL/SVM.g:95:12: 'bless'
 			{
 			match("bless"); 
 
@@ -288,8 +332,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = JS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:91:5: ( 'js' )
-			// /home/acco/workspace/FOOL/SVM.g:91:7: 'js'
+			// /home/acco/workspace/FOOL/SVM.g:96:5: ( 'js' )
+			// /home/acco/workspace/FOOL/SVM.g:96:7: 'js'
 			{
 			match("js"); 
 
@@ -309,8 +353,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADRA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:92:9: ( 'lra' )
-			// /home/acco/workspace/FOOL/SVM.g:92:11: 'lra'
+			// /home/acco/workspace/FOOL/SVM.g:97:9: ( 'lra' )
+			// /home/acco/workspace/FOOL/SVM.g:97:11: 'lra'
 			{
 			match("lra"); 
 
@@ -330,8 +374,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STORERA;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:93:10: ( 'sra' )
-			// /home/acco/workspace/FOOL/SVM.g:93:12: 'sra'
+			// /home/acco/workspace/FOOL/SVM.g:98:10: ( 'sra' )
+			// /home/acco/workspace/FOOL/SVM.g:98:12: 'sra'
 			{
 			match("sra"); 
 
@@ -351,8 +395,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADRV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:94:9: ( 'lrv' )
-			// /home/acco/workspace/FOOL/SVM.g:94:11: 'lrv'
+			// /home/acco/workspace/FOOL/SVM.g:99:9: ( 'lrv' )
+			// /home/acco/workspace/FOOL/SVM.g:99:11: 'lrv'
 			{
 			match("lrv"); 
 
@@ -372,8 +416,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STORERV;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:95:10: ( 'srv' )
-			// /home/acco/workspace/FOOL/SVM.g:95:12: 'srv'
+			// /home/acco/workspace/FOOL/SVM.g:100:10: ( 'srv' )
+			// /home/acco/workspace/FOOL/SVM.g:100:12: 'srv'
 			{
 			match("srv"); 
 
@@ -393,8 +437,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:96:9: ( 'lfp' )
-			// /home/acco/workspace/FOOL/SVM.g:96:11: 'lfp'
+			// /home/acco/workspace/FOOL/SVM.g:101:9: ( 'lfp' )
+			// /home/acco/workspace/FOOL/SVM.g:101:11: 'lfp'
 			{
 			match("lfp"); 
 
@@ -414,8 +458,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:97:10: ( 'sfp' )
-			// /home/acco/workspace/FOOL/SVM.g:97:12: 'sfp'
+			// /home/acco/workspace/FOOL/SVM.g:102:10: ( 'sfp' )
+			// /home/acco/workspace/FOOL/SVM.g:102:12: 'sfp'
 			{
 			match("sfp"); 
 
@@ -435,8 +479,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = COPYFP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:98:10: ( 'cfp' )
-			// /home/acco/workspace/FOOL/SVM.g:98:12: 'cfp'
+			// /home/acco/workspace/FOOL/SVM.g:103:10: ( 'cfp' )
+			// /home/acco/workspace/FOOL/SVM.g:103:12: 'cfp'
 			{
 			match("cfp"); 
 
@@ -456,8 +500,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LOADHP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:99:9: ( 'lhp' )
-			// /home/acco/workspace/FOOL/SVM.g:99:11: 'lhp'
+			// /home/acco/workspace/FOOL/SVM.g:104:9: ( 'lhp' )
+			// /home/acco/workspace/FOOL/SVM.g:104:11: 'lhp'
 			{
 			match("lhp"); 
 
@@ -477,8 +521,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = STOREHP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:100:10: ( 'shp' )
-			// /home/acco/workspace/FOOL/SVM.g:100:12: 'shp'
+			// /home/acco/workspace/FOOL/SVM.g:105:10: ( 'shp' )
+			// /home/acco/workspace/FOOL/SVM.g:105:12: 'shp'
 			{
 			match("shp"); 
 
@@ -498,8 +542,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = PRINT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:101:8: ( 'print' )
-			// /home/acco/workspace/FOOL/SVM.g:101:10: 'print'
+			// /home/acco/workspace/FOOL/SVM.g:106:8: ( 'print' )
+			// /home/acco/workspace/FOOL/SVM.g:106:10: 'print'
 			{
 			match("print"); 
 
@@ -519,8 +563,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = HALT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:102:7: ( 'halt' )
-			// /home/acco/workspace/FOOL/SVM.g:102:9: 'halt'
+			// /home/acco/workspace/FOOL/SVM.g:107:7: ( 'halt' )
+			// /home/acco/workspace/FOOL/SVM.g:107:9: 'halt'
 			{
 			match("halt"); 
 
@@ -540,8 +584,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = COL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:104:6: ( ':' )
-			// /home/acco/workspace/FOOL/SVM.g:104:8: ':'
+			// /home/acco/workspace/FOOL/SVM.g:109:6: ( ':' )
+			// /home/acco/workspace/FOOL/SVM.g:109:8: ':'
 			{
 			match(':'); 
 			}
@@ -560,8 +604,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = LABEL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:105:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
-			// /home/acco/workspace/FOOL/SVM.g:105:10: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// /home/acco/workspace/FOOL/SVM.g:110:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )* )
+			// /home/acco/workspace/FOOL/SVM.g:110:10: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -571,7 +615,7 @@ public class SVMLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /home/acco/workspace/FOOL/SVM.g:105:29: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
+			// /home/acco/workspace/FOOL/SVM.g:110:29: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -616,7 +660,7 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = NUMBER;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:106:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
+			// /home/acco/workspace/FOOL/SVM.g:111:9: ( '0' | ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* ) )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='0') ) {
@@ -634,15 +678,15 @@ public class SVMLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// /home/acco/workspace/FOOL/SVM.g:106:11: '0'
+					// /home/acco/workspace/FOOL/SVM.g:111:11: '0'
 					{
 					match('0'); 
 					}
 					break;
 				case 2 :
-					// /home/acco/workspace/FOOL/SVM.g:106:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// /home/acco/workspace/FOOL/SVM.g:111:17: ( '-' )? ( ( '1' .. '9' ) ( '0' .. '9' )* )
 					{
-					// /home/acco/workspace/FOOL/SVM.g:106:17: ( '-' )?
+					// /home/acco/workspace/FOOL/SVM.g:111:17: ( '-' )?
 					int alt2=2;
 					int LA2_0 = input.LA(1);
 					if ( (LA2_0=='-') ) {
@@ -650,7 +694,7 @@ public class SVMLexer extends Lexer {
 					}
 					switch (alt2) {
 						case 1 :
-							// /home/acco/workspace/FOOL/SVM.g:106:18: '-'
+							// /home/acco/workspace/FOOL/SVM.g:111:18: '-'
 							{
 							match('-'); 
 							}
@@ -658,8 +702,8 @@ public class SVMLexer extends Lexer {
 
 					}
 
-					// /home/acco/workspace/FOOL/SVM.g:106:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
-					// /home/acco/workspace/FOOL/SVM.g:106:24: ( '1' .. '9' ) ( '0' .. '9' )*
+					// /home/acco/workspace/FOOL/SVM.g:111:23: ( ( '1' .. '9' ) ( '0' .. '9' )* )
+					// /home/acco/workspace/FOOL/SVM.g:111:24: ( '1' .. '9' ) ( '0' .. '9' )*
 					{
 					if ( (input.LA(1) >= '1' && input.LA(1) <= '9') ) {
 						input.consume();
@@ -669,7 +713,7 @@ public class SVMLexer extends Lexer {
 						recover(mse);
 						throw mse;
 					}
-					// /home/acco/workspace/FOOL/SVM.g:106:34: ( '0' .. '9' )*
+					// /home/acco/workspace/FOOL/SVM.g:111:34: ( '0' .. '9' )*
 					loop3:
 					while (true) {
 						int alt3=2;
@@ -718,10 +762,10 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = WHITESP;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:108:10: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
-			// /home/acco/workspace/FOOL/SVM.g:108:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// /home/acco/workspace/FOOL/SVM.g:113:10: ( ( '\\t' | ' ' | '\\r' | '\\n' )+ )
+			// /home/acco/workspace/FOOL/SVM.g:113:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			{
-			// /home/acco/workspace/FOOL/SVM.g:108:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
+			// /home/acco/workspace/FOOL/SVM.g:113:12: ( '\\t' | ' ' | '\\r' | '\\n' )+
 			int cnt5=0;
 			loop5:
 			while (true) {
@@ -771,11 +815,11 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:109:9: ( '#' ( . )* '\\n' )
-			// /home/acco/workspace/FOOL/SVM.g:109:11: '#' ( . )* '\\n'
+			// /home/acco/workspace/FOOL/SVM.g:114:9: ( '#' ( . )* '\\n' )
+			// /home/acco/workspace/FOOL/SVM.g:114:11: '#' ( . )* '\\n'
 			{
 			match('#'); 
-			// /home/acco/workspace/FOOL/SVM.g:109:15: ( . )*
+			// /home/acco/workspace/FOOL/SVM.g:114:15: ( . )*
 			loop6:
 			while (true) {
 				int alt6=2;
@@ -789,7 +833,7 @@ public class SVMLexer extends Lexer {
 
 				switch (alt6) {
 				case 1 :
-					// /home/acco/workspace/FOOL/SVM.g:109:15: .
+					// /home/acco/workspace/FOOL/SVM.g:114:15: .
 					{
 					matchAny(); 
 					}
@@ -818,8 +862,8 @@ public class SVMLexer extends Lexer {
 		try {
 			int _type = ERR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /home/acco/workspace/FOOL/SVM.g:110:9: ( . )
-			// /home/acco/workspace/FOOL/SVM.g:110:11: .
+			// /home/acco/workspace/FOOL/SVM.g:115:9: ( . )
+			// /home/acco/workspace/FOOL/SVM.g:115:11: .
 			{
 			matchAny(); 
 			 System.err.println("Invalid char: "+getText()); _channel=HIDDEN; 
@@ -836,208 +880,222 @@ public class SVMLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// /home/acco/workspace/FOOL/SVM.g:1:8: ( PUSH | POP | ADD | SUB | MULT | DIV | STOREW | LOADW | BRANCH | BRANCHEQ | BRANCHLESS | JS | LOADRA | STORERA | LOADRV | STORERV | LOADFP | STOREFP | COPYFP | LOADHP | STOREHP | PRINT | HALT | COL | LABEL | NUMBER | WHITESP | COMMENT | ERR )
-		int alt7=29;
+		// /home/acco/workspace/FOOL/SVM.g:1:8: ( DEBUG | NODEBUG | PUSH | POP | ADD | SUB | MULT | DIV | STOREW | LOADW | BRANCH | BRANCHEQ | BRANCHLESS | JS | LOADRA | STORERA | LOADRV | STORERV | LOADFP | STOREFP | COPYFP | LOADHP | STOREHP | PRINT | HALT | COL | LABEL | NUMBER | WHITESP | COMMENT | ERR )
+		int alt7=31;
 		alt7 = dfa7.predict(input);
 		switch (alt7) {
 			case 1 :
-				// /home/acco/workspace/FOOL/SVM.g:1:10: PUSH
+				// /home/acco/workspace/FOOL/SVM.g:1:10: DEBUG
+				{
+				mDEBUG(); 
+
+				}
+				break;
+			case 2 :
+				// /home/acco/workspace/FOOL/SVM.g:1:16: NODEBUG
+				{
+				mNODEBUG(); 
+
+				}
+				break;
+			case 3 :
+				// /home/acco/workspace/FOOL/SVM.g:1:24: PUSH
 				{
 				mPUSH(); 
 
 				}
 				break;
-			case 2 :
-				// /home/acco/workspace/FOOL/SVM.g:1:15: POP
+			case 4 :
+				// /home/acco/workspace/FOOL/SVM.g:1:29: POP
 				{
 				mPOP(); 
 
 				}
 				break;
-			case 3 :
-				// /home/acco/workspace/FOOL/SVM.g:1:19: ADD
+			case 5 :
+				// /home/acco/workspace/FOOL/SVM.g:1:33: ADD
 				{
 				mADD(); 
 
 				}
 				break;
-			case 4 :
-				// /home/acco/workspace/FOOL/SVM.g:1:23: SUB
+			case 6 :
+				// /home/acco/workspace/FOOL/SVM.g:1:37: SUB
 				{
 				mSUB(); 
 
 				}
 				break;
-			case 5 :
-				// /home/acco/workspace/FOOL/SVM.g:1:27: MULT
+			case 7 :
+				// /home/acco/workspace/FOOL/SVM.g:1:41: MULT
 				{
 				mMULT(); 
 
 				}
 				break;
-			case 6 :
-				// /home/acco/workspace/FOOL/SVM.g:1:32: DIV
+			case 8 :
+				// /home/acco/workspace/FOOL/SVM.g:1:46: DIV
 				{
 				mDIV(); 
 
 				}
 				break;
-			case 7 :
-				// /home/acco/workspace/FOOL/SVM.g:1:36: STOREW
+			case 9 :
+				// /home/acco/workspace/FOOL/SVM.g:1:50: STOREW
 				{
 				mSTOREW(); 
 
 				}
 				break;
-			case 8 :
-				// /home/acco/workspace/FOOL/SVM.g:1:43: LOADW
+			case 10 :
+				// /home/acco/workspace/FOOL/SVM.g:1:57: LOADW
 				{
 				mLOADW(); 
 
 				}
 				break;
-			case 9 :
-				// /home/acco/workspace/FOOL/SVM.g:1:49: BRANCH
+			case 11 :
+				// /home/acco/workspace/FOOL/SVM.g:1:63: BRANCH
 				{
 				mBRANCH(); 
 
 				}
 				break;
-			case 10 :
-				// /home/acco/workspace/FOOL/SVM.g:1:56: BRANCHEQ
+			case 12 :
+				// /home/acco/workspace/FOOL/SVM.g:1:70: BRANCHEQ
 				{
 				mBRANCHEQ(); 
 
 				}
 				break;
-			case 11 :
-				// /home/acco/workspace/FOOL/SVM.g:1:65: BRANCHLESS
+			case 13 :
+				// /home/acco/workspace/FOOL/SVM.g:1:79: BRANCHLESS
 				{
 				mBRANCHLESS(); 
 
 				}
 				break;
-			case 12 :
-				// /home/acco/workspace/FOOL/SVM.g:1:76: JS
+			case 14 :
+				// /home/acco/workspace/FOOL/SVM.g:1:90: JS
 				{
 				mJS(); 
 
 				}
 				break;
-			case 13 :
-				// /home/acco/workspace/FOOL/SVM.g:1:79: LOADRA
+			case 15 :
+				// /home/acco/workspace/FOOL/SVM.g:1:93: LOADRA
 				{
 				mLOADRA(); 
 
 				}
 				break;
-			case 14 :
-				// /home/acco/workspace/FOOL/SVM.g:1:86: STORERA
+			case 16 :
+				// /home/acco/workspace/FOOL/SVM.g:1:100: STORERA
 				{
 				mSTORERA(); 
 
 				}
 				break;
-			case 15 :
-				// /home/acco/workspace/FOOL/SVM.g:1:94: LOADRV
+			case 17 :
+				// /home/acco/workspace/FOOL/SVM.g:1:108: LOADRV
 				{
 				mLOADRV(); 
 
 				}
 				break;
-			case 16 :
-				// /home/acco/workspace/FOOL/SVM.g:1:101: STORERV
+			case 18 :
+				// /home/acco/workspace/FOOL/SVM.g:1:115: STORERV
 				{
 				mSTORERV(); 
 
 				}
 				break;
-			case 17 :
-				// /home/acco/workspace/FOOL/SVM.g:1:109: LOADFP
+			case 19 :
+				// /home/acco/workspace/FOOL/SVM.g:1:123: LOADFP
 				{
 				mLOADFP(); 
 
 				}
 				break;
-			case 18 :
-				// /home/acco/workspace/FOOL/SVM.g:1:116: STOREFP
+			case 20 :
+				// /home/acco/workspace/FOOL/SVM.g:1:130: STOREFP
 				{
 				mSTOREFP(); 
 
 				}
 				break;
-			case 19 :
-				// /home/acco/workspace/FOOL/SVM.g:1:124: COPYFP
+			case 21 :
+				// /home/acco/workspace/FOOL/SVM.g:1:138: COPYFP
 				{
 				mCOPYFP(); 
 
 				}
 				break;
-			case 20 :
-				// /home/acco/workspace/FOOL/SVM.g:1:131: LOADHP
+			case 22 :
+				// /home/acco/workspace/FOOL/SVM.g:1:145: LOADHP
 				{
 				mLOADHP(); 
 
 				}
 				break;
-			case 21 :
-				// /home/acco/workspace/FOOL/SVM.g:1:138: STOREHP
+			case 23 :
+				// /home/acco/workspace/FOOL/SVM.g:1:152: STOREHP
 				{
 				mSTOREHP(); 
 
 				}
 				break;
-			case 22 :
-				// /home/acco/workspace/FOOL/SVM.g:1:146: PRINT
+			case 24 :
+				// /home/acco/workspace/FOOL/SVM.g:1:160: PRINT
 				{
 				mPRINT(); 
 
 				}
 				break;
-			case 23 :
-				// /home/acco/workspace/FOOL/SVM.g:1:152: HALT
+			case 25 :
+				// /home/acco/workspace/FOOL/SVM.g:1:166: HALT
 				{
 				mHALT(); 
 
 				}
 				break;
-			case 24 :
-				// /home/acco/workspace/FOOL/SVM.g:1:157: COL
+			case 26 :
+				// /home/acco/workspace/FOOL/SVM.g:1:171: COL
 				{
 				mCOL(); 
 
 				}
 				break;
-			case 25 :
-				// /home/acco/workspace/FOOL/SVM.g:1:161: LABEL
+			case 27 :
+				// /home/acco/workspace/FOOL/SVM.g:1:175: LABEL
 				{
 				mLABEL(); 
 
 				}
 				break;
-			case 26 :
-				// /home/acco/workspace/FOOL/SVM.g:1:167: NUMBER
+			case 28 :
+				// /home/acco/workspace/FOOL/SVM.g:1:181: NUMBER
 				{
 				mNUMBER(); 
 
 				}
 				break;
-			case 27 :
-				// /home/acco/workspace/FOOL/SVM.g:1:174: WHITESP
+			case 29 :
+				// /home/acco/workspace/FOOL/SVM.g:1:188: WHITESP
 				{
 				mWHITESP(); 
 
 				}
 				break;
-			case 28 :
-				// /home/acco/workspace/FOOL/SVM.g:1:182: COMMENT
+			case 30 :
+				// /home/acco/workspace/FOOL/SVM.g:1:196: COMMENT
 				{
 				mCOMMENT(); 
 
 				}
 				break;
-			case 29 :
-				// /home/acco/workspace/FOOL/SVM.g:1:190: ERR
+			case 31 :
+				// /home/acco/workspace/FOOL/SVM.g:1:204: ERR
 				{
 				mERR(); 
 
@@ -1050,130 +1108,147 @@ public class SVMLexer extends Lexer {
 
 	protected DFA7 dfa7 = new DFA7(this);
 	static final String DFA7_eotS =
-		"\1\uffff\6\26\1\45\3\26\3\uffff\1\22\2\uffff\1\22\1\uffff\3\26\1\uffff"+
-		"\2\26\1\62\5\26\1\71\5\26\1\uffff\1\100\2\26\4\uffff\1\26\1\104\1\26\1"+
-		"\106\1\107\1\uffff\1\110\1\111\1\112\1\113\1\26\1\115\1\uffff\1\116\1"+
-		"\117\1\120\1\121\1\122\1\26\1\uffff\1\124\1\26\1\126\1\uffff\1\26\6\uffff"+
-		"\1\130\6\uffff\1\26\1\uffff\1\132\1\uffff\1\133\1\uffff\1\134\3\uffff";
+		"\1\uffff\7\26\1\50\3\26\3\uffff\1\23\2\uffff\1\23\1\uffff\2\26\1\uffff"+
+		"\6\26\1\70\4\26\1\76\5\26\1\uffff\1\105\2\26\4\uffff\1\26\1\111\2\26\1"+
+		"\114\1\26\1\116\1\117\1\uffff\1\120\1\121\1\122\1\123\1\26\1\uffff\1\125"+
+		"\1\126\1\127\1\130\1\131\1\26\1\uffff\1\133\2\26\1\uffff\1\26\1\137\1"+
+		"\uffff\1\26\6\uffff\1\141\5\uffff\1\26\1\uffff\1\143\1\144\1\26\1\uffff"+
+		"\1\146\1\uffff\1\147\2\uffff\1\26\2\uffff\1\151\1\uffff";
 	static final String DFA7_eofS =
-		"\135\uffff";
+		"\152\uffff";
 	static final String DFA7_minS =
-		"\1\0\1\157\1\144\1\146\1\165\1\151\1\146\1\60\1\163\1\146\1\141\3\uffff"+
-		"\1\61\2\uffff\1\0\1\uffff\1\163\1\160\1\151\1\uffff\1\144\1\142\1\60\1"+
-		"\141\2\160\1\154\1\166\1\60\1\141\2\160\1\161\1\145\1\uffff\1\60\1\160"+
-		"\1\154\4\uffff\1\150\1\60\1\156\2\60\1\uffff\4\60\1\164\1\60\1\uffff\5"+
-		"\60\1\163\1\uffff\1\60\1\164\1\60\1\uffff\1\164\6\uffff\1\60\6\uffff\1"+
-		"\163\1\uffff\1\60\1\uffff\1\60\1\uffff\1\60\3\uffff";
+		"\1\0\1\145\2\157\1\144\1\146\1\165\1\146\1\60\1\163\1\146\1\141\3\uffff"+
+		"\1\61\2\uffff\1\0\1\uffff\1\142\1\166\1\uffff\1\144\1\163\1\160\1\151"+
+		"\1\144\1\142\1\60\1\141\2\160\1\154\1\60\1\141\2\160\1\161\1\145\1\uffff"+
+		"\1\60\1\160\1\154\4\uffff\1\165\1\60\1\145\1\150\1\60\1\156\2\60\1\uffff"+
+		"\4\60\1\164\1\uffff\5\60\1\163\1\uffff\1\60\1\164\1\147\1\uffff\1\142"+
+		"\1\60\1\uffff\1\164\6\uffff\1\60\5\uffff\1\163\1\uffff\2\60\1\165\1\uffff"+
+		"\1\60\1\uffff\1\60\2\uffff\1\147\2\uffff\1\60\1\uffff";
 	static final String DFA7_maxS =
-		"\1\uffff\1\165\1\144\1\167\1\165\1\151\1\167\1\172\1\163\1\146\1\141\3"+
-		"\uffff\1\71\2\uffff\1\uffff\1\uffff\1\163\1\160\1\151\1\uffff\1\144\1"+
-		"\142\1\172\1\166\2\160\1\154\1\166\1\172\1\166\2\160\1\161\1\145\1\uffff"+
-		"\1\172\1\160\1\154\4\uffff\1\150\1\172\1\156\2\172\1\uffff\4\172\1\164"+
-		"\1\172\1\uffff\5\172\1\163\1\uffff\1\172\1\164\1\172\1\uffff\1\164\6\uffff"+
-		"\1\172\6\uffff\1\163\1\uffff\1\172\1\uffff\1\172\1\uffff\1\172\3\uffff";
+		"\1\uffff\1\151\1\157\1\165\1\144\1\167\1\165\1\167\1\172\1\163\1\146\1"+
+		"\141\3\uffff\1\71\2\uffff\1\uffff\1\uffff\1\142\1\166\1\uffff\1\144\1"+
+		"\163\1\160\1\151\1\144\1\142\1\172\1\166\2\160\1\154\1\172\1\166\2\160"+
+		"\1\161\1\145\1\uffff\1\172\1\160\1\154\4\uffff\1\165\1\172\1\145\1\150"+
+		"\1\172\1\156\2\172\1\uffff\4\172\1\164\1\uffff\5\172\1\163\1\uffff\1\172"+
+		"\1\164\1\147\1\uffff\1\142\1\172\1\uffff\1\164\6\uffff\1\172\5\uffff\1"+
+		"\163\1\uffff\2\172\1\165\1\uffff\1\172\1\uffff\1\172\2\uffff\1\147\2\uffff"+
+		"\1\172\1\uffff";
 	static final String DFA7_acceptS =
-		"\13\uffff\1\30\1\31\1\32\1\uffff\1\32\1\33\1\uffff\1\35\3\uffff\1\31\16"+
-		"\uffff\1\11\3\uffff\1\30\1\32\1\33\1\34\5\uffff\1\7\6\uffff\1\10\6\uffff"+
-		"\1\14\3\uffff\1\2\1\uffff\1\3\1\4\1\16\1\20\1\22\1\25\1\uffff\1\6\1\15"+
-		"\1\17\1\21\1\24\1\12\1\uffff\1\23\1\uffff\1\1\1\uffff\1\5\1\uffff\1\27"+
-		"\1\26\1\13";
+		"\14\uffff\1\32\1\33\1\34\1\uffff\1\34\1\35\1\uffff\1\37\2\uffff\1\33\21"+
+		"\uffff\1\13\3\uffff\1\32\1\34\1\35\1\36\10\uffff\1\11\5\uffff\1\12\6\uffff"+
+		"\1\16\3\uffff\1\10\2\uffff\1\4\1\uffff\1\5\1\6\1\20\1\22\1\24\1\27\1\uffff"+
+		"\1\17\1\21\1\23\1\26\1\14\1\uffff\1\25\3\uffff\1\3\1\uffff\1\7\1\uffff"+
+		"\1\31\1\1\1\uffff\1\30\1\15\1\uffff\1\2";
 	static final String DFA7_specialS =
-		"\1\1\20\uffff\1\0\113\uffff}>";
+		"\1\0\21\uffff\1\1\127\uffff}>";
 	static final String[] DFA7_transitionS = {
-			"\11\22\2\20\2\22\1\20\22\22\1\20\2\22\1\21\11\22\1\16\2\22\1\15\11\17"+
-			"\1\13\6\22\32\14\6\22\1\2\1\7\1\11\1\5\3\14\1\12\1\14\1\10\1\14\1\6\1"+
-			"\4\2\14\1\1\2\14\1\3\7\14\uff85\22",
-			"\1\24\2\uffff\1\25\2\uffff\1\23",
+			"\11\23\2\21\2\23\1\21\22\23\1\21\2\23\1\22\11\23\1\17\2\23\1\16\11\20"+
+			"\1\14\6\23\32\15\6\23\1\4\1\10\1\12\1\1\3\15\1\13\1\15\1\11\1\15\1\7"+
+			"\1\6\1\2\1\15\1\3\2\15\1\5\7\15\uff85\23",
+			"\1\24\3\uffff\1\25",
 			"\1\27",
-			"\1\33\1\uffff\1\34\11\uffff\1\32\2\uffff\1\30\1\uffff\1\31",
-			"\1\35",
-			"\1\36",
-			"\1\41\1\uffff\1\42\11\uffff\1\40\4\uffff\1\37",
-			"\12\26\7\uffff\32\26\6\uffff\4\26\1\43\6\26\1\44\16\26",
-			"\1\46",
-			"\1\47",
-			"\1\50",
+			"\1\31\2\uffff\1\32\2\uffff\1\30",
+			"\1\33",
+			"\1\37\1\uffff\1\40\11\uffff\1\36\2\uffff\1\34\1\uffff\1\35",
+			"\1\41",
+			"\1\44\1\uffff\1\45\11\uffff\1\43\4\uffff\1\42",
+			"\12\26\7\uffff\32\26\6\uffff\4\26\1\46\6\26\1\47\16\26",
+			"\1\51",
+			"\1\52",
+			"\1\53",
 			"",
 			"",
 			"",
-			"\11\52",
+			"\11\55",
 			"",
 			"",
-			"\0\54",
-			"",
-			"\1\55",
-			"\1\56",
-			"\1\57",
+			"\0\57",
 			"",
 			"\1\60",
 			"\1\61",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\63\24\uffff\1\64",
+			"",
+			"\1\62",
+			"\1\63",
+			"\1\64",
 			"\1\65",
 			"\1\66",
 			"\1\67",
-			"\1\70",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\72\24\uffff\1\73",
+			"\1\71\24\uffff\1\72",
+			"\1\73",
 			"\1\74",
 			"\1\75",
-			"\1\76",
-			"\1\77",
-			"",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\77\24\uffff\1\100",
 			"\1\101",
 			"\1\102",
-			"",
-			"",
-			"",
-			"",
 			"\1\103",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\105",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\104",
 			"",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\106",
+			"\1\107",
+			"",
+			"",
+			"",
+			"",
+			"\1\110",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\112",
+			"\1\113",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\115",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\114",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\123",
-			"",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"\1\125",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"",
-			"\1\127",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"\12\26\7\uffff\32\26\6\uffff\32\26",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"",
-			"\1\131",
-			"",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			"",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\124",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\132",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\134",
+			"\1\135",
+			"",
+			"\1\136",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"",
+			"\1\140",
+			"",
+			"",
+			"",
+			"",
+			"",
 			"",
 			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			"",
 			"",
+			"",
+			"",
+			"",
+			"\1\142",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"\1\145",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
+			"",
+			"",
+			"\1\150",
+			"",
+			"",
+			"\12\26\7\uffff\32\26\6\uffff\32\26",
 			""
 	};
 
@@ -1208,7 +1283,7 @@ public class SVMLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( PUSH | POP | ADD | SUB | MULT | DIV | STOREW | LOADW | BRANCH | BRANCHEQ | BRANCHLESS | JS | LOADRA | STORERA | LOADRV | STORERV | LOADFP | STOREFP | COPYFP | LOADHP | STOREHP | PRINT | HALT | COL | LABEL | NUMBER | WHITESP | COMMENT | ERR );";
+			return "1:1: Tokens : ( DEBUG | NODEBUG | PUSH | POP | ADD | SUB | MULT | DIV | STOREW | LOADW | BRANCH | BRANCHEQ | BRANCHLESS | JS | LOADRA | STORERA | LOADRV | STORERV | LOADFP | STOREFP | COPYFP | LOADHP | STOREHP | PRINT | HALT | COL | LABEL | NUMBER | WHITESP | COMMENT | ERR );";
 		}
 		@Override
 		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
@@ -1216,34 +1291,35 @@ public class SVMLexer extends Lexer {
 			int _s = s;
 			switch ( s ) {
 					case 0 : 
-						int LA7_17 = input.LA(1);
+						int LA7_0 = input.LA(1);
 						s = -1;
-						if ( ((LA7_17 >= '\u0000' && LA7_17 <= '\uFFFF')) ) {s = 44;}
-						else s = 18;
+						if ( (LA7_0=='d') ) {s = 1;}
+						else if ( (LA7_0=='n') ) {s = 2;}
+						else if ( (LA7_0=='p') ) {s = 3;}
+						else if ( (LA7_0=='a') ) {s = 4;}
+						else if ( (LA7_0=='s') ) {s = 5;}
+						else if ( (LA7_0=='m') ) {s = 6;}
+						else if ( (LA7_0=='l') ) {s = 7;}
+						else if ( (LA7_0=='b') ) {s = 8;}
+						else if ( (LA7_0=='j') ) {s = 9;}
+						else if ( (LA7_0=='c') ) {s = 10;}
+						else if ( (LA7_0=='h') ) {s = 11;}
+						else if ( (LA7_0==':') ) {s = 12;}
+						else if ( ((LA7_0 >= 'A' && LA7_0 <= 'Z')||(LA7_0 >= 'e' && LA7_0 <= 'g')||LA7_0=='i'||LA7_0=='k'||LA7_0=='o'||(LA7_0 >= 'q' && LA7_0 <= 'r')||(LA7_0 >= 't' && LA7_0 <= 'z')) ) {s = 13;}
+						else if ( (LA7_0=='0') ) {s = 14;}
+						else if ( (LA7_0=='-') ) {s = 15;}
+						else if ( ((LA7_0 >= '1' && LA7_0 <= '9')) ) {s = 16;}
+						else if ( ((LA7_0 >= '\t' && LA7_0 <= '\n')||LA7_0=='\r'||LA7_0==' ') ) {s = 17;}
+						else if ( (LA7_0=='#') ) {s = 18;}
+						else if ( ((LA7_0 >= '\u0000' && LA7_0 <= '\b')||(LA7_0 >= '\u000B' && LA7_0 <= '\f')||(LA7_0 >= '\u000E' && LA7_0 <= '\u001F')||(LA7_0 >= '!' && LA7_0 <= '\"')||(LA7_0 >= '$' && LA7_0 <= ',')||(LA7_0 >= '.' && LA7_0 <= '/')||(LA7_0 >= ';' && LA7_0 <= '@')||(LA7_0 >= '[' && LA7_0 <= '`')||(LA7_0 >= '{' && LA7_0 <= '\uFFFF')) ) {s = 19;}
 						if ( s>=0 ) return s;
 						break;
 
 					case 1 : 
-						int LA7_0 = input.LA(1);
+						int LA7_18 = input.LA(1);
 						s = -1;
-						if ( (LA7_0=='p') ) {s = 1;}
-						else if ( (LA7_0=='a') ) {s = 2;}
-						else if ( (LA7_0=='s') ) {s = 3;}
-						else if ( (LA7_0=='m') ) {s = 4;}
-						else if ( (LA7_0=='d') ) {s = 5;}
-						else if ( (LA7_0=='l') ) {s = 6;}
-						else if ( (LA7_0=='b') ) {s = 7;}
-						else if ( (LA7_0=='j') ) {s = 8;}
-						else if ( (LA7_0=='c') ) {s = 9;}
-						else if ( (LA7_0=='h') ) {s = 10;}
-						else if ( (LA7_0==':') ) {s = 11;}
-						else if ( ((LA7_0 >= 'A' && LA7_0 <= 'Z')||(LA7_0 >= 'e' && LA7_0 <= 'g')||LA7_0=='i'||LA7_0=='k'||(LA7_0 >= 'n' && LA7_0 <= 'o')||(LA7_0 >= 'q' && LA7_0 <= 'r')||(LA7_0 >= 't' && LA7_0 <= 'z')) ) {s = 12;}
-						else if ( (LA7_0=='0') ) {s = 13;}
-						else if ( (LA7_0=='-') ) {s = 14;}
-						else if ( ((LA7_0 >= '1' && LA7_0 <= '9')) ) {s = 15;}
-						else if ( ((LA7_0 >= '\t' && LA7_0 <= '\n')||LA7_0=='\r'||LA7_0==' ') ) {s = 16;}
-						else if ( (LA7_0=='#') ) {s = 17;}
-						else if ( ((LA7_0 >= '\u0000' && LA7_0 <= '\b')||(LA7_0 >= '\u000B' && LA7_0 <= '\f')||(LA7_0 >= '\u000E' && LA7_0 <= '\u001F')||(LA7_0 >= '!' && LA7_0 <= '\"')||(LA7_0 >= '$' && LA7_0 <= ',')||(LA7_0 >= '.' && LA7_0 <= '/')||(LA7_0 >= ';' && LA7_0 <= '@')||(LA7_0 >= '[' && LA7_0 <= '`')||(LA7_0 >= '{' && LA7_0 <= '\uFFFF')) ) {s = 18;}
+						if ( ((LA7_18 >= '\u0000' && LA7_18 <= '\uFFFF')) ) {s = 47;}
+						else s = 19;
 						if ( s>=0 ) return s;
 						break;
 			}

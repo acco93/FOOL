@@ -32,6 +32,10 @@ public class ClassNode implements Node, DecNode {
 		for(int i=0;i<methods.size();i++){
 			result+=methods.get(i).toPrint(indent+"  ");
 		}
+		result+=indent+"Class entry:\n"+this.classEntry.toPrint(indent);
+		if(superEntry!=null){
+			result+=indent+"Super class entry:\n"+this.superEntry.toPrint(indent);
+		}
 		return result;
 	}
 
@@ -54,15 +58,13 @@ public class ClassNode implements Node, DecNode {
 			
 			// recupero il tipo dei metodi dalla CTEntry che descrive la classe
 			ArrayList<Node> classMethods = this.classEntry.getAllMethods();
-			// recupero il tipo dei campi dalla CTEntry che descrive la super classe
+			// recupero il tipo dei metodi dalla CTEntry che descrive la super classe
 			ArrayList<Node> superMethods = this.superEntry.getAllMethods();
 			
 			// recupero gli offset di campi e metodi definiti nella classe
 			HashSet<Integer> locals = this.classEntry.getLocals();
 			HashSet<Integer> superLocals = this.superEntry.getLocals();
 			
-			// i metodi sono covarianti: il tipo dei campi della sottoclasse deve essere maggiore del tipo dei campi della super classe
-			// in questo modo non ci sono problemi nell'utilizzatli con metodi della sopraclasse
 			
 			// itero sugli offset ... 
 			Iterator<Integer> it = locals.iterator();
