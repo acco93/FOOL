@@ -5,11 +5,12 @@ push 0
 lfp
 push function0
 
+debug
 # CALL NODE di f
 # Control link
 lfp
 # parametri (1)
-push 25
+push 2
 # setto l'AL
 push -2
 lfp
@@ -25,17 +26,17 @@ lw
 js
 # ============= 
 print
+nodebug
 halt
 
 function0:
 cfp
 lra
 # Dichiarazioni della funzione 
-push 1
 # Body della funzione
-# ID A
+# ID x
 # ID normale (non funzionale) recupero il valore
-push -2
+push 1
 lfp
 # risalgo la catena statica 0 volte
 add
@@ -83,7 +84,6 @@ label0:
 push 0
 label1:
 srv
-pop
 sra
 pop
 pop

@@ -1,14 +1,11 @@
 let
-	class A {};
+
 	fun f:int(x:int)
-		let
-			var A:int = 1;
-		in
-		if(A==0) then {0}
+		if(x==0) then {0}
 		else { f(x-1) };
 
 in
-	print(f(25));
+	debug(print(f(2)));
 	
 	
 	
