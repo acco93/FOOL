@@ -12,7 +12,6 @@ public class FOOLLib {
 	private static String functionsCode = "";
 	// map: classID -> superClassID
 	private static HashMap<String, String> superType;
-	private static HashMap<String, CTEntry> classTable;
 
 	// valuta se il tipo di a <= del tipo b
 	public static boolean isSubType(Node a, Node b) {
@@ -182,15 +181,6 @@ public class FOOLLib {
 
 	public static void setSuperTypeMap(HashMap<String, String> superType) {
 		FOOLLib.superType = superType;
-
-	}
-
-	public static void setClassTable(HashMap<String, CTEntry> classTable) {
-		FOOLLib.classTable = classTable;
-	}
-
-	public static HashMap<String, CTEntry> getClassTable() {
-		return classTable;
 	}
 	
 	

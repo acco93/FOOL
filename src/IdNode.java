@@ -36,10 +36,9 @@ public class IdNode implements Node {
 			System.out.println("Wrong usage of method identifier");
 			System.exit(0);
 		}
-		// o il nome di una classe
+		// o null
 		
-		HashMap<String, CTEntry> classTable = FOOLLib.getClassTable();
-		if(classTable.get(this.id)!=null || this.id.equals("null")){
+		if(this.id.equals("null")){
 			System.out.println("Wrong usage of class identifier");
 			System.exit(0);
 		}
