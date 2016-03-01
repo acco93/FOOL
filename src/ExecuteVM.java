@@ -211,6 +211,7 @@ public class ExecuteVM {
 				//interrupt the execution
 				case SVMParser.HALT:
 					cycle = false;
+					this.memoryTrace();
 					continue;					
 			}
 
@@ -247,11 +248,12 @@ public class ExecuteVM {
 
 	private int pop(){
 		int value= memory[sp++];
+		this.memoryTrace();
 		return value;
 	}
 	
 	private void push(int value){
 		memory[--sp] = value;
-		memoryTrace();
+		this.memoryTrace();
 	}
 }

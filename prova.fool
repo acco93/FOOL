@@ -4,8 +4,12 @@ let
 		else { f(x-1) };
 
 in
-	debug(f(2));
-/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi High Order
+	debug(print(f(25)));
+	
+	
+	
+	
+/* ------------------------ Serbatoio esempi ----------------------
 
 let
 	fun f:int(x:int) x-1;
@@ -36,7 +40,7 @@ let
 
 in
 	f(2);
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Esempi OO
+----------------------------------------------
 let
   class List (f:int, r:List) {
     fun first:int() f;
@@ -241,10 +245,6 @@ in
       then { false }
       else { 10 }
   ); 
-  
-  
-  
-  
   
   bool function(int x, int y){
   	return x==y;
