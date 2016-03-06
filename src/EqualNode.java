@@ -35,7 +35,9 @@ public class EqualNode implements Node {
 		return new BoolTypeNode();
 	}
 	
-	//  == ha senso se tra le due cose che sto confrontando c'è una relazione di <=
+	// == ha senso se tra le due cose che sto confrontando c'è una relazione di 
+	// lowest common ancestor (mi pare funzioni perchè non abbiamo ereditarietà
+	// multipla)
 
 	@Override
 	public String codeGeneration() {

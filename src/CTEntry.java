@@ -15,12 +15,12 @@ public class CTEntry {
 	// ad ogni metodo incontrato INCREMENTO
 	private int offsetMethods;
 
-	// contiene tutti i figli virtuali che sono campi.
+	// contiene tutti i figli virtuali (cioè della super e miei) che sono campi.
 	// Essi sono ordinati in base al loro offset che viene mappato
 	// nelle posizioni dell'array come: -(offsetCampo)-1
 	private ArrayList<Node> allFields;
 
-	// contiene tutti i figli virtuali che sono metodi.
+	// contiene tutti i figli virtuali (cioè della super e miei) che sono metodi.
 	// Essi sono ordinati in base al loro offset e sono mappati nell'
 	// array come: offset metodo
 	private ArrayList<Node> allMethods;

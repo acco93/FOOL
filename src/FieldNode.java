@@ -29,7 +29,6 @@ public class FieldNode implements Node, DecNode {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

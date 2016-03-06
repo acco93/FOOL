@@ -102,7 +102,7 @@ public class ClassCallNode implements Node{
 							// cioè vado a dirgli che si riferisce a questo AR in caso ad esempio di variabili libere
 							
 				
-				//ora vado a recuperare l'indirizzo del metodo			
+				//ora vado a recuperare l'indirizzo del metodo nella dispatch table
 				"# setto l'indirizzo a cui saltare\n"+
 				// riprendo l'object pointer
 				"push "+(this.entry.getOffset())+"\n"+

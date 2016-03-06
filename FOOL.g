@@ -6,7 +6,6 @@ grammar FOOL;
   import java.util.HashMap;
 }
 
-
 @members {
 // queste dichiarazioni diventano campi delle classi generate del parser
 
@@ -16,7 +15,7 @@ grammar FOOL;
 // le virtual table (symbol table per i componenti delle classi) sono a nesting level 1
 private int nestingLevel = -1; 
 
-private  ArrayList<HashMap<String,STEntry>> symbolTable = new ArrayList<HashMap<String,STEntry>>(); 
+private  ArrayList<HashMap<String,STEntry>> symbolTable = new ArrayList<HashMap<String,STEntry>>();
 
 // la class table mappa il nome della classe alla CTEntry
 // che contiene varie cose tra cui la virtual table
@@ -53,7 +52,7 @@ prog returns [Node ast] :
 	       symbolTable.add(hm);
 	       }
 	  // posso quindi incontrare una lista di classi     
-	  c=cllist      
+	  c=cllist
     // seguita da una lista di dichiarazoni (variabili/funzioni)
     d=declist 
     
@@ -74,16 +73,14 @@ prog returns [Node ast] :
 cllist returns [ArrayList<Node> astList] : 
   
     { 
-    // inizializzo la lista di classi
+    // inizializzo la lista di classi che verrà restituita a prog
     $astList = new ArrayList<Node>();
     }
   
   (CLASS i=ID 
     
     {    
-    
-    
-        
+  
     // la symbol table di livello 0 include STEntry per i nomi delle classi
     // questo per controllare che nello stesso scope non vengano dichiarate altre cose
     // con lo stesso nome
@@ -285,7 +282,7 @@ cllist returns [ArrayList<Node> astList] :
       CRPAR
      
       {
-        // devo ricordarmi di chiudere il livello della classe!
+        // devo ricordarmi di chiudere il livello interno della classe! (livello virtual table)
         symbolTable.remove(nestingLevel--);
       }
       // potrebbero esserci altre classi quindi * 
@@ -412,7 +409,6 @@ exp returns [Node ast] :
         )* |
      DEBUG LPAR e=exp RPAR {$ast = new DebugNode($e.ast);}  
         ;
-
 
 term returns [Node ast] :
   f=factor {$ast = $f.ast;} 
